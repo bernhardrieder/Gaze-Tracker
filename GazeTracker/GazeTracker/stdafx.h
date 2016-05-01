@@ -18,3 +18,12 @@
 #include <opencv2/videostab.hpp> //Video Stabilization
 
 /*	open cv extra modules	*/
+
+//other
+#include <Windows.h>
+#include <iostream>
+#include <string>
+
+#include "Camera.h"
+#include "FaceDetection.h"
+#include "ScreenCapture.h"
