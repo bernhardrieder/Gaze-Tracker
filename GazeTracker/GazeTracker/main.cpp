@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-
 /* Global variables */
 cv::String face_cascade_name = "cascade_classifier/haarcascades/opencv/haarcascade_frontalface_alt.xml";
 cv::String eyes_cascade_name = "cascade_classifier/haarcascades/opencv/haarcascade_eye_tree_eyeglasses.xml";
@@ -13,12 +12,12 @@ int main(void)
 {
 	HWND hwndDesktop = GetDesktopWindow();
 	Camera camera = Camera(0, 800, 600);
-	auto webCamCap = camera.GetCamera(); 
+	auto webCamCap = camera.GetCamera();
 	//webCamCap->set(CV_CAP_PROP_FPS, 60); //NOT SUPPORTED
 	cv::VideoWriter video;
 
 	cv::Mat screen = ScreenCapture::hwnd2Mat(hwndDesktop);
-	video.open("out.avi", CV_FOURCC('M', 'J', 'P', 'G'), 2, cv::Size(screen.size().width, screen.size().height), true);
+	video.open("out.avi", CV_FOURCC('M', 'J', 'P', 'G'), 10, cv::Size(screen.size().width, screen.size().height), true);
 	
 	CV_Assert(video.isOpened());
 	CV_Assert(webCamCap->isOpened());
@@ -40,8 +39,7 @@ int main(void)
 		screen = ScreenCapture::hwnd2Mat(hwndDesktop);
 		video << screen;
 
-		int c = cv::waitKey(10);
-		if ((char)c == 27) { break; } // escape
+		if (cv::waitKey(1) == 27) { break; } // escape
 
 	}
 	//video.release();
