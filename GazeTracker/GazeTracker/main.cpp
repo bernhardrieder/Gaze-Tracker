@@ -30,14 +30,22 @@ int main(void)
 	
 	CV_Assert(video.isOpened());
 	CV_Assert(webCamCap->isOpened());
-
-	cv::namedWindow("links", cv::WINDOW_FREERATIO);
-	cv::namedWindow("rechts", cv::WINDOW_FREERATIO);
-
-	cv::namedWindow("links_hist", cv::WINDOW_FREERATIO);
-	cv::namedWindow("rechts_hist", cv::WINDOW_FREERATIO);
-	cv::namedWindow("rechts_bright", cv::WINDOW_FREERATIO);
-	cv::namedWindow("links_bright", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_normal", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_hist", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_bright", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_filter", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_thres", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_circle", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_canny", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::LEFT) + "_thres2", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_normal", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_hist", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_bright", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_filter", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_thres", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_circle", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_canny", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(Eye::RIGHT) + "_thres2", cv::WINDOW_FREERATIO);
 	while (webCamCap->isOpened())
 	{
 		cv::Mat frame = camera.GetFrame();

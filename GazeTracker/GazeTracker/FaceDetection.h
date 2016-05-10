@@ -1,4 +1,17 @@
 #pragma once
+
+enum Eye
+{
+	LEFT, RIGHT
+};
+inline const std::string ToString(Eye v)
+{
+	switch (v)
+	{
+	case LEFT:   return "LEFT";
+	case RIGHT:   return "RIGHT";
+	}
+}
 class FaceDetection 
 {
 public:
@@ -12,7 +25,8 @@ public:
 	void test_detectAndDraw_v3(cv::Mat& frame);
 	void test_detectAndDraw_v4(cv::Mat& frame);
 	void detectAndDrawWithLeftAndRightEye(cv::Mat& frame);
-	void pupilDetection(cv::Mat& frame, cv::Mat& roi);
+	void pupilDetection(cv::Mat& frame, cv::Mat& roi, enum Eye eyeSide, cv::Rect roiRect);
+
 private:
 	bool initClassifier(std::string faceCascadeName, std::string eyesCascadeName);
 	bool initClassifier(std::string faceCascadeName, std::string leftEyeCascadeName, std::string rightEyeCascadeName);

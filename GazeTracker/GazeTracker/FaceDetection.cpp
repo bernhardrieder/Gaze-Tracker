@@ -222,68 +222,134 @@ void FaceDetection::detectAndDrawWithLeftAndRightEye(cv::Mat& frame)
 		//	cv::Size(30, 30));
 
 		m_LeftEyeCascadeClassifier.detectMultiScale(frame_gray(leftSide), leftEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, 
-			cv::Size(30, 30));
+			cv::Size(20, 20));
 		m_RightEyeCascadeClassifier.detectMultiScale(frame_gray(rightSide), rightEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, 
-			cv::Size(30, 30));
-		for (size_t j = 0; j < leftEye.size(); j++)
-		{
-			cv::Rect eye = cv::Rect(leftSide.x + leftEye[j].x, leftSide.y + leftEye[j].y, leftEye[j].width, leftEye[j].width);
-			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
-			cv::Mat roi = frame_gray(eye);
-			pupilDetection(frame, roi);
+			cv::Size(20, 20));
 
-			cv::imshow("links", roi);
-			cv::equalizeHist(roi, roi);
-			cv::imshow("links_hist", roi);
+		float offsetY = 30;
+		float offsetX = 0;
 
-
-			if (!roi.empty())
-			{
-				int beta = 50;
-				for (int y = 0; y < roi.rows; y++) {
-					for (int x = 0; x < roi.cols; x++) {
-						for (int c = 0; c < 3; c++) {
-							roi.at<cv::Vec3b>(y, x)[c] =
-								cv::saturate_cast<uchar>((roi.at<cv::Vec3b>(y, x)[c]) + beta);
-						}
-					}
-				}
-				cv::imshow("links_bright", roi);
-			}
-		}
 		for (size_t j = 0; j < rightEye.size(); j++)
 		{
-			cv::Rect eye = cv::Rect(rightSide.x + rightEye[j].x, rightSide.y + rightEye[j].y, rightEye[j].width, rightEye[j].width);
+			cv::Rect eye = cv::Rect(rightSide.x + rightEye[j].x + offsetX / 2, rightSide.y + rightEye[j].y + offsetY * 0.8f, rightEye[j].width - offsetX, rightEye[j].height - offsetY);
 			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
 			cv::Mat roi = frame_gray(eye);
-			pupilDetection(frame, roi);
-			
-			cv::imshow("rechts", roi);
-			cv::equalizeHist(roi, roi);
-			cv::imshow("rechts_hist", roi);
+			pupilDetection(frame, roi, Eye::RIGHT, eye);
+		}
+		for (size_t j = 0; j < leftEye.size(); j++)
+		{
+			cv::Rect eye = cv::Rect(leftSide.x + leftEye[j].x + offsetX/2, leftSide.y + leftEye[j].y + offsetY * 0.8f, leftEye[j].width - offsetX, leftEye[j].height - offsetY);
+			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
+			cv::Mat roi = frame_gray(eye);
+			pupilDetection(frame, roi, Eye::LEFT, eye);
 
-			if(!roi.empty())
-			{
-				int beta = 50;
-				for (int y = 0; y < roi.rows; y++) {
-					for (int x = 0; x < roi.cols; x++) {
-						for (int c = 0; c < 3; c++) {
-							roi.at<cv::Vec3b>(y, x)[c] =
-								cv::saturate_cast<uchar>((roi.at<cv::Vec3b>(y, x)[c]) + beta);
-						}
-					}
-				}
-				cv::imshow("rechts_bright", roi);
-			}
 		}
 	}
 	//-- Show what you got
 	cv::imshow("result", frame);
 }
 
-void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi)
+void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv::Rect roiRect)
 {
+	cv::imshow(ToString(eyeSide) + "_normal", roi);
+	cv::equalizeHist(roi, roi);
+	cv::imshow(ToString(eyeSide) + "_hist", roi);
 
+	//brighten -> from tutorial
+	if (!roi.empty())
+	{
+		int beta = 25;
+		for (int y = 0; y < roi.rows; y++) {
+			for (int x = 0; x < roi.cols; x++) {
+				for (int c = 0; c < 3; c++) {
+					roi.at<cv::Vec3b>(y, x)[c] =
+						cv::saturate_cast<uchar>((roi.at<cv::Vec3b>(y, x)[c]) + beta);
+				}
+			}
+		}
+		cv::imshow(ToString(eyeSide) + "_bright", roi);
+	}
+
+	int i = 21;
+	//cv::medianBlur(roi, roi, 1);
+	cv::Mat clone = roi.clone();
+
+
+	cv::threshold(clone, clone, 70, 0, cv::THRESH_TRUNC);
+	//cv::threshold(clone, clone, 50, 255, cv::THRESH_TOZERO_INV);
+	cv::threshold(clone, clone, 50, 255, cv::THRESH_BINARY);
+	//cv::threshold(clone, clone, 50, 150, cv::THRESH_BINARY_INV);
+	cv::imshow(ToString(eyeSide) + "_thres", clone);
+
+	//cv::bilateralFilter(roi, clone, i, i * 2, i / 2);
+	cv::GaussianBlur(clone, clone, cv::Size(i, i),0);
+	//cv::blur(roi, clone, cv::Size(i, i), cv::Point(-1, -1));
+	cv::imshow(ToString(eyeSide) + "_filter", clone);
+
+	cv::threshold(clone, clone, 150, 255, cv::THRESH_BINARY);
+	cv::imshow(ToString(eyeSide) + "_thres2", clone);
+	cv::GaussianBlur(clone, clone, cv::Size(3, 3), 2, 2);
+	cv::imshow(ToString(eyeSide) + "_filter", clone);
+
+	cv::Canny(clone, clone, 0, 100);
+	cv::imshow(ToString(eyeSide) + "_canny", clone);
+
+	std::vector<cv::Vec3f> circleVector;
+	cv::HoughCircles(clone, circleVector, CV_HOUGH_GRADIENT, 2, clone.size().height, 35, 25, 1, 10);
+
+
+	for (size_t k = 0; k < circleVector.size(); ++k) {
+
+		//int r = circleVector[k][2];
+		int r = 3;
+
+		//cv::Point c(circleVector[k][0],
+		//	 circleVector[k][1]);
+
+		//circle(roi, c, r, cv::Scalar(0, 0, 255), 2);
+
+		cv::Point c(roiRect.x + circleVector[k][0],
+		roiRect.y + circleVector[k][1]);
+
+		circle(frame, c, r, cv::Scalar(0, 0, 255), -1);
+	}
+
+	cv::imshow(ToString(eyeSide) + "_circle", roi);
+
+
+	/*
+	
+	cvAddS(smoothImage, cvScalar(70,70,70), smoothImage);
+	cvThreshold(smoothImage,smoothImage, 120,255,CV_THRESH_BINARY);
+	cvSmooth(smoothImage , smoothImage, CV_GAUSSIAN, 3,0);
+	
+	*/
+
+
+	//cv::Mat eyeROIgray;
+
+	//cv::cvtColor(eyeROI, eyeROIgray, cv::COLOR_BGR2GRAY);
+	//equalizeHist(eyeROIgray, eyeROIgray);
+
+
+	//cv::GaussianBlur(eyeROIgray, eyeROIgray, cv::Size(9, 9), 2, 2);
+
+	//cv::threshold(eyeROIgray, eyeROIgray, 40, 255, cv::THRESH_BINARY_INV);
+
+	//cv::Canny(eyeROIgray, eyeROIgray, 5, 10, 3);
+
+
+	//std::vector<cv::Vec3f> circleVector;
+
+	//cv::HoughCircles(eyeROIgray, circleVector, CV_HOUGH_GRADIENT, 2, 20.0, 70, 30, 1, 20);
+
+
+	//for (size_t k = 0; k < circleVector.size(); ++k) {
+	//	cv::Point c(faces[i].x + eyes[j].x + circleVector[k][0],
+	//		faces[i].y + eyes[j].y + circleVector[k][1]);
+	//	int r = circleVector[k][2];
+
+	//	circle(frame, c, r, cv::Scalar(0, 0, 255), 2);
 }
 
 bool FaceDetection::initClassifier(std::string faceCascadeName, std::string eyesCascadeName)
