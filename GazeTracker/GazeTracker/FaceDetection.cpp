@@ -202,7 +202,7 @@ void FaceDetection::detectAndDrawWithLeftAndRightEye(cv::Mat& frame)
 	std::vector<cv::Rect> faces, leftEye, rightEye;
 	cv::Mat frame_gray;
 	cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
-	cv::equalizeHist(frame_gray, frame_gray);
+	//cv::equalizeHist(frame_gray, frame_gray);
 	//-- Detect faces
 	m_FaceCascadeClassifier.detectMultiScale(frame_gray, faces, 1.2, 5, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, cv::Size(30, 30));
 	for (size_t i = 0; i < faces.size(); i++)
@@ -229,11 +229,52 @@ void FaceDetection::detectAndDrawWithLeftAndRightEye(cv::Mat& frame)
 		{
 			cv::Rect eye = cv::Rect(leftSide.x + leftEye[j].x, leftSide.y + leftEye[j].y, leftEye[j].width, leftEye[j].width);
 			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
+			cv::Mat roi = frame_gray(eye);
+			pupilDetection(frame, roi);
+
+			cv::imshow("links", roi);
+			cv::equalizeHist(roi, roi);
+			cv::imshow("links_hist", roi);
+
+
+			if (!roi.empty())
+			{
+				int beta = 50;
+				for (int y = 0; y < roi.rows; y++) {
+					for (int x = 0; x < roi.cols; x++) {
+						for (int c = 0; c < 3; c++) {
+							roi.at<cv::Vec3b>(y, x)[c] =
+								cv::saturate_cast<uchar>((roi.at<cv::Vec3b>(y, x)[c]) + beta);
+						}
+					}
+				}
+				cv::imshow("links_bright", roi);
+			}
 		}
 		for (size_t j = 0; j < rightEye.size(); j++)
 		{
 			cv::Rect eye = cv::Rect(rightSide.x + rightEye[j].x, rightSide.y + rightEye[j].y, rightEye[j].width, rightEye[j].width);
 			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
+			cv::Mat roi = frame_gray(eye);
+			pupilDetection(frame, roi);
+			
+			cv::imshow("rechts", roi);
+			cv::equalizeHist(roi, roi);
+			cv::imshow("rechts_hist", roi);
+
+			if(!roi.empty())
+			{
+				int beta = 50;
+				for (int y = 0; y < roi.rows; y++) {
+					for (int x = 0; x < roi.cols; x++) {
+						for (int c = 0; c < 3; c++) {
+							roi.at<cv::Vec3b>(y, x)[c] =
+								cv::saturate_cast<uchar>((roi.at<cv::Vec3b>(y, x)[c]) + beta);
+						}
+					}
+				}
+				cv::imshow("rechts_bright", roi);
+			}
 		}
 	}
 	//-- Show what you got
@@ -242,6 +283,7 @@ void FaceDetection::detectAndDrawWithLeftAndRightEye(cv::Mat& frame)
 
 void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi)
 {
+
 }
 
 bool FaceDetection::initClassifier(std::string faceCascadeName, std::string eyesCascadeName)

@@ -30,6 +30,14 @@ int main(void)
 	
 	CV_Assert(video.isOpened());
 	CV_Assert(webCamCap->isOpened());
+
+	cv::namedWindow("links", cv::WINDOW_FREERATIO);
+	cv::namedWindow("rechts", cv::WINDOW_FREERATIO);
+
+	cv::namedWindow("links_hist", cv::WINDOW_FREERATIO);
+	cv::namedWindow("rechts_hist", cv::WINDOW_FREERATIO);
+	cv::namedWindow("rechts_bright", cv::WINDOW_FREERATIO);
+	cv::namedWindow("links_bright", cv::WINDOW_FREERATIO);
 	while (webCamCap->isOpened())
 	{
 		cv::Mat frame = camera.GetFrame();
