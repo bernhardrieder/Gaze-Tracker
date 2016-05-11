@@ -311,7 +311,7 @@ void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv
 	//cv::imshow(ToString(eyeSide) + "_canny", clone); //v1
 
 	std::vector<cv::Vec3f> circleVector;
-	cv::HoughCircles(clone, circleVector, CV_HOUGH_GRADIENT, 3, clone.size().height, 35, 25, 1, 10);
+	cv::HoughCircles(clone, circleVector, CV_HOUGH_GRADIENT, 6, clone.size().height, 35, 25, 1, 10);
 
 
 	for (size_t k = 0; k < circleVector.size(); ++k) {
