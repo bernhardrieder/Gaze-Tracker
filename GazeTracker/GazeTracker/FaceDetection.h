@@ -25,6 +25,7 @@ public:
 	void test_detectAndDraw_v3(cv::Mat& frame);
 	void test_detectAndDraw_v4(cv::Mat& frame);
 	void detectAndDrawWithLeftAndRightEye(cv::Mat& frame);
+	void eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& faceRegion, enum Eye eyeSide);
 	void pupilDetection(cv::Mat& frame, cv::Mat& roi, enum Eye eyeSide, cv::Rect roiRect);
 
 private:
