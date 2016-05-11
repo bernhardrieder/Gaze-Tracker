@@ -224,47 +224,44 @@ void FaceDetection::detectAndDrawWithLeftAndRightEye(cv::Mat& frame)
 
 		cv::rectangle(frame, leftSide, cv::Scalar(255, 255, 0));
 		cv::rectangle(frame, rightSide, cv::Scalar(255, 0, 255));
-		//cv::rectangle(frame, faces[i], cv::Scalar(255, 0, 255));
 
-		//-- In each face, detect eyes
-		//m_EyesCascadeClassifier.detectMultiScale(frame_gray(faces[i]), eyes, 1.2, 6, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, 
-		//	cv::Size(30, 30));
 
-		cv::Mat leftROI = frame_gray.clone();
-		cv::Mat rightROI = frame_gray.clone();
-		leftROI = leftROI(leftSide);
-		rightROI = rightROI(rightSide);
-		if (leftROI.empty() || rightROI.empty()) return;
-		m_LeftEyeCascadeClassifier.detectMultiScale(leftROI, leftEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING,
-			cv::Size(20, 20));
-		m_RightEyeCascadeClassifier.detectMultiScale(rightROI, rightEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING,
-			cv::Size(20, 20));
-
-		float offsetY = 30;
-		float offsetX = 20;
-
-		for (size_t j = 0; j < rightEye.size(); j++)
-		{
-			cv::Rect eye = cv::Rect(rightSide.x + rightEye[j].x + offsetX / 2, rightSide.y + rightEye[j].y + offsetY * 0.8f, rightEye[j].width - offsetX, rightEye[j].height - offsetY);
-			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
-			cv::Mat roi = frame_gray.clone();
-			roi = roi(eye);
-			if (roi.empty()) break;
-			pupilDetection(frame, roi, Eye::RIGHT, eye);
-		}
-		for (size_t j = 0; j < leftEye.size(); j++)
-		{
-			cv::Rect eye = cv::Rect(leftSide.x + leftEye[j].x + offsetX/2, leftSide.y + leftEye[j].y + offsetY * 0.8f, leftEye[j].width - offsetX, leftEye[j].height - offsetY);
-			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
-			cv::Mat roi = frame_gray.clone();
-			roi = roi(eye);
-			if (roi.empty()) break;
-			pupilDetection(frame, roi, Eye::LEFT, eye);
-
-		}
+		eyeDetection(frame, frame_gray, leftSide, Eye::LEFT);
+		eyeDetection(frame, frame_gray, rightSide, Eye::RIGHT);
 	}
 	//-- Show what you got
 	cv::imshow("result", frame);
+}
+
+void FaceDetection::eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& faceRegion, enum Eye eyeSide)
+{
+
+	cv::Mat roi = frame_gray.clone();
+	roi = roi(faceRegion);
+	if (roi.empty()) return;
+	std::vector<cv::Rect> eye;
+	cv::CascadeClassifier* classifier = nullptr;
+	switch(eyeSide)
+	{
+	case Eye::LEFT: classifier = &m_LeftEyeCascadeClassifier;
+	case Eye::RIGHT: classifier = &m_RightEyeCascadeClassifier;
+	}
+	CV_Assert(classifier != nullptr);
+	classifier->detectMultiScale(roi, eye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING,
+		cv::Size(20, 20));
+
+	for (size_t j = 0; j < eye.size(); j++)
+	{
+		float offsetX = eye[j].width / 3.;
+		float yDivid = 3.;
+		float offsetY = eye[j].height / yDivid;
+		cv::Rect eyeRegion = cv::Rect(faceRegion.x + eye[j].x + offsetX / 2, faceRegion.y + eye[j].y + offsetY*(yDivid / 2), eye[j].width - offsetX, eye[j].height - offsetY * 2);
+		cv::rectangle(frame, eyeRegion, cv::Scalar(255, 0, 0));
+		cv::Mat roi = frame_gray.clone();
+		roi = roi(eyeRegion);
+		if (roi.empty()) break;
+		pupilDetection(frame, roi, eyeSide, eyeRegion);
+	}
 }
 
 void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv::Rect roiRect)
@@ -276,7 +273,7 @@ void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv
 	//brighten -> from tutorial
 	if (!roi.empty())
 	{
-		int beta = 25;
+		int beta = 10;
 		for (int y = 0; y < roi.rows; y++) {
 			for (int x = 0; x < roi.cols; x++) {
 				for (int c = 0; c < 3; c++) {
@@ -295,7 +292,7 @@ void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv
 
 	cv::threshold(clone, clone, 70, 0, cv::THRESH_TRUNC);
 	//cv::threshold(clone, clone, 50, 255, cv::THRESH_TOZERO_INV);
-	cv::threshold(clone, clone, 50, 255, cv::THRESH_BINARY);
+	cv::threshold(clone, clone, 50, 255, cv::THRESH_BINARY); // v1
 	//cv::threshold(clone, clone, 50, 150, cv::THRESH_BINARY_INV);
 	cv::imshow(ToString(eyeSide) + "_thres", clone);
 
@@ -304,16 +301,17 @@ void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv
 	//cv::blur(roi, clone, cv::Size(i, i), cv::Point(-1, -1));
 	cv::imshow(ToString(eyeSide) + "_filter", clone);
 
-	cv::threshold(clone, clone, 150, 255, cv::THRESH_BINARY);
+	cv::threshold(clone, clone, 150, 255, cv::THRESH_BINARY); // v1
+	//cv::threshold(clone, clone, 50, 255, cv::THRESH_BINARY); // v2
 	cv::imshow(ToString(eyeSide) + "_thres2", clone);
 	cv::GaussianBlur(clone, clone, cv::Size(3, 3), 2, 2);
 	cv::imshow(ToString(eyeSide) + "_filter", clone);
 
-	cv::Canny(clone, clone, 0, 100);
-	cv::imshow(ToString(eyeSide) + "_canny", clone);
+	//cv::Canny(clone, clone, 0, 100); // v1
+	//cv::imshow(ToString(eyeSide) + "_canny", clone); //v1
 
 	std::vector<cv::Vec3f> circleVector;
-	cv::HoughCircles(clone, circleVector, CV_HOUGH_GRADIENT, 2, clone.size().height, 35, 25, 1, 10);
+	cv::HoughCircles(clone, circleVector, CV_HOUGH_GRADIENT, 3, clone.size().height, 35, 25, 1, 10);
 
 
 	for (size_t k = 0; k < circleVector.size(); ++k) {
