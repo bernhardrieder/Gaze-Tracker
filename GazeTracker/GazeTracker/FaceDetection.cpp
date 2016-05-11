@@ -202,11 +202,20 @@ void FaceDetection::detectAndDrawWithLeftAndRightEye(cv::Mat& frame)
 	std::vector<cv::Rect> faces, leftEye, rightEye;
 	cv::Mat frame_gray;
 	cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
-	//cv::equalizeHist(frame_gray, frame_gray);
+	if (frame_gray.empty()) return;
+	cv::equalizeHist(frame_gray, frame_gray);
 	//-- Detect faces
 	m_FaceCascadeClassifier.detectMultiScale(frame_gray, faces, 1.2, 5, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, cv::Size(30, 30));
 	for (size_t i = 0; i < faces.size(); i++)
 	{
+		/* 
+		"Within the face region, 20 % from the top(forehead) and 40 % from the bottom (face below nostrils) can be cropped and rejected from further analysis[65].Inspected region limitation let to gain several milliseconds for every cycle of the method." - Paper: "Single web camera robust interactive eye-gaze tracking method", by "A. WOJCIECHOWSKI and K. FORNALCZYK" 
+		-> this causes cv::Mat exceptions?
+		
+		*/
+		//faces[i].y += faces[i].y * 0.2f;
+		//faces[i] += cv::Size(0, -(faces[i].height * 0.6f));
+
 		cv::Rect leftSide = faces[i];
 		leftSide -= cv::Size(faces[i].width * 0.5f, 0);
 		cv::Rect rightSide = leftSide;
@@ -221,26 +230,35 @@ void FaceDetection::detectAndDrawWithLeftAndRightEye(cv::Mat& frame)
 		//m_EyesCascadeClassifier.detectMultiScale(frame_gray(faces[i]), eyes, 1.2, 6, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, 
 		//	cv::Size(30, 30));
 
-		m_LeftEyeCascadeClassifier.detectMultiScale(frame_gray(leftSide), leftEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, 
+		cv::Mat leftROI = frame_gray.clone();
+		cv::Mat rightROI = frame_gray.clone();
+		leftROI = leftROI(leftSide);
+		rightROI = rightROI(rightSide);
+		if (leftROI.empty() || rightROI.empty()) return;
+		m_LeftEyeCascadeClassifier.detectMultiScale(leftROI, leftEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING,
 			cv::Size(20, 20));
-		m_RightEyeCascadeClassifier.detectMultiScale(frame_gray(rightSide), rightEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, 
+		m_RightEyeCascadeClassifier.detectMultiScale(rightROI, rightEye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING,
 			cv::Size(20, 20));
 
 		float offsetY = 30;
-		float offsetX = 0;
+		float offsetX = 20;
 
 		for (size_t j = 0; j < rightEye.size(); j++)
 		{
 			cv::Rect eye = cv::Rect(rightSide.x + rightEye[j].x + offsetX / 2, rightSide.y + rightEye[j].y + offsetY * 0.8f, rightEye[j].width - offsetX, rightEye[j].height - offsetY);
 			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
-			cv::Mat roi = frame_gray(eye);
+			cv::Mat roi = frame_gray.clone();
+			roi = roi(eye);
+			if (roi.empty()) break;
 			pupilDetection(frame, roi, Eye::RIGHT, eye);
 		}
 		for (size_t j = 0; j < leftEye.size(); j++)
 		{
 			cv::Rect eye = cv::Rect(leftSide.x + leftEye[j].x + offsetX/2, leftSide.y + leftEye[j].y + offsetY * 0.8f, leftEye[j].width - offsetX, leftEye[j].height - offsetY);
 			cv::rectangle(frame, eye, cv::Scalar(255, 0, 0));
-			cv::Mat roi = frame_gray(eye);
+			cv::Mat roi = frame_gray.clone();
+			roi = roi(eye);
+			if (roi.empty()) break;
 			pupilDetection(frame, roi, Eye::LEFT, eye);
 
 		}
