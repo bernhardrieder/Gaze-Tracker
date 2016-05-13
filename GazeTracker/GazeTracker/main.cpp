@@ -30,22 +30,18 @@ int main(void)
 	
 	CV_Assert(video.isOpened());
 	CV_Assert(webCamCap->isOpened());
-	cv::namedWindow(ToString(Eye::LEFT) + "_normal", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::LEFT) + "_hist", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::LEFT) + "_bright", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::LEFT) + "_filter", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::LEFT) + "_thres", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::LEFT) + "_circle", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::LEFT) + "_canny", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::LEFT) + "_thres2", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_normal", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_hist", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_bright", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_filter", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_thres", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_circle", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_canny", cv::WINDOW_FREERATIO);
-	cv::namedWindow(ToString(Eye::RIGHT) + "_thres2", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::LEFT) + "_normal", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::LEFT) + "_hist", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::LEFT) + "_bright", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::LEFT) + "_filter", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::LEFT) + "_thres", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::LEFT) + "_thres2", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::RIGHT) + "_normal", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::RIGHT) + "_hist", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::RIGHT) + "_bright", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::RIGHT) + "_filter", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::RIGHT) + "_thres", cv::WINDOW_FREERATIO);
+	cv::namedWindow(ToString(FaceDetection::Eye::RIGHT) + "_thres2", cv::WINDOW_FREERATIO);
 	while (webCamCap->isOpened())
 	{
 		cv::Mat frame = camera.GetFrame();
@@ -57,9 +53,8 @@ int main(void)
 		//cv::imshow("camera test", frame);
 
 		//faceDetection.test_detectAndDraw_v1(frame, 1, false);
-		//faceDetection.test_detectAndDraw_v3(frame);
 		//faceDetection.test_detectAndDraw_v4(frame);
-		faceDetectionSplit.detectAndDrawWithLeftAndRightEye(frame);
+		faceDetectionSplit.detectAndDraw(frame);
 
 		//video is too fast (no webCamCap->get(CV_CAP_PROP_FPS) supported for my webcam! -> search for options and check code fps)
 		screen = ScreenCapture::hwnd2Mat(hwndDesktop);
