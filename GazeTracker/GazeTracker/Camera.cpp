@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Camera.h"
 
-Camera::Camera(int cameraIndex, int width, int height, bool autoInit) : m_CameraIndex(cameraIndex), m_Width(width), m_Height(height)
+Camera::Camera(int cameraIndex, int width, int height, bool autoInit) : m_Width(width), m_Height(height), m_CameraIndex(cameraIndex)
 {
 	m_Camera = new cv::VideoCapture();
 	if(autoInit)

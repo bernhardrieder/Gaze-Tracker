@@ -15,7 +15,7 @@ ScreenCapture::~ScreenCapture()
 //use:
 //HWND hwndDesktop = GetDesktopWindow();
 //cv::Mat cframe = hwnd2mat(hwndDesktop);
-cv::Mat ScreenCapture::hwnd2Mat(HWND hwnd)
+cv::Mat ScreenCapture::hwnd2Mat(HWND& hwnd)
 {
 	HDC hwindowDC, hwindowCompatibleDC;
 

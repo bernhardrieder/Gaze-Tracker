@@ -5,7 +5,7 @@
 class FaceDetection 
 {
 public:
-	FaceDetection(std::string faceCascadeName, std::string leftEyeCascadeName, std::string rightEyeCascadeName);
+	FaceDetection(const std::string faceCascadeName, const std::string leftEyeCascadeName, const std::string rightEyeCascadeName);
 	~FaceDetection();
 
 	enum Eye
@@ -21,7 +21,7 @@ public:
 	int templateMatchingMethod = 0;
 
 private:
-	bool initClassifier(std::string faceCascadeName, std::string leftEyeCascadeName, std::string rightEyeCascadeName);
+	bool initClassifiers(const std::string& faceCascadeName, const std::string& leftEyeCascadeName, const std::string& rightEyeCascadeName);
 
 	cv::CascadeClassifier m_FaceCascadeClassifier;
 	cv::CascadeClassifier m_LeftEyeCascadeClassifier;

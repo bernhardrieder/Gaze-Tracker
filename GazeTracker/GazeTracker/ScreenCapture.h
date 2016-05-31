@@ -5,6 +5,6 @@ public:
 	ScreenCapture();
 	~ScreenCapture();
 
-	static cv::Mat hwnd2Mat(HWND hwnd);
+	static cv::Mat hwnd2Mat(HWND& hwnd);
 };
 
