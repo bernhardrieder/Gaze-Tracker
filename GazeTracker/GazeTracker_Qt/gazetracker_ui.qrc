@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="GazeTracker_UI">
+    </qresource>
+</RCC>

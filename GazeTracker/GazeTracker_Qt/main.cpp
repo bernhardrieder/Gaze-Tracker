@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "gazetracker_ui.h"
+#include <QtWidgets/QApplication>
 
 /* Global variables */
 cv::String face_cascade_name = "cascade_classifier/haarcascades/opencv/haarcascade_frontalface_alt.xml";
@@ -8,8 +10,12 @@ cv::String right_eye_cascade_name = "cascade_classifier/haarcascades/opencv/haar
 
 FaceDetection faceDetectionSplit = FaceDetection(face_cascade_name, left_eye_cascade_name, right_eye_cascade_name);
 
-int main(void)
+int main(int argc, char *argv[])
 {
+	QApplication a(argc, argv);
+	GazeTracker_UI gaze_tracker_ui;
+	gaze_tracker_ui.show();
+
 	HWND hwndDesktop = GetDesktopWindow();
 	Camera camera = Camera(0, 800, 600);
 	auto webCamCap = camera.GetCamera();
@@ -18,9 +24,9 @@ int main(void)
 
 	cv::Mat screen = ScreenCapture::hwnd2Mat(hwndDesktop);
 	video.open("out.avi", CV_FOURCC('M', 'J', 'P', 'G'), 10, cv::Size(screen.size().width, screen.size().height), true);
-	
+
 	CV_Assert(video.isOpened());
-	CV_Assert(webCamCap->isOpened()); 
+	CV_Assert(webCamCap->isOpened());
 	cv::namedWindow("result");
 	const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
 	cv::createTrackbar(trackbar_label, "result", &faceDetectionSplit.templateMatchingMethod, 5);
@@ -58,5 +64,6 @@ int main(void)
 
 	}
 	//video.release();
-	return 0;
+	//return 0;
+	return a.exec();
 }
