@@ -5,7 +5,9 @@
 class FaceDetection 
 {
 public:
-	FaceDetection(const std::string faceCascadeName, const std::string leftEyeCascadeName, const std::string rightEyeCascadeName);
+	/*uses default cascades defined in this headerfile*/
+	FaceDetection();
+	FaceDetection(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
 	~FaceDetection();
 
 	enum Eye
@@ -21,7 +23,7 @@ public:
 	int templateMatchingMethod = 0;
 
 private:
-	bool initClassifiers(const std::string& faceCascadeName, const std::string& leftEyeCascadeName, const std::string& rightEyeCascadeName);
+	bool initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
 
 	cv::CascadeClassifier m_FaceCascadeClassifier;
 	cv::CascadeClassifier m_LeftEyeCascadeClassifier;
@@ -29,6 +31,10 @@ private:
 
 	cv::Mat m_EyeLeftTemplate;
 	cv::Mat m_EyeRightTemplate;
+
+	const cv::String m_face_cascade_name_default = "cascade_classifier/haarcascades/opencv/haarcascade_frontalface_alt.xml";
+	const cv::String m_left_eye_cascade_name_default = "cascade_classifier/haarcascades/opencv/haarcascade_lefteye_2splits.xml";
+	const cv::String m_right_eye_cascade_name_default = "cascade_classifier/haarcascades/opencv/haarcascade_righteye_2splits.xml";
 };
 
 inline const std::string ToString(enum FaceDetection::Eye v)

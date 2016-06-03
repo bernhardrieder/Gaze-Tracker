@@ -4,7 +4,10 @@
 cv::String eyeLeftTemplateName = "template_matching/eye_left.png";
 cv::String eyeRightTemplateName = "template_matching/eye_right.png";
 
-FaceDetection::FaceDetection(const std::string faceCascadeName, const std::string leftEyeCascadeName, const std::string rightEyeCascadeName)
+FaceDetection::FaceDetection() : FaceDetection(m_face_cascade_name_default, m_left_eye_cascade_name_default, m_right_eye_cascade_name_default)
+{}
+
+FaceDetection::FaceDetection(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName)
 {
 	initClassifiers(faceCascadeName, leftEyeCascadeName, rightEyeCascadeName);
 	m_EyeLeftTemplate = cv::imread(eyeLeftTemplateName, cv::IMREAD_GRAYSCALE);
@@ -18,7 +21,7 @@ FaceDetection::~FaceDetection()
 void FaceDetection::detectAndDraw(cv::Mat& frame)
 {
 	cv::flip(frame, frame, 1);
-	std::vector<cv::Rect> faces, leftEye, rightEye;
+	std::vector<cv::Rect> faces;
 	cv::Mat frame_gray;
 	cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
 	if (frame_gray.empty()) return;
@@ -197,7 +200,7 @@ void FaceDetection::pupilTemplateMatching(cv::Mat& frame, cv::Mat& eyeRoi, Eye e
 	//return &rect;
 }
 
-bool FaceDetection::initClassifiers(const std::string& faceCascadeName, const std::string& leftEyeCascadeName, const std::string& rightEyeCascadeName)
+bool FaceDetection::initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName)
 {
 	if (!m_FaceCascadeClassifier.load(faceCascadeName))
 	{
