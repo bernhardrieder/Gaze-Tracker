@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 
 	ScreenCapture screenCapture { GetDesktopWindow() };
 	screenCapture.StartCapture(30);
-	auto startTime = std::chrono::high_resolution_clock::now();
 
 	CV_Assert(webCamCap->isOpened());
 	cv::namedWindow("result");
@@ -50,10 +49,6 @@ int main(int argc, char *argv[])
 			screenCapture.StopCapture();
 			break;
 		} 
-
 	}
-
-	auto endTime = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double, std::milli> dt = endTime - startTime;
 	return a.exec();
 }
