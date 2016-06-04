@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	auto webCamCap = camera.GetCamera();
 
 	ScreenCapture screenCapture { GetDesktopWindow() };
-	screenCapture.StartCapture(30);
+	screenCapture.StartCapture(30, 0.75f);
 
 	CV_Assert(webCamCap->isOpened());
 	cv::namedWindow("result");

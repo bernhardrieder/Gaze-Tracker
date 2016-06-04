@@ -15,19 +15,21 @@ ScreenCapture::~ScreenCapture()
 		m_saveFramesThread.join();
 }
 
-void ScreenCapture::StartCapture(int fps, const cv::Size frameSize) 
+void ScreenCapture::StartCapture(int fps, const cv::Size frameSize, const float frameScale) 
 {
 	m_frameSize = frameSize;
+	m_frameSize.height *= frameScale;
+	m_frameSize.width *= frameScale;
 	m_fps = fps;
 	m_stopCapture = false;
 	m_captureThread = std::thread(&ScreenCapture::captureThread, this);
 	m_saveFramesThread = std::thread(&ScreenCapture::saveFramesThread, this);
 }
 
-void ScreenCapture::StartCapture(int fps)
+void ScreenCapture::StartCapture(int fps, const float frameScale)
 {
 	cv::Mat screen = hwnd2Mat(m_window);
-	StartCapture(fps, cv::Size(screen.size().width, screen.size().height));
+	StartCapture(fps, cv::Size(screen.size().width, screen.size().height), frameScale);
 }
 
 void ScreenCapture::captureThread()
@@ -75,7 +77,7 @@ cv::Mat ScreenCapture::hwnd2Mat(HWND& hwnd)
 {
 	HDC hwindowDC, hwindowCompatibleDC;
 
-	int height, width, srcheight, srcwidth;
+	int height, width;
 	HBITMAP hbwindow;
 	BITMAPINFOHEADER bi;
 
@@ -86,10 +88,8 @@ cv::Mat ScreenCapture::hwnd2Mat(HWND& hwnd)
 	RECT windowsize; // get the height and width of the screen
 	GetClientRect(hwnd, &windowsize);
 
-	srcheight = windowsize.bottom;
-	srcwidth = windowsize.right;
-	height = windowsize.bottom / 2; //change this to whatever size you want to resize to
-	width = windowsize.right / 2;
+	height = windowsize.bottom;
+	width = windowsize.right;
 
 	cv::Mat out;
 	out.create(height, width, CV_8UC4);
@@ -111,7 +111,7 @@ cv::Mat ScreenCapture::hwnd2Mat(HWND& hwnd)
 	// use the previously created device context with the bitmap
 	SelectObject(hwindowCompatibleDC, hbwindow);
 	// copy from the window device context to the bitmap device context
-	StretchBlt(hwindowCompatibleDC, 0, 0, width, height, hwindowDC, 0, 0, srcwidth, srcheight, SRCCOPY); //change SRCCOPY to NOTSRCCOPY for wacky colors !
+	StretchBlt(hwindowCompatibleDC, 0, 0, width, height, hwindowDC, 0, 0, width, height, SRCCOPY); //change SRCCOPY to NOTSRCCOPY for wacky colors !
 	GetDIBits(hwindowCompatibleDC, hbwindow, 0, height, out.data, reinterpret_cast<BITMAPINFO *>(&bi), DIB_RGB_COLORS); //copy from hwindowCompatibleDC to hbwindow
 	
 	// avoid memory leak

@@ -8,9 +8,9 @@ public:
 	ScreenCapture(HWND window);
 	~ScreenCapture();
 
-	void StartCapture(int fps, const cv::Size frameSize);
+	void StartCapture(int fps, const cv::Size frameSize, const float frameScale = 0.75f);
 	/*uses frameSize of window*/
-	void StartCapture(int fps);
+	void StartCapture(int fps, const float frameScale = 0.75f);
 	void StopCapture() { m_stopCapture = true; };
 	bool IsCapturing() const { return m_isCapturing; };
 
