@@ -283,3 +283,4 @@ ModelManifest.xml
 .fake/
 /GazeTracker/GazeTracker/out.avi
 *.avi
+/GazeTracker/GazeTracker_Qt/Frames
