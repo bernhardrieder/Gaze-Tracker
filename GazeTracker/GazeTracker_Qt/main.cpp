@@ -2,6 +2,8 @@
 #include "gazetracker_ui.h"
 #include <QtWidgets/QApplication>
 
+
+
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
@@ -11,7 +13,6 @@ int main(int argc, char *argv[])
 	FaceDetection faceDetectionSplit;
 	Camera camera = Camera(0, 800, 600);
 	auto webCamCap = camera.GetCamera();
-	//webCamCap->set(CV_CAP_PROP_FPS, 60); //NOT SUPPORTED
 
 	ScreenCapture screenCapture { GetDesktopWindow() };
 	screenCapture.StartCapture(30);
