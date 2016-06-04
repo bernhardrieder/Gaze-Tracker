@@ -2,15 +2,15 @@
 #define GAZETRACKER_UI_H
 
 #include <QtWidgets/QMainWindow>
-#include "ui_gazetracker_ui.h"
+#include "ui_gazetrackerui.h"
 
-class GazeTracker_UI : public QMainWindow
+class GazeTrackerUI : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	GazeTracker_UI(QWidget *parent = 0);
-	~GazeTracker_UI();
+	GazeTrackerUI(QWidget *parent = 0);
+	~GazeTrackerUI();
 
 private:
 	Ui::GazeTracker_UIClass ui;

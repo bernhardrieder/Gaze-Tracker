@@ -35,8 +35,8 @@ void FaceDetection::detectAndDraw(cv::Mat& frame)
 		-> this causes cv::Mat exceptions?
 		
 		*/
-		//faces[i].y += faces[i].y * 0.2f;
-		//faces[i] += cv::Size(0, -(faces[i].height * 0.6f));
+		faces[i].y += faces[i].y * 0.2f;
+		faces[i] += cv::Size(0, -(faces[i].height * 0.6f));
 
 		cv::Rect leftSide = faces[i];
 		leftSide -= cv::Size(faces[i].width * 0.5f, 0);
@@ -74,7 +74,7 @@ void FaceDetection::eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& 
 
 	for (size_t j = 0; j < eye.size(); j++)
 	{
-		float offsetX = eye[j].width / 2.5;
+		float offsetX = eye[j].width / 3.;
 		float yDivid = 3.;
 		float offsetY = eye[j].height / yDivid;
 		cv::Rect eyeRegion = cv::Rect(faceRegion.x + eye[j].x + offsetX / 2, faceRegion.y + eye[j].y + offsetY*(yDivid / 2), eye[j].width - offsetX, eye[j].height - offsetY * 2);
@@ -88,83 +88,19 @@ void FaceDetection::eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& 
 
 void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv::Rect roiRect)
 {
+	if (roi.empty()) return;
 	cv::equalizeHist(roi, roi);
 
 	double resize = 10;
 
 	cv::resize(roi, roi, cv::Size(), resize, resize);
-	cv::imshow(ToString(eyeSide) + "_thres", roi);
+	cv::imshow(ToString(eyeSide) + "_hist", roi); // use this to config the templates
 	pupilTemplateMatching(frame, roi, eyeSide, roiRect);
-
-	return;
-	if (roi.empty()) return;
-	cv::imshow(ToString(eyeSide) + "_normal", roi);
-
-	cv::equalizeHist(roi, roi);
-	cv::imshow(ToString(eyeSide) + "_hist", roi);
-
-	//brighten -> from tutorial
-	int brightnessAdd = 0;
-	for (int y = 0; y < roi.rows; y++) {
-		for (int x = 0; x < roi.cols; x++) {
-			for (int c = 0; c < 3; c++) {
-				roi.at<cv::Vec3b>(y, x)[c] =
-					cv::saturate_cast<uchar>((roi.at<cv::Vec3b>(y, x)[c]) + brightnessAdd);
-			}
-		}
-	}
-	cv::imshow(ToString(eyeSide) + "_bright", roi);
-	
-	cv::Mat clone = roi.clone();
-
-
-	cv::threshold(clone, clone, 70, 0, cv::THRESH_TRUNC);
-	cv::threshold(clone, clone, 50, 255, cv::THRESH_BINARY); 
-	cv::imshow(ToString(eyeSide) + "_thres", clone);
-
-	int gaussianSize = 21;
-	double gaussianSigma = 0;
-	//double resize = 5;
-	
-	cv::resize(clone, clone, cv::Size(), resize, resize);
-	cv::GaussianBlur(clone, clone, cv::Size(gaussianSize, gaussianSize), gaussianSigma, gaussianSigma);
-	//cv::resize(clone, clone, cv::Size(), 1 / resize, 1 / resize);
-
-	cv::threshold(clone, clone, 150, 255, cv::THRESH_BINARY); // v1
-	//cv::threshold(clone, clone, 50, 255, cv::THRESH_BINARY); // v2
-	cv::imshow(ToString(eyeSide) + "_thres2", clone);
-	gaussianSize = 3; //3
-	gaussianSigma = 2;// 2
-
-	//cv::resize(clone, clone, cv::Size(), resize, resize);
-	cv::GaussianBlur(clone, clone, cv::Size(gaussianSize, gaussianSize), gaussianSigma, gaussianSigma);
-	cv::resize(clone, clone, cv::Size(), 1/resize, 1/resize);
-	cv::imshow(ToString(eyeSide) + "_filter", clone);
-
-
-	std::vector<cv::Vec3f> circleVector;
-	cv::HoughCircles(clone, circleVector, CV_HOUGH_GRADIENT, 6, clone.size().height, 35, 25, 3, 10);
-
-
-	for (size_t k = 0; k < circleVector.size(); ++k) {
-
-		//int r = circleVector[k][2];
-		int r = 3;
-
-		//cv::Point c(circleVector[k][0],
-		//	 circleVector[k][1]);
-
-		//circle(roi, c, r, cv::Scalar(0, 0, 255), 2);
-
-		cv::Point c(roiRect.x + circleVector[k][0],
-		roiRect.y + circleVector[k][1]);
-
-		circle(frame, c, r, cv::Scalar(0, 0, 255), -1);
-	}
 }
 
 void FaceDetection::pupilTemplateMatching(cv::Mat& frame, cv::Mat& eyeRoi, Eye eyeSide, cv::Rect& roiRect)
 {
+	//TODO: 4.06.2016 - config eye templates -> define roi of each eye and save roi size and eyetemplate size. change size of template if head moves in z axis?
 	//TODO: rescale images -> they need to have the same sizes in relation to each other (eyeRoi and template). i think this will lead to some problems in finding the middle point of the pupil. another issue is facing with the template image -> should it be an qubic image? should be the pupil the middle of the picture? -> due to exact middle point detection!!
 	cv::Mat result, templ;
 	switch(eyeSide)
@@ -173,6 +109,10 @@ void FaceDetection::pupilTemplateMatching(cv::Mat& frame, cv::Mat& eyeRoi, Eye e
 	case Eye::LEFT: templ = m_EyeLeftTemplate;
 	}
 	//img.copyTo(img_display);
+	//cv::Mat newTmplt;
+	//float cubicSize = eyeRoi.rows;;
+	//cv::resize(templ, newTmplt, cv::Size(cubicSize - (cubicSize / 2), cubicSize - (cubicSize / 2)));
+	//templ = newTmplt;
 	int result_cols = eyeRoi.cols - templ.cols + 1;
 	int result_rows = eyeRoi.rows - templ.rows + 1;
 	if (result_cols < 0 || result_rows < 0) return;

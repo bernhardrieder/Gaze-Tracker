@@ -33,6 +33,12 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Header Dateien\Qt">
+      <UniqueIdentifier>{607ad084-2ad0-4ecb-bd6e-330f005bd897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Qt">
+      <UniqueIdentifier>{9b9426c5-5572-4eaa-9246-4ba1586b9148}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -40,15 +46,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="gazetracker_ui.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_gazetracker_ui.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_gazetracker_ui.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_gazetracker_ui.cpp">
       <Filter>Generierte Dateien</Filter>
@@ -65,13 +62,40 @@
     <ClCompile Include="GazeData.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_startui.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_startui.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeTrackerMain.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="startui.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_gazetrackerui.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_gazetrackerui.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="gazetrackerui.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_templateconfigui.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_templateconfigui.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="templateconfigui.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_gazetracker_ui.h">
-      <Filter>Generierte Dateien</Filter>
     </ClInclude>
     <ClInclude Include="ScreenCapture.h">
       <Filter>Header Dateien</Filter>
@@ -85,16 +109,43 @@
     <ClInclude Include="GazeData.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_startui.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GazeTrackerMain.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_gazetrackerui.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_templateconfigui.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="gazetracker_ui.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gazetracker_ui.ui">
-      <Filter>Form Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="gazetracker_ui.qrc">
       <Filter>Resource Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="startui.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="startui.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gazetrackerui.h">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gazetrackerui.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="templateconfigui.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="templateconfigui.hpp">
+      <Filter>Header Dateien\Qt</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
