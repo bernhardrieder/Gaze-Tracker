@@ -18,16 +18,16 @@ FaceDetection::~FaceDetection()
 {
 }
 
-void FaceDetection::CheckForFaces(cv::Mat& frame, std::vector<FaceROI>& out)
+void FaceDetection::CheckForFaces(cv::Mat& frameGray, std::vector<FaceROI>& out, bool flipFace)
 {
-	cv::flip(frame, frame, 1);
+	if (frameGray.empty()) return;
+	if(flipFace)
+		cv::flip(frameGray, frameGray, 1);
 	std::vector<cv::Rect> faces;
-	cv::Mat frame_gray;
-	cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
-	if (frame_gray.empty()) return;
-	cv::equalizeHist(frame_gray, frame_gray);
+	cv::Mat frameHist = frameGray.clone();
+	cv::equalizeHist(frameHist, frameHist); // -> really needed for better face detection?
 	//-- Detect faces
-	m_FaceCascadeClassifier.detectMultiScale(frame_gray, faces, 1.2, 5, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING | cv::CASCADE_FIND_BIGGEST_OBJECT, cv::Size(30, 30));
+	m_FaceCascadeClassifier.detectMultiScale(frameHist, faces, 1.2, 5, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING | cv::CASCADE_FIND_BIGGEST_OBJECT, cv::Size(30, 30));
 	for (size_t i = 0; i < faces.size(); i++)
 	{
 		/*
@@ -45,56 +45,72 @@ void FaceDetection::CheckForFaces(cv::Mat& frame, std::vector<FaceROI>& out)
 	}
 }
 
-void FaceDetection::detectAndDraw(cv::Mat& frame)
+void FaceDetection::CheckForEyes(cv::Mat& frameGray, FaceROI& face, EyesROI& out)
+{
+	if (frameGray.empty()) return;
+	cv::Mat frameHist = frameGray.clone();
+	cv::equalizeHist(frameHist, frameHist); // -> really needed for better face detection?
+	cv::Mat leftSide = frameHist.clone()(face.leftSideROI);
+	cv::Mat rightSide = frameHist.clone()(face.rightSideROI);
+	std::vector<cv::Rect> eyesLeft, eyesRight;
+
+	m_LeftEyeCascadeClassifier.detectMultiScale(leftSide, eyesLeft, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, cv::Size(20, 20));
+	m_RightEyeCascadeClassifier.detectMultiScale(rightSide, eyesRight, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, cv::Size(20, 20));
+
+	setEyeROI(face.leftSideROI, eyesLeft, out.left);
+	setEyeROI(face.rightSideROI, eyesRight, out.right);
+}
+
+bool FaceDetection::GetEyes(cv::Mat& frameGray, cv::Mat& leftEye, cv::Mat& rightEye)
+{
+	std::vector<FaceROI> faces;
+	EyesROI eyes;
+	CheckForFaces(frameGray, faces);
+	if (faces.size() > 0)
+	{
+		for (auto face : faces)
+		{
+			CheckForEyes(frameGray, face, eyes);
+		}
+		leftEye = frameGray.clone()(eyes.left);
+		rightEye = frameGray.clone()(eyes.right);
+		return true;
+	}
+	return false;
+}
+
+void FaceDetection::detectFaceEyeIrisAndDraw(cv::Mat& frameGray)
 {
 	std::vector<FaceROI> out;
-	CheckForFaces(frame, out);
+	CheckForFaces(frameGray, out);
 	if(out.size() > 0)
 	{
-		cv::Mat frame_gray;
-		cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
 		for(auto roi : out)
 		{
-			cv::rectangle(frame, roi.leftSideROI, cv::Scalar(255, 255, 0));
-			cv::rectangle(frame, roi.rightSideROI, cv::Scalar(255, 0, 255));
+			cv::rectangle(frameGray, roi.leftSideROI, cv::Scalar(255, 255, 0));
+			cv::rectangle(frameGray, roi.rightSideROI, cv::Scalar(255, 0, 255));
 
-			eyeDetection(frame, frame_gray, roi.leftSideROI, Eye::LEFT);
-			eyeDetection(frame, frame_gray, roi.rightSideROI, Eye::RIGHT);
+			eyeDetection(frameGray, roi);
 		}
 	}
 
 	//-- Show what you got
-	cv::imshow("result", frame);
+	cv::imshow("result", frameGray);
 }
 
-void FaceDetection::eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& faceRegion, Eye eyeSide)
+void FaceDetection::eyeDetection(cv::Mat& frameGray, FaceROI& face, bool drawEye)
 {
+	EyesROI eyes;
+	CheckForEyes(frameGray, face, eyes);
+	cv::Mat roiLeftEye = frameGray.clone()(eyes.left);
+	cv::Mat roiRightEye = frameGray.clone()(eyes.right);
+	pupilDetection(frameGray, roiLeftEye, Eye::LEFT, eyes.left);
+	pupilDetection(frameGray, roiRightEye, Eye::RIGHT, eyes.right);
 
-	cv::Mat roi = frame_gray.clone();
-	roi = roi(faceRegion);
-	if (roi.empty()) return;
-	std::vector<cv::Rect> eye;
-	cv::CascadeClassifier* classifier = nullptr;
-	switch(eyeSide)
+	if(drawEye)
 	{
-	case Eye::LEFT: classifier = &m_LeftEyeCascadeClassifier;
-	case Eye::RIGHT: classifier = &m_RightEyeCascadeClassifier;
-	}
-	CV_Assert(classifier != nullptr);
-	classifier->detectMultiScale(roi, eye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING,
-		cv::Size(20, 20));
-
-	for (size_t j = 0; j < eye.size(); j++)
-	{
-		float offsetX = eye[j].width / 3.;
-		float yDivid = 3.;
-		float offsetY = eye[j].height / yDivid;
-		cv::Rect eyeRegion = cv::Rect(faceRegion.x + eye[j].x + offsetX / 2, faceRegion.y + eye[j].y + offsetY*(yDivid / 2), eye[j].width - offsetX, eye[j].height - offsetY * 2);
-		cv::rectangle(frame, eyeRegion, cv::Scalar(255, 0, 0));
-		cv::Mat roi = frame_gray.clone();
-		roi = roi(eyeRegion);
-		if (roi.empty()) break;
-		pupilDetection(frame, roi, eyeSide, eyeRegion);
+		cv::rectangle(frameGray, eyes.left, cv::Scalar(255, 0, 0));
+		cv::rectangle(frameGray, eyes.right, cv::Scalar(255, 0, 0));
 	}
 }
 
@@ -170,4 +186,16 @@ bool FaceDetection::initClassifiers(const cv::String& faceCascadeName, const cv:
 		return false;
 	}
 	return true;
+}
+
+void FaceDetection::setEyeROI(cv::Rect& faceRegion, std::vector<cv::Rect>& eye, cv::Rect& out)
+{
+	if (eye.size() == 0) return;
+	for (size_t j = 0; j < eye.size(); j++)
+	{
+		float offsetX = eye[j].width / 3.;
+		float yDivid = 3.;
+		float offsetY = eye[j].height / yDivid;
+		out = cv::Rect(faceRegion.x + eye[j].x + offsetX / 2, faceRegion.y + eye[j].y + offsetY*(yDivid / 2), eye[j].width - offsetX, eye[j].height - offsetY * 2);
+	}
 }

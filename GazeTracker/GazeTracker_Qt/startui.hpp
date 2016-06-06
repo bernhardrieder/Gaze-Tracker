@@ -10,10 +10,9 @@ public:
 
 private:
 	Ui::StartUi ui;
-	bool m_RecordData;
 
 private slots:
 	static void startApplication();
 	void showAbout();
-	void recordDataChanged(int state);
+	static void recordDataChanged(int state);
 };

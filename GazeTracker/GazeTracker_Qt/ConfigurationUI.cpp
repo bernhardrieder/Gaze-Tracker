@@ -11,13 +11,12 @@ ConfigurationUI::ConfigurationUI(QWidget * parent) : QWidget(parent) {
 	changeColor(ui.faceLabel, COLOR_RED);
 	changeColor(ui.eyeTemplateConfigButton, COLOR_RED);
 	changeColor(ui.cornerConfigButton, COLOR_RED);
-	ui.eyeTemplateConfigButton->setEnabled(false);
-	ui.cornerConfigButton->setEnabled(false);
-	ui.doneButton->setEnabled(false);
 
 	QObject::connect(ui.cancelButton, SIGNAL(clicked()), this, SLOT(closeApplication()));
 	QObject::connect(ui.eyeTemplateConfigButton, SIGNAL(clicked()), this, SLOT(openEyeTemplateConfig()));
 	QObject::connect(ui.cornerConfigButton, SIGNAL(clicked()), this, SLOT(openCornerConfig()));
+	QObject::connect(UISystem::GetInstance()->GetEyeTemplateConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateConfigSuccess())); 
+
 
 	m_Thread = new QThread();
 	m_StateWorker = new ConfigurationUI_StateWorker();
@@ -57,6 +56,7 @@ void ConfigurationUI::closeApplication()
 	if (ret == QMessageBox::Yes)
 	{
 		m_StateWorker->StopThreads();
+		GazeTracker::GetInstance()->Stop();
 		qApp->quit();
 	}
 }
@@ -71,20 +71,32 @@ void ConfigurationUI::openCornerConfig()
 	UISystem::GetInstance()->GetCornerConfigurationUI()->show();
 }
 
-void ConfigurationUI::stateChanged(int state)
+void ConfigurationUI::stateChanged(int state) const
 {
 	switch(static_cast<ConfigurationUI_StateWorker::ConfigurationState>(state))
 	{
-		case ConfigurationUI_StateWorker::ConfigurationState::NONE: break;
 		case ConfigurationUI_StateWorker::ConfigurationState::WebCamDetected:
-			changeColor(ui.webCamLabel, COLOR_GREEN); break;
+			changeColor(ui.webCamLabel, COLOR_GREEN); 
+			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::FaceDetected:
 			changeColor(ui.faceLabel, COLOR_GREEN);
-			ui.eyeTemplateConfigButton->setEnabled(true); break;
-		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone: break;
-		case ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone: break;
+			ui.eyeTemplateConfigButton->setEnabled(true); 
+			break;
+		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone: 
+			changeColor(ui.eyeTemplateConfigButton, COLOR_GREEN);
+			ui.cornerConfigButton->setEnabled(true); 
+			break;
+		case ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone: 
+			changeColor(ui.cornerConfigButton, COLOR_GREEN);
+			ui.doneButton->setEnabled(true);
+			break;
 		default: break;
 	}
+}
+
+void ConfigurationUI::eyeTemplateConfigSuccess() const
+{
+	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone));
 }
 
 void ConfigurationUI_StateWorker::process()
@@ -101,7 +113,7 @@ void ConfigurationUI_StateWorker::process()
 			m_configState = ConfigurationState::FaceDetected;
 			emit stateChanged(static_cast<int>(m_configState));
 		}
-		QThread::sleep(1);
+		//QThread::sleep(1);
 	}
 	emit finished();
 }

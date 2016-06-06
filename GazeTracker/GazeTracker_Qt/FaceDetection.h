@@ -20,9 +20,16 @@ public:
 		cv::Rect leftSideROI, rightSideROI;
 	};
 
-	void CheckForFaces(cv::Mat& frame, std::vector<FaceROI>& out);
-	void detectAndDraw(cv::Mat& frame);
-	void eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& faceRegion, enum Eye eyeSide);
+	struct EyesROI
+	{
+		cv::Rect left, right;
+	};
+
+	void CheckForFaces(cv::Mat& frameGray, std::vector<FaceROI>& out, bool flipFace = true);
+	void CheckForEyes(cv::Mat& frameGray, FaceROI& face, EyesROI& out);
+	bool GetEyes(cv::Mat& frameGray, cv::Mat& leftEye, cv::Mat& rightEye);
+	void detectFaceEyeIrisAndDraw(cv::Mat& frameGray);
+	void eyeDetection(cv::Mat& frameGray, FaceROI& face, bool drawEye = true);
 	void pupilDetection(cv::Mat& frame, cv::Mat& roi, enum Eye eyeSide, cv::Rect roiRect);
 	void pupilTemplateMatching(cv::Mat& frame, cv::Mat& eyeRoi, enum Eye eyeSide, cv::Rect& roiRect);
 
@@ -30,6 +37,7 @@ public:
 
 private:
 	bool initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
+	static void setEyeROI(cv::Rect& faceRegion, std::vector<cv::Rect>& eye, cv::Rect& out);
 
 	cv::CascadeClassifier m_FaceCascadeClassifier;
 	cv::CascadeClassifier m_LeftEyeCascadeClassifier;

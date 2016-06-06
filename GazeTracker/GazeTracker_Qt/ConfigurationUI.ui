@@ -183,6 +183,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="eyeTemplateConfigButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Eye Template Configuration</string>
            </property>
@@ -230,6 +233,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="cornerConfigButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Corner Configuration</string>
            </property>
@@ -256,6 +262,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QPushButton" name="doneButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Everything Done!</string>
          </property>
@@ -273,27 +282,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>doneButton</zorder>
-  <zorder>cancelButton</zorder>
-  <zorder>cancelButton</zorder>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_4</zorder>
-  <zorder>verticalSpacer</zorder>
-  <zorder>line</zorder>
-  <zorder>line_2</zorder>
-  <zorder>line_3</zorder>
-  <zorder>label_5</zorder>
-  <zorder>faceLabel</zorder>
-  <zorder>webCamLabel</zorder>
-  <zorder>eyeTemplateConfigButton</zorder>
-  <zorder>cornerConfigButton</zorder>
-  <zorder>horizontalSpacer</zorder>
-  <zorder>horizontalSpacer_2</zorder>
-  <zorder>horizontalSpacer_3</zorder>
-  <zorder>horizontalSpacer_4</zorder>
-  <zorder>verticalSpacer_2</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

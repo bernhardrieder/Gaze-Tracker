@@ -40,9 +40,10 @@ public:
 
 private slots:
 	void closeApplication();
-	void openEyeTemplateConfig();
-	void openCornerConfig();
-	void stateChanged(int);
+	static void openEyeTemplateConfig();
+	static void openCornerConfig();
+	void stateChanged(int) const;
+	void eyeTemplateConfigSuccess() const;
 
 private:
 	Ui::ConfigurationUI ui;

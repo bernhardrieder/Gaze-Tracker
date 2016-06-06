@@ -21,6 +21,14 @@ cv::Mat Camera::GetFrame() const
 	return frame;
 }
 
+cv::Mat Camera::GetFrame(bool inGray) const
+{
+	cv::Mat frame = GetFrame();
+	if(inGray)
+		cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+	return frame;
+}
+
 cv::Ptr<cv::VideoCapture> Camera::GetCamera() const
 { return m_Camera; }
 

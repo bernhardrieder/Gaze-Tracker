@@ -19,6 +19,7 @@ void GazeTracker::Start()
 
 void GazeTracker::Stop()
 {
+	m_ScreenCapture.StopCapture();
 	m_stopApp = true;
 }
 
@@ -28,7 +29,7 @@ bool GazeTracker::IsCameraOpened() const
 bool GazeTracker::IsFaceDetected() 
 {
 	std::vector<FaceDetection::FaceROI> out;
-	cv::Mat frame = m_Camera.GetFrame();
+	cv::Mat frame = m_Camera.GetFrame(true);
 	m_FaceDetection.CheckForFaces(frame, out);
 	return out.size() > 0;
 }
@@ -52,14 +53,14 @@ void GazeTracker::detect()
 
 	while (webCamCap->isOpened())
 	{
-		cv::Mat frame = camera.GetFrame();
+		cv::Mat frame = camera.GetFrame(true);
 		if (frame.empty())
 		{
 			printf(" --(!) No captured frame -- Break!");
 			break;
 		}
 
-		faceDetectionSplit.detectAndDraw(frame);
+		faceDetectionSplit.detectFaceEyeIrisAndDraw(frame);
 
 		if (cv::waitKey(1) == 27 || m_stopApp) // escape
 		{
@@ -67,4 +68,11 @@ void GazeTracker::detect()
 			break;
 		}
 	}
+}
+
+bool GazeTracker::GetEyes(cv::Mat& leftEye, cv::Mat& rightEye)
+{
+	if (!m_Camera.GetCamera()->isOpened()) return false;
+	cv::Mat frame = m_Camera.GetFrame(true);
+	return m_FaceDetection.GetEyes(frame, leftEye, rightEye);
 }
