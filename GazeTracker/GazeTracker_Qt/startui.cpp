@@ -3,7 +3,7 @@
 
 StartUI::StartUI(QWidget * parent) : QWidget(parent) , m_RecordData(false){
 	ui.setupUi(this);
-	QObject::connect(ui.quitButton, SIGNAL(clicked()), this, SLOT(QApplication::quit()));
+	QObject::connect(ui.quitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
 	QObject::connect(ui.aboutButton, SIGNAL(clicked()), this, SLOT(showAbout()));
 	QObject::connect(ui.recordDataCheckBox, SIGNAL(stateChanged(int)), this, SLOT(recordDataChanged(int)));
 	QObject::connect(ui.startButton, SIGNAL(clicked()), this, SLOT(startApplication()));

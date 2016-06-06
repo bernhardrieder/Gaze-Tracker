@@ -52,8 +52,10 @@ void ConfigurationUI::closeApplication()
 {
 	int ret = QMessageBox::warning(this, tr("Close Application?"), tr("Do you really want to close the application?"), QMessageBox::Yes | QMessageBox::No);
 
-	if(ret == QMessageBox::Yes)
-		QApplication::quit();
+	if (ret == QMessageBox::Yes)
+	{
+		qApp->quit();
+	}
 }
 
 void ConfigurationUI::openEyeTemplateConfig()
