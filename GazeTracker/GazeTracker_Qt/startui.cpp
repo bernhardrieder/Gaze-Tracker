@@ -15,7 +15,7 @@ StartUI::~StartUI() {
 
 void StartUI::startApplication()
 {
-	GazeTrackerMain::GetInstance()->Start();
+	UISystem::GetInstance()->GetConfigurationUI()->show();
 }
 
 void StartUI::showAbout()

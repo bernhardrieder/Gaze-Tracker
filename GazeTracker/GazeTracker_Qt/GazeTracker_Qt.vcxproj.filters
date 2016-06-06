@@ -68,9 +68,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_startui.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GazeTrackerMain.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="startui.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
@@ -90,6 +87,30 @@
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="templateconfigui.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cornerconfigurationui.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cornerconfigurationui.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="cornerconfigurationui.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConfigurationUI.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConfigurationUI.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigurationUI.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeTracker.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="UISystem.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
   </ItemGroup>
@@ -112,9 +133,6 @@
     <ClInclude Include="GeneratedFiles\ui_startui.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="GazeTrackerMain.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
@@ -123,6 +141,18 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_templateconfigui.h">
       <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cornerconfigurationui.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ConfigurationUI.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GazeTracker.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UISystem.h">
+      <Filter>Header Dateien\Qt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +175,18 @@
       <Filter>Form Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="templateconfigui.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cornerconfigurationui.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cornerconfigurationui.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ConfigurationUI.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ConfigurationUI.hpp">
       <Filter>Header Dateien\Qt</Filter>
     </CustomBuild>
   </ItemGroup>

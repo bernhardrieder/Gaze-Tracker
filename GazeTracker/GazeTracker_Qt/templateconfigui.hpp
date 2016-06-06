@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include <QWidget>
 #include "ui_templateconfigui.h"
 
 class TemplateConfigUI : public QWidget {

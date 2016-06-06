@@ -1,23 +1,39 @@
 #include "stdafx.h"
-#include "GazeTrackerMain.h"
+#include "GazeTracker.h"
 
 
-GazeTrackerMain::GazeTrackerMain() : Singleton(), m_stopApp(true)
-{
-	m_startUI = new StartUI();
-}
-
-
-GazeTrackerMain::~GazeTrackerMain() 
+GazeTracker::GazeTracker() : m_stopApp(true), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow())
 {
 }
 
-void GazeTrackerMain::Welcome()
+
+GazeTracker::~GazeTracker() 
 {
-	m_startUI->show();
 }
 
-void GazeTrackerMain::Start()
+
+void GazeTracker::Start()
+{
+	UISystem::GetInstance()->GetStartUI()->show();
+}
+
+void GazeTracker::Stop()
+{
+	m_stopApp = true;
+}
+
+bool GazeTracker::IsCameraOpened() const
+{ return m_Camera.GetCamera()->isOpened(); }
+
+bool GazeTracker::IsFaceDetected() 
+{
+	std::vector<FaceDetection::FaceROI> out;
+	cv::Mat frame = m_Camera.GetFrame();
+	m_FaceDetection.CheckForFaces(frame, out);
+	return out.size() > 0;
+}
+
+void GazeTracker::detect()
 {
 	m_stopApp = false;
 	FaceDetection faceDetectionSplit;
@@ -51,9 +67,4 @@ void GazeTrackerMain::Start()
 			break;
 		}
 	}
-}
-
-void GazeTrackerMain::Stop()
-{
-	m_stopApp = true;
 }

@@ -1,7 +1,5 @@
-#ifndef GAZETRACKER_UI_H
-#define GAZETRACKER_UI_H
+#pragma once
 
-#include <QtWidgets/QMainWindow>
 #include "ui_gazetrackerui.h"
 
 class GazeTrackerUI : public QMainWindow
@@ -15,5 +13,3 @@ public:
 private:
 	Ui::GazeTracker_UIClass ui;
 };
-
-#endif // GAZETRACKER_UI_H

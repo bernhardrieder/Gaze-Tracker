@@ -18,7 +18,7 @@ FaceDetection::~FaceDetection()
 {
 }
 
-void FaceDetection::detectAndDraw(cv::Mat& frame)
+void FaceDetection::CheckForFaces(cv::Mat& frame, std::vector<FaceROI>& out)
 {
 	cv::flip(frame, frame, 1);
 	std::vector<cv::Rect> faces;
@@ -30,27 +30,39 @@ void FaceDetection::detectAndDraw(cv::Mat& frame)
 	m_FaceCascadeClassifier.detectMultiScale(frame_gray, faces, 1.2, 5, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING | cv::CASCADE_FIND_BIGGEST_OBJECT, cv::Size(30, 30));
 	for (size_t i = 0; i < faces.size(); i++)
 	{
-		/* 
-		"Within the face region, 20 % from the top(forehead) and 40 % from the bottom (face below nostrils) can be cropped and rejected from further analysis[65].Inspected region limitation let to gain several milliseconds for every cycle of the method." - Paper: "Single web camera robust interactive eye-gaze tracking method", by "A. WOJCIECHOWSKI and K. FORNALCZYK" 
-		-> this causes cv::Mat exceptions?
-		
+		/*
+		"Within the face region, 20 % from the top(forehead) and 40 % from the bottom (face below nostrils) can be cropped and rejected from further analysis[65].Inspected region limitation let to gain several milliseconds for every cycle of the method." - Paper: "Single web camera robust interactive eye-gaze tracking method", by "A. WOJCIECHOWSKI and K. FORNALCZYK"
 		*/
 		faces[i].y += faces[i].y * 0.2f;
 		faces[i] += cv::Size(0, -(faces[i].height * 0.6f));
 
-		cv::Rect leftSide = faces[i];
-		leftSide -= cv::Size(faces[i].width * 0.5f, 0);
-		cv::Rect rightSide = leftSide;
-		rightSide.x += leftSide.width;
-
-
-		cv::rectangle(frame, leftSide, cv::Scalar(255, 255, 0));
-		cv::rectangle(frame, rightSide, cv::Scalar(255, 0, 255));
-
-
-		eyeDetection(frame, frame_gray, leftSide, Eye::LEFT);
-		eyeDetection(frame, frame_gray, rightSide, Eye::RIGHT);
+		FaceROI roi;
+		roi.leftSideROI = faces[i];
+		roi.leftSideROI -= cv::Size(faces[i].width * 0.5f, 0);
+		roi.rightSideROI = roi.leftSideROI;
+		roi.rightSideROI.x += roi.leftSideROI.width;
+		out.push_back(roi);
 	}
+}
+
+void FaceDetection::detectAndDraw(cv::Mat& frame)
+{
+	std::vector<FaceROI> out;
+	CheckForFaces(frame, out);
+	if(out.size() > 0)
+	{
+		cv::Mat frame_gray;
+		cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
+		for(auto roi : out)
+		{
+			cv::rectangle(frame, roi.leftSideROI, cv::Scalar(255, 255, 0));
+			cv::rectangle(frame, roi.rightSideROI, cv::Scalar(255, 0, 255));
+
+			eyeDetection(frame, frame_gray, roi.leftSideROI, Eye::LEFT);
+			eyeDetection(frame, frame_gray, roi.rightSideROI, Eye::RIGHT);
+		}
+	}
+
 	//-- Show what you got
 	cv::imshow("result", frame);
 }

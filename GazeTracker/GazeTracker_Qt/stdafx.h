@@ -17,7 +17,10 @@
 #include <opencv2/superres.hpp> //Super Resolution
 #include <opencv2/videostab.hpp> //Video Stabilization
 
-/*	open cv extra modules	*/
+/*			Qt			*/
+#include <QtWidgets>
+#include <QWidget>
+#include <QtWidgets/QMainWindow>
 
 //other
 #include <Windows.h>
@@ -27,6 +30,12 @@
 #include "Camera.h"
 #include "FaceDetection.h"
 #include "ScreenCapture.h"
+#include "GazeTracker.h"
 
-/*			Qt			*/	
-#include <QtWidgets>
+/*			UI			*/
+#include "UISystem.h"
+#include "ConfigurationUI.hpp"
+#include "templateconfigui.hpp"
+#include "startui.hpp"
+#include "cornerconfigurationui.hpp"
+

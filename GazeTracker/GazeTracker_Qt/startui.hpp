@@ -1,7 +1,5 @@
 ﻿#pragma once
-#include <QWidget>
 #include "ui_startui.h"
-#include "GazeTrackerMain.h"
 
 class StartUI : public QWidget {
 	Q_OBJECT

@@ -15,6 +15,12 @@ public:
 		LEFT, RIGHT
 	};
 
+	struct FaceROI
+	{
+		cv::Rect leftSideROI, rightSideROI;
+	};
+
+	void CheckForFaces(cv::Mat& frame, std::vector<FaceROI>& out);
 	void detectAndDraw(cv::Mat& frame);
 	void eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& faceRegion, enum Eye eyeSide);
 	void pupilDetection(cv::Mat& frame, cv::Mat& roi, enum Eye eyeSide, cv::Rect roiRect);
