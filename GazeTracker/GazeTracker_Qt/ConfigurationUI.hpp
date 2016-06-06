@@ -14,8 +14,9 @@ public:
 		EyeTemplateConfigDone,
 		CornerConfigDone
 	};
-	ConfigurationUI_StateWorker() {};
+	ConfigurationUI_StateWorker() : m_StopThreads(false){};
 	~ConfigurationUI_StateWorker() {};
+	void StopThreads() { m_StopThreads = true; };
 
 public slots:
 	void process();
@@ -24,6 +25,7 @@ signals:
 	void stateChanged(int);
 private:
 	ConfigurationState m_configState = ConfigurationState::NONE; //1 -> webcam detected, 2 -> face detected, NOT USED: (3 -> template config done, 4 -> corner config done)
+	bool m_StopThreads;
 };
 
 
@@ -41,6 +43,7 @@ private slots:
 	void openEyeTemplateConfig();
 	void openCornerConfig();
 	void stateChanged(int);
+
 private:
 	Ui::ConfigurationUI ui;
 	QThread* m_Thread;

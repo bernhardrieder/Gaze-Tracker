@@ -26,10 +26,12 @@ ConfigurationUI::ConfigurationUI(QWidget * parent) : QWidget(parent) {
 	QObject::connect(m_Thread, SIGNAL(started()), m_StateWorker, SLOT(process()));
 	QObject::connect(m_StateWorker, SIGNAL(finished()), m_Thread, SLOT(quit()));
 	QObject::connect(m_StateWorker, SIGNAL(finished()), m_StateWorker, SLOT(deleteLater()));
-	QObject::connect(m_Thread, SIGNAL(finished()), m_Thread, SLOT(deleteLater()));
+	QObject::connect(m_Thread, &QThread::finished, m_Thread, &QObject::deleteLater);
 }
 
 ConfigurationUI::~ConfigurationUI() {
+	m_Thread->quit();
+	m_Thread->wait();
 }
 
 void ConfigurationUI::show()
@@ -54,6 +56,7 @@ void ConfigurationUI::closeApplication()
 
 	if (ret == QMessageBox::Yes)
 	{
+		m_StateWorker->StopThreads();
 		qApp->quit();
 	}
 }
@@ -86,7 +89,7 @@ void ConfigurationUI::stateChanged(int state)
 
 void ConfigurationUI_StateWorker::process()
 {
-	while(static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected))
+	while(static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && !m_StopThreads)
 	{
 		if(static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::WebCamDetected) && GazeTracker::GetInstance()->IsCameraOpened())
 		{

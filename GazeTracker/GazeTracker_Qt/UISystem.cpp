@@ -9,6 +9,10 @@ UISystem::UISystem()
 
 UISystem::~UISystem()
 {
+	delete m_StartUI;
+	delete m_ConfigurationUI;
+	delete m_CornerConfigurationUI;
+	delete m_EyeTemplateConfigurationUI;
 }
 
 StartUI* UISystem::GetStartUI()
