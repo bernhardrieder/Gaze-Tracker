@@ -4,6 +4,8 @@
 
 GazeTracker::GazeTracker() : m_stopApp(true), m_RecordData(false), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow())
 {
+	CreateDirectory(LPWSTR(std::wstring(L"Frames").c_str()), NULL);
+	CreateDirectory(LPWSTR(std::wstring(L"template_matching").c_str()), NULL);
 }
 
 

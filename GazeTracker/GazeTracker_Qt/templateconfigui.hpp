@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "ui_templateconfigui.h"
+#include "EyeTemplateSelect.hpp"
 
 class TemplateConfigUI_EyesUpdateWorker : public QObject
 {
@@ -15,6 +16,8 @@ public slots:
 	void Stop() { m_StopProcess = true; };
 signals:
 	void finished();
+	void leftEyeImageShown();
+	void rightEyeImageShown();
 private:
 	bool m_StopProcess;
 	Ui::TemplateConfig* ui;
@@ -27,18 +30,31 @@ public:
 	TemplateConfigUI(QWidget * parent = Q_NULLPTR);
 	~TemplateConfigUI();
 
-	void show();
-
 signals:
 	void configurationSuccess();
+	void onShow();
 
+public slots:
+	void show();
+	void close();
 private slots:
 	void saveTemplates();
+	void onLeftEyeStartRect();
+	void onLeftEyeStopRect(const QRect&);
+	void onLeftEyeClear();
+	void onRightEyeStartRect();
+	void onRightEyeStopRect(const QRect&);
+	void onRightEyeClear();
 
 private:
 	Ui::TemplateConfig ui;
 	QThread* m_Thread;
 	TemplateConfigUI_EyesUpdateWorker* m_EyesUpdateWorker;
+	EyeTemplateSelect* m_LeftEyeTemplateSelect;
+	EyeTemplateSelect* m_RightEyeTemplateSelect;
+	bool m_OnLeftEyeClicked, m_OnRightEyeClicked, m_LeftEyeReady, m_RightEyeReady;
+	QPixmap m_SelectedIrisLeft, m_SelectedIrisRight;
 
 	static void convertMatToQImage(cv::Mat& pic, QImage& img);
+	void checkUseButton() const;
 };

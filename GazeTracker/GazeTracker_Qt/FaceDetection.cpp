@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "FaceDetection.h"
 
-cv::String eyeLeftTemplateName = "template_matching/eye_left.png";
-cv::String eyeRightTemplateName = "template_matching/eye_right.png";
+cv::String FaceDetection::eyeLeftTemplateName = "template_matching/eye_left.png";
+cv::String FaceDetection::eyeRightTemplateName = "template_matching/eye_right.png";
 
 FaceDetection::FaceDetection() : FaceDetection(m_face_cascade_name_default, m_left_eye_cascade_name_default, m_right_eye_cascade_name_default)
 {}
@@ -68,10 +68,7 @@ void FaceDetection::adjustEyeROI(const cv::Rect& faceRegion, const std::vector<c
 	if (eye.size() == 0) return;
 	for (size_t j = 0; j < eye.size(); j++)
 	{
-		//float offsetX = eye[j].width / 3.;
-		//float yDivid = 3.;
-		//float offsetY = eye[j].height / yDivid;
-		out = cv::Rect(faceRegion.x + eye[j].x /*+ offsetX / 2*/, faceRegion.y + eye[j].y /*+ offsetY*(yDivid / 2)*/, eye[j].width /*- offsetX*/, eye[j].height /*- offsetY * 2*/);
+		out = cv::Rect(faceRegion.x + eye[j].x, faceRegion.y + eye[j].y, eye[j].width, eye[j].height);
 	}
 }
 
@@ -202,14 +199,13 @@ void FaceDetection::getIrisCenterPosition(const cv::Mat& flippedFrameGray, const
 {
 	if (flippedFrameGray.empty()) return;
 
-	//euqlize hist for better processing and resize frame because of template resize factor (and fit to each other)
+	//euqlize hist for better processing and resize frame because of template resize factor (so they fit to each other)
 	cv::Mat frameHistAndResized, result, templateHist;
 	cv::equalizeHist(flippedFrameGray, frameHistAndResized);
 	cv::equalizeHist(eyeTemplate, templateHist);
 	frameHistAndResized = frameHistAndResized(eyeROI);
-	double resizeFactor = 15; //get this variable from the caller!!!
-	cv::resize(frameHistAndResized, frameHistAndResized, cv::Size(), resizeFactor, resizeFactor);
-	//cv::resize(templateHist, templateHist, cv::Size(), resizeFactor, resizeFactor); // not needed, already scaled!
+	
+	cv::resize(frameHistAndResized, frameHistAndResized, cv::Size(), eyeTemplateResizeFactor, eyeTemplateResizeFactor);
 
 	//check if template isn't bigger than frame!
 	int result_cols = frameHistAndResized.cols - templateHist.cols + 1;
@@ -227,7 +223,7 @@ void FaceDetection::getIrisCenterPosition(const cv::Mat& flippedFrameGray, const
 		matchLoc = minLoc;
 	else
 		matchLoc = maxLoc;
-	double mul = 1. / resizeFactor; // resize factor 
+	double mul = 1. / eyeTemplateResizeFactor; // resize factor 
 
 	//calculate center position
 	cv::Rect rect = cv::Rect(matchLoc *mul, cv::Point(matchLoc.x + eyeTemplate.cols, matchLoc.y + eyeTemplate.rows) * mul);

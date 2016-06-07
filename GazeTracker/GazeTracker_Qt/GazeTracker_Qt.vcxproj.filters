@@ -113,6 +113,15 @@
     <ClCompile Include="UISystem.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EyeTemplateSelect.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EyeTemplateSelect.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="EyeTemplateSelect.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -187,6 +196,9 @@
       <Filter>Form Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="ConfigurationUI.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EyeTemplateSelect.hpp">
       <Filter>Header Dateien\Qt</Filter>
     </CustomBuild>
   </ItemGroup>

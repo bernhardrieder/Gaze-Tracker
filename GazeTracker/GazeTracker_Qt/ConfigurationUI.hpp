@@ -12,6 +12,7 @@ public:
 		WebCamDetected = 1,
 		FaceDetected,
 		EyeTemplateConfigDone,
+		EyeTemplateMethodSelectionDone,
 		CornerConfigDone
 	};
 	ConfigurationUI_StateWorker() : m_StopThreads(false){};
@@ -35,13 +36,14 @@ class ConfigurationUI : public QWidget {
 public:
 	ConfigurationUI(QWidget * parent = Q_NULLPTR);
 	~ConfigurationUI();
-
+public slots:
 	void show();
-
+	void close();
 private slots:
 	void closeApplication();
 	static void openEyeTemplateConfig();
 	static void openCornerConfig();
+	static void openTemplateMethodSelection();
 	void stateChanged(int) const;
 	void eyeTemplateConfigSuccess() const;
 

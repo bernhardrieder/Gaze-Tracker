@@ -25,7 +25,9 @@ public:
 	void detectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray);
 
 	int templateMatchingMethod = 0;
-
+	static cv::String eyeLeftTemplateName;
+	static cv::String eyeRightTemplateName;
+	double eyeTemplateResizeFactor;
 private:
 	bool initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
 	static void adjustEyeROI(const cv::Rect& faceRegion, const std::vector<cv::Rect>& eye, cv::Rect& out);

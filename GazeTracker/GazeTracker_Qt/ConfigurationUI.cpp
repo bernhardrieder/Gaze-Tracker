@@ -10,10 +10,12 @@ ConfigurationUI::ConfigurationUI(QWidget * parent) : QWidget(parent) {
 	changeColor(ui.webCamLabel, COLOR_RED);
 	changeColor(ui.faceLabel, COLOR_RED);
 	changeColor(ui.eyeTemplateConfigButton, COLOR_RED);
+	changeColor(ui.templateMethodButton, COLOR_RED);
 	changeColor(ui.cornerConfigButton, COLOR_RED);
 
 	QObject::connect(ui.cancelButton, SIGNAL(clicked()), this, SLOT(closeApplication()));
 	QObject::connect(ui.eyeTemplateConfigButton, SIGNAL(clicked()), this, SLOT(openEyeTemplateConfig()));
+	QObject::connect(ui.templateMethodButton, SIGNAL(clicked()), this, SLOT(openTemplateMethodSelection()));
 	QObject::connect(ui.cornerConfigButton, SIGNAL(clicked()), this, SLOT(openCornerConfig()));
 	QObject::connect(UISystem::GetInstance()->GetEyeTemplateConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateConfigSuccess())); 
 
@@ -31,12 +33,20 @@ ConfigurationUI::ConfigurationUI(QWidget * parent) : QWidget(parent) {
 ConfigurationUI::~ConfigurationUI() {
 	m_Thread->quit();
 	m_Thread->wait();
+
+	delete m_Thread;
+	delete m_StateWorker;
 }
 
 void ConfigurationUI::show()
 {
 	QWidget::show(); 
 	m_Thread->start();
+}
+
+void ConfigurationUI::close()
+{
+	QWidget::close();
 }
 
 void ConfigurationUI::changeColor(QLabel* label, const QString& color)
@@ -71,6 +81,10 @@ void ConfigurationUI::openCornerConfig()
 	UISystem::GetInstance()->GetCornerConfigurationUI()->show();
 }
 
+void ConfigurationUI::openTemplateMethodSelection()
+{
+}
+
 void ConfigurationUI::stateChanged(int state) const
 {
 	switch(static_cast<ConfigurationUI_StateWorker::ConfigurationState>(state))
@@ -82,9 +96,13 @@ void ConfigurationUI::stateChanged(int state) const
 			changeColor(ui.faceLabel, COLOR_GREEN);
 			ui.eyeTemplateConfigButton->setEnabled(true); 
 			break;
-		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone: 
+		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone:
 			changeColor(ui.eyeTemplateConfigButton, COLOR_GREEN);
-			ui.cornerConfigButton->setEnabled(true); 
+			ui.templateMethodButton->setEnabled(true);
+			break;
+		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateMethodSelectionDone:
+			changeColor(ui.templateMethodButton, COLOR_GREEN);
+			ui.cornerConfigButton->setEnabled(true);
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone: 
 			changeColor(ui.cornerConfigButton, COLOR_GREEN);

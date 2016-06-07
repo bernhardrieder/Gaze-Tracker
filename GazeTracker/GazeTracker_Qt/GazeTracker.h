@@ -17,8 +17,9 @@ public:
 	bool GetEyes(cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor = 0.0, bool equalizeHist = false);
 
 	void SetRecordData(bool record) { m_RecordData = record; }
-	bool GetRecordData() const
-	{ return m_RecordData; }
+	bool GetRecordData() const	{ return m_RecordData; }
+	void SetEyeTemplateResizeFactor(double factor) { m_FaceDetection.eyeTemplateResizeFactor = factor; }
+	double GetEyeTemplateResizeFactor() const { return m_FaceDetection.eyeTemplateResizeFactor; }
 
 private:
 	bool m_stopApp;

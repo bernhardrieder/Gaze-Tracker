@@ -3,8 +3,6 @@
 
 ScreenCapture::ScreenCapture(HWND window) : m_window(window), m_stopCapture(true), m_isCapturing(false), m_fps(0)
 {
-	std::wstring dir(L"Frames");
-	CreateDirectory(LPWSTR(dir.c_str()), NULL);
 }
 
 ScreenCapture::~ScreenCapture()

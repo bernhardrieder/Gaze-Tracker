@@ -10,13 +10,19 @@
     <x>0</x>
     <y>0</y>
     <width>869</width>
-    <height>406</height>
+    <height>500</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>869</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>869</width>
-    <height>406</height>
+    <height>500</height>
    </size>
   </property>
   <property name="mouseTracking">
@@ -39,8 +45,8 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <spacer name="verticalSpacer_2">
+   <item row="1" column="0">
+    <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -55,8 +61,8 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="0">
-    <spacer name="verticalSpacer">
+   <item row="5" column="0">
+    <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -119,7 +125,62 @@
      </layout>
     </widget>
    </item>
-   <item row="8" column="0" alignment="Qt::AlignHCenter">
+   <item row="3" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QGroupBox" name="leftEyeGroupBox">
+        <property name="minimumSize">
+         <size>
+          <width>379</width>
+          <height>275</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>424</width>
+          <height>500</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <layout class="QHBoxLayout" name="leftEyeLayout"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="rightEyeGroupBox">
+        <property name="minimumSize">
+         <size>
+          <width>378</width>
+          <height>275</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>423</width>
+          <height>500</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <layout class="QHBoxLayout" name="rightEyeLayout"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="9" column="0" alignment="Qt::AlignHCenter">
     <widget class="QGroupBox" name="horizontalGroupBox">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -190,67 +251,11 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QGroupBox" name="groupBox_2">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QGroupBox" name="leftEyeGroupBox">
-        <property name="minimumSize">
-         <size>
-          <width>379</width>
-          <height>275</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>424</width>
-          <height>278</height>
-         </size>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="leftEyePicLabel">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="rightEyeGroupBox">
-        <property name="minimumSize">
-         <size>
-          <width>378</width>
-          <height>275</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>423</width>
-          <height>278</height>
-         </size>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="rightEyePicLabel">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
+   <item row="4" column="0" alignment="Qt::AlignHCenter">
+    <widget class="QCheckBox" name="equalizeHistCheckbox">
+     <property name="text">
+      <string>Equalize histogram, if picture is too dark!</string>
+     </property>
     </widget>
    </item>
   </layout>
@@ -260,6 +265,7 @@
   <zorder>verticalSpacer_2</zorder>
   <zorder>verticalSpacer</zorder>
   <zorder>horizontalGroupBox</zorder>
+  <zorder>equalizeHistCheckbox</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
