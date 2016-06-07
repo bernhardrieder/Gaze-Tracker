@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 class FaceDetection 
 {
 public:
@@ -9,11 +7,6 @@ public:
 	FaceDetection();
 	FaceDetection(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
 	~FaceDetection();
-
-	enum Eye
-	{
-		LEFT, RIGHT
-	};
 
 	struct FaceROI
 	{
@@ -25,23 +18,26 @@ public:
 		cv::Rect left, right;
 	};
 
-	void CheckForFaces(cv::Mat& frameGray, std::vector<FaceROI>& out, bool flipFace = true);
-	void CheckForEyes(cv::Mat& frameGray, FaceROI& face, EyesROI& out);
-	bool GetEyes(cv::Mat& frameGray, cv::Mat& leftEye, cv::Mat& rightEye);
-	void detectFaceEyeIrisAndDraw(cv::Mat& frameGray);
-	void eyeDetection(cv::Mat& frameGray, FaceROI& face, bool drawEye = true);
-	void pupilDetection(cv::Mat& frame, cv::Mat& roi, enum Eye eyeSide, cv::Rect roiRect);
-	void pupilTemplateMatching(cv::Mat& frame, cv::Mat& eyeRoi, enum Eye eyeSide, cv::Rect& roiRect);
+	void CheckForFaceROIsWithCascadeClassifier(const cv::Mat& flippedFrameGray, std::vector<FaceROI>& out);
+	void CheckForEyesROIWithCascadeClassifier(const cv::Mat& flippedFrameGray, const FaceROI& face, EyesROI& out);
+	bool GetEyes(const cv::Mat& flippedFrameGray, cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor = 0.0, bool equalizeHist = false);
+	void GetIrisesCenterPositions(const cv::Mat& flippedFrameGray, const FaceROI& faceROI, cv::Point& leftIris, cv::Point& rightIris);
+	void detectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray);
 
 	int templateMatchingMethod = 0;
 
 private:
 	bool initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
-	static void setEyeROI(cv::Rect& faceRegion, std::vector<cv::Rect>& eye, cv::Rect& out);
+	static void adjustEyeROI(const cv::Rect& faceRegion, const std::vector<cv::Rect>& eye, cv::Rect& out);
+	static void createEyeROIFomFaceROI(const cv::Rect& faceROI, const cv::Rect& lastDetectedEyeROI, cv::Rect& outEyeROI);
+	void getIrisCenterPosition(const cv::Mat& flippedFrameGray, const cv::Rect& eyeROI, const cv::Mat& eyeTemplate, cv::Point& out) const;
+	void detectEyeAndDraw(cv::Mat& flippedFrameGray, const FaceROI& face);
+	void detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI& faceROI);
 
 	cv::CascadeClassifier m_FaceCascadeClassifier;
 	cv::CascadeClassifier m_LeftEyeCascadeClassifier;
 	cv::CascadeClassifier m_RightEyeCascadeClassifier;
+	EyesROI m_LastDetectedEyesROIFromCascadeClassifier;
 
 	cv::Mat m_EyeLeftTemplate;
 	cv::Mat m_EyeRightTemplate;
@@ -50,12 +46,3 @@ private:
 	const cv::String m_left_eye_cascade_name_default = "cascade_classifier/haarcascades/opencv/haarcascade_lefteye_2splits.xml";
 	const cv::String m_right_eye_cascade_name_default = "cascade_classifier/haarcascades/opencv/haarcascade_righteye_2splits.xml";
 };
-
-inline const std::string ToString(enum FaceDetection::Eye v)
-{
-	switch (v)
-	{
-	case FaceDetection::LEFT:   return "LEFT";
-	case FaceDetection::RIGHT:   return "RIGHT";
-	}
-}

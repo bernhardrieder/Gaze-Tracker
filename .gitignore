@@ -284,3 +284,4 @@ ModelManifest.xml
 /GazeTracker/GazeTracker/out.avi
 *.avi
 /GazeTracker/GazeTracker_Qt/Frames
+/GazeTracker/GazeTracker_Qt/template_matching

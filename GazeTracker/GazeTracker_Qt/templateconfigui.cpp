@@ -39,15 +39,20 @@ void TemplateConfigUI_EyesUpdateWorker::process()
 	cv::Mat leftEyePic, rightEyePic;
 	while(!m_StopProcess)
 	{
-		if (GazeTracker::GetInstance()->GetEyes(leftEyePic, rightEyePic))
+		if (GazeTracker::GetInstance()->GetEyes(leftEyePic, rightEyePic, 15))
 		{
 			//resize eye pics!!!
 			QImage leftEye, rightEye;
-			TemplateConfigUI::convertMatToQImage(leftEyePic, leftEye);
-			TemplateConfigUI::convertMatToQImage(rightEyePic, rightEye);
-			
-			ui->leftEyePicLabel->setPixmap(QPixmap::fromImage(leftEye));
-			ui->rightEyePicLabel->setPixmap(QPixmap::fromImage(rightEye));
+			if(!leftEyePic.empty())
+			{
+				TemplateConfigUI::convertMatToQImage(leftEyePic, leftEye);
+				ui->leftEyePicLabel->setPixmap(QPixmap::fromImage(leftEye));
+			}
+			if(!rightEyePic.empty())
+			{
+				TemplateConfigUI::convertMatToQImage(rightEyePic, rightEye);
+				ui->rightEyePicLabel->setPixmap(QPixmap::fromImage(rightEye));
+			}
 		}
 	}
 	emit finished();

@@ -6,7 +6,7 @@ public:
 	~Camera();
 
 	cv::Mat GetFrame() const;
-	cv::Mat GetFrame(bool inGray) const;
+	cv::Mat GetFrame(bool inGray, bool flipped = false) const;
 	cv::Ptr<cv::VideoCapture> GetCamera() const;
 	bool IsInitialized() const;
 	bool Initialize();

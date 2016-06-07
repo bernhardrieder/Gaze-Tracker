@@ -21,11 +21,16 @@ cv::Mat Camera::GetFrame() const
 	return frame;
 }
 
-cv::Mat Camera::GetFrame(bool inGray) const
+cv::Mat Camera::GetFrame(bool inGray, bool flipped) const
 {
 	cv::Mat frame = GetFrame();
-	if(inGray)
-		cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+	if (!frame.empty())
+	{
+		if (inGray)
+			cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+		if (flipped)
+			cv::flip(frame, frame, 1);
+	}
 	return frame;
 }
 

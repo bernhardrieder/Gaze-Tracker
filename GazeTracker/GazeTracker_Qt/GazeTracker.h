@@ -14,7 +14,7 @@ public:
 	bool IsCameraOpened() const;
 	bool IsFaceDetected();
 	void detect();
-	bool GetEyes(cv::Mat& leftEye, cv::Mat& rightEye);
+	bool GetEyes(cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor = 0.0, bool equalizeHist = false);
 
 	void SetRecordData(bool record) { m_RecordData = record; }
 	bool GetRecordData() const
