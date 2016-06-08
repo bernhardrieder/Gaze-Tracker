@@ -14,17 +14,20 @@ namespace gt
 		signals:
 		void configurationSuccess();
 	private slots:
-		void saveTopLeft();
-		void saveTopMiddle();
-		void saveTopRight();
-		void saveMiddleLeft();
-		void saveMiddleMiddle();
-		void saveMiddleRight();
-		void saveBottomLeft();
-		void saveBottomMiddle();
-		void saveBottomRight();
+		void saveTopLeft(bool);
+		void saveTopMiddle(bool);
+		void saveTopRight(bool);
+		void saveMiddleLeft(bool);
+		void saveMiddleMiddle(bool);
+		void saveMiddleRight(bool);
+		void saveBottomLeft(bool);
+		void saveBottomMiddle(bool);
+		void saveBottomRight(bool);
 	private:
 		Ui::CornerConfigurationUI ui;
+		unsigned int m_setCorners;
+		void saveCurrentCornerAs(bool var, Configuration::Corners corner);
+		bool allCornersSet() const;
 	};
 }
 
