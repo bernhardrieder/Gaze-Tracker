@@ -1,5 +1,6 @@
 ﻿#include <stdafx.h>
 #include "startui.hpp"
+using namespace gt;
 
 StartUI::StartUI(QWidget* parent) : QWidget(parent)
 {
@@ -27,6 +28,6 @@ void StartUI::showAbout()
 
 void StartUI::recordDataChanged(int state)
 {
-	GazeTracker::GetInstance()->SetRecordData(state == Qt::Checked);
+	Configuration::GetInstance()->SetRecordData(state == Qt::Checked);
 }
 

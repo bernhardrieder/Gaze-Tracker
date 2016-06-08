@@ -1,5 +1,6 @@
 ﻿#include <stdafx.h>
 #include "ConfigurationUI.hpp"
+using namespace gt;
 
 ConfigurationUI::ConfigurationUI(QWidget* parent) : QWidget(parent)
 {
@@ -57,7 +58,7 @@ void ConfigurationUI::closeApplication()
 	if (ret == QMessageBox::Yes)
 	{
 		m_StateWorker->StopThreads();
-		GazeTracker::GetInstance()->Stop();
+		GazeTrackerManager::GetInstance()->Stop();
 		qApp->quit();
 	}
 }
@@ -118,12 +119,12 @@ void ConfigurationUI_StateWorker::process()
 {
 	while (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && !m_StopThreads)
 	{
-		if (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::WebCamDetected) && GazeTracker::GetInstance()->IsCameraOpened())
+		if (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::WebCamDetected) && GazeTrackerManager::GetInstance()->IsCameraOpened())
 		{
 			m_configState = ConfigurationState::WebCamDetected;
 			emit stateChanged(static_cast<int>(m_configState));
 		}
-		if (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && GazeTracker::GetInstance()->IsFaceDetected())
+		if (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && GazeTrackerManager::GetInstance()->IsFaceDetected())
 		{
 			m_configState = ConfigurationState::FaceDetected;
 			emit stateChanged(static_cast<int>(m_configState));

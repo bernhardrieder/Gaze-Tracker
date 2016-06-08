@@ -1,5 +1,6 @@
 ﻿#include <stdafx.h>
 #include "TemplateMatchingMethodConfigUI.hpp"
+using namespace gt;
 
 void TemplateMatchingMethodConfigUI_EyesUpdateWorker::process()
 {
@@ -7,7 +8,7 @@ void TemplateMatchingMethodConfigUI_EyesUpdateWorker::process()
 	while (!m_StopProcess)
 	{
 		cv::Mat leftEyePic, rightEyePic;
-		GazeTracker::GetInstance()->GetEyesWithIrisDetection(leftEyePic, rightEyePic, 5);
+		GazeTrackerManager::GetInstance()->GetEyesWithIrisDetection(leftEyePic, rightEyePic, 5);
 
 		QImage leftEye, rightEye;
 
@@ -105,7 +106,7 @@ void TemplateMatchingMethodConfigUI::chooseTMCOEFFNORMED(bool val)
 
 void TemplateMatchingMethodConfigUI::changeMethod()
 {
-	GazeTracker::GetInstance()->SetTemplateMatchingMethod(m_ChoosenMethod);
+	Configuration::SetTemplateMatchingMethod(m_ChoosenMethod);
 	QtHelper::changeColor(*getRadioButtonForTemplateMethod(m_ChoosenMethod), "green");
 }
 

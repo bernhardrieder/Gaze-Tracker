@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "ScreenCapture.h"
 
+using namespace gt;
+
 ScreenCapture::ScreenCapture(HWND window) : m_window(window), m_stopCapture(true), m_isCapturing(false), m_fps(0)
 {
 }

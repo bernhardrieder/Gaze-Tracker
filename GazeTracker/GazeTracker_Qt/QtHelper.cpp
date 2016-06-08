@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "QtHelper.h"
 
+using namespace gt;
 
 QtHelper::QtHelper()
 {

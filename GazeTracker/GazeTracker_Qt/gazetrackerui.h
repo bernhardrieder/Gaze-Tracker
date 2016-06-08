@@ -2,15 +2,18 @@
 
 #include "ui_gazetrackerui.h"
 
-class GazeTrackerUI : public QMainWindow
+namespace gt
 {
-	Q_OBJECT
+	class GazeTrackerUI : public QMainWindow
+	{
+		Q_OBJECT
 
-public:
-	GazeTrackerUI(QWidget* parent = 0);
-	~GazeTrackerUI();
+	public:
+		GazeTrackerUI(QWidget* parent = 0);
+		~GazeTrackerUI();
 
-private:
-	Ui::GazeTracker_UIClass ui;
-};
+	private:
+		Ui::GazeTracker_UIClass ui;
+	};
+}
 

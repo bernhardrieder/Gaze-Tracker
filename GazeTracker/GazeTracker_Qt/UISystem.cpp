@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "UISystem.h"
 
+using namespace gt;
 
 UISystem::UISystem()
 {

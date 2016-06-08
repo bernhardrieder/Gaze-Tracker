@@ -152,12 +152,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="ConfigurationUI.cpp" />
     <ClCompile Include="cornerconfigurationui.cpp" />
     <ClCompile Include="EyeTemplateSelect.cpp" />
     <ClCompile Include="FaceDetection.cpp" />
     <ClCompile Include="GazeData.cpp" />
-    <ClCompile Include="GazeTracker.cpp" />
+    <ClCompile Include="GazeTrackerManager.cpp" />
     <ClCompile Include="gazetrackerui.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ConfigurationUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -277,6 +278,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../TemplateMatchingMethodConfigUI.hpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I$(OPENCV_DIR)\..\..\include" "-I$(NOINHERIT)\."</Command>
     </CustomBuild>
+    <ClInclude Include="Configuration.h" />
     <ClInclude Include="GeneratedFiles\ui_TemplateMatchingMethodConfigUI.h" />
     <ClInclude Include="QtHelper.h" />
     <ClInclude Include="UISystem.h" />
@@ -318,7 +320,7 @@
     </CustomBuild>
     <ClInclude Include="FaceDetection.h" />
     <ClInclude Include="GazeData.h" />
-    <ClInclude Include="GazeTracker.h" />
+    <ClInclude Include="GazeTrackerManager.h" />
     <ClInclude Include="GeneratedFiles\ui_ConfigurationUI.h" />
     <ClInclude Include="GeneratedFiles\ui_cornerconfigurationui.h" />
     <ClInclude Include="GeneratedFiles\ui_gazetrackerui.h" />

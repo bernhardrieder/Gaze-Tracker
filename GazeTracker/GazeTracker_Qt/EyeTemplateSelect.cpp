@@ -1,5 +1,6 @@
 ﻿#include <stdafx.h>
 #include "EyeTemplateSelect.hpp"
+using namespace gt;
 
 EyeTemplateSelect::EyeTemplateSelect(QWidget* parent) : QLabel(parent)
 {

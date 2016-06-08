@@ -2,24 +2,27 @@
 #include "Singleton.h"
 #include "stdafx.h"
 
-class UISystem : public Singleton<UISystem>
+namespace gt
 {
-	friend class Singleton<UISystem>;
-public:
-	UISystem();
-	~UISystem();
+	class UISystem : public Singleton<UISystem>
+	{
+		friend class Singleton<UISystem>;
+	public:
+		UISystem();
+		~UISystem();
 
-	StartUI* GetStartUI();
-	ConfigurationUI* GetConfigurationUI();
-	TemplateConfigUI* GetEyeTemplateConfigurationUI();
-	CornerConfigurationUI* GetCornerConfigurationUI();
-	TemplateMatchingMethodConfigUI* GetTemplateMatchingMethodConfigUI();
+		StartUI* GetStartUI();
+		ConfigurationUI* GetConfigurationUI();
+		TemplateConfigUI* GetEyeTemplateConfigurationUI();
+		CornerConfigurationUI* GetCornerConfigurationUI();
+		TemplateMatchingMethodConfigUI* GetTemplateMatchingMethodConfigUI();
 
-private:
-	QWidget* m_StartUI = nullptr;
-	QWidget* m_ConfigurationUI = nullptr;
-	QWidget* m_EyeTemplateConfigurationUI = nullptr;
-	QWidget* m_CornerConfigurationUI = nullptr;
-	QWidget* m_TemplateMatchingMethodConfigUI = nullptr;
-};
+	private:
+		QWidget* m_StartUI = nullptr;
+		QWidget* m_ConfigurationUI = nullptr;
+		QWidget* m_EyeTemplateConfigurationUI = nullptr;
+		QWidget* m_CornerConfigurationUI = nullptr;
+		QWidget* m_TemplateMatchingMethodConfigUI = nullptr;
+	};
+}
 

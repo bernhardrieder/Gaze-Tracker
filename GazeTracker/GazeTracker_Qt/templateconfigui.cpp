@@ -1,5 +1,6 @@
 ﻿#include <stdafx.h>
 #include "templateconfigui.hpp"
+using namespace gt;
 
 TemplateConfigUI::TemplateConfigUI(QWidget* parent) : QWidget(parent), m_OnLeftEyeClicked(false), m_OnRightEyeClicked(false), m_LeftEyeReady(false), m_RightEyeReady(false)
 {
@@ -66,11 +67,11 @@ void TemplateConfigUI::close()
 void TemplateConfigUI_EyesUpdateWorker::process()
 {
 	TemplateConfigUI* config = UISystem::GetInstance()->GetEyeTemplateConfigurationUI();
-	GazeTracker::GetInstance()->SetEyeTemplateResizeFactor(5.0);
+	Configuration::SetEyeTemplateResizeFactor(5.0);
 	cv::Mat leftEyePic, rightEyePic;
 	while (!m_StopProcess)
 	{
-		if (GazeTracker::GetInstance()->GetEyes(leftEyePic, rightEyePic, GazeTracker::GetInstance()->GetEyeTemplateResizeFactor(), ui->equalizeHistCheckbox->checkState() == Qt::CheckState::Checked))
+		if (GazeTrackerManager::GetInstance()->GetEyes(leftEyePic, rightEyePic, Configuration::GetEyeTemplateResizeFactor(), ui->equalizeHistCheckbox->checkState() == Qt::CheckState::Checked))
 		{
 			QImage leftEye, rightEye;
 			if (!leftEyePic.empty() && !config->m_OnLeftEyeClicked && QtHelper::ConvertMatToQImage(leftEyePic, leftEye))

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Camera.h"
+using namespace gt;
 
 Camera::Camera(int cameraIndex, int width, int height, bool autoInit) : m_Width(width), m_Height(height), m_CameraIndex(cameraIndex)
 {

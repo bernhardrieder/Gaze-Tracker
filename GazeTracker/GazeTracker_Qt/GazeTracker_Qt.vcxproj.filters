@@ -107,9 +107,6 @@
     <ClCompile Include="ConfigurationUI.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
-    <ClCompile Include="GazeTracker.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="UISystem.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
@@ -133,6 +130,12 @@
     </ClCompile>
     <ClCompile Include="QtHelper.cpp">
       <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeTrackerManager.cpp">
+      <Filter>Source Dateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,9 +172,6 @@
     <ClInclude Include="GeneratedFiles\ui_ConfigurationUI.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="GazeTracker.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="UISystem.h">
       <Filter>Header Dateien\Qt</Filter>
     </ClInclude>
@@ -180,6 +180,12 @@
     </ClInclude>
     <ClInclude Include="QtHelper.h">
       <Filter>Header Dateien\Qt</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GazeTrackerManager.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

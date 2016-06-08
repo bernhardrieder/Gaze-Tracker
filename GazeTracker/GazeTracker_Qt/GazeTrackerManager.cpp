@@ -1,36 +1,37 @@
 #include "stdafx.h"
-#include "GazeTracker.h"
+#include "GazeTrackerManager.h"
 
+using namespace gt;
 
-GazeTracker::GazeTracker() : m_stopApp(true), m_RecordData(false), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow())
+GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow())
 {
 	CreateDirectory(LPWSTR(std::wstring(L"Frames").c_str()), NULL);
 	CreateDirectory(LPWSTR(std::wstring(L"template_matching").c_str()), NULL);
 }
 
 
-GazeTracker::~GazeTracker()
+GazeTrackerManager::~GazeTrackerManager()
 {
 }
 
 
-void GazeTracker::Start()
+void GazeTrackerManager::Start()
 {
 	UISystem::GetInstance()->GetStartUI()->show();
 }
 
-void GazeTracker::Stop()
+void GazeTrackerManager::Stop()
 {
 	m_ScreenCapture.StopCapture();
 	m_stopApp = true;
 }
 
-bool GazeTracker::IsCameraOpened() const
+bool GazeTrackerManager::IsCameraOpened() const
 {
 	return m_Camera.GetCamera()->isOpened();
 }
 
-bool GazeTracker::IsFaceDetected()
+bool GazeTrackerManager::IsFaceDetected()
 {
 	std::vector<FaceDetection::FaceROI> out;
 	cv::Mat frame = m_Camera.GetFrame(true, true);
@@ -38,7 +39,7 @@ bool GazeTracker::IsFaceDetected()
 	return out.size() > 0;
 }
 
-void GazeTracker::detect()
+void GazeTrackerManager::detect()
 {
 	m_stopApp = false;
 	FaceDetection faceDetectionSplit;
@@ -74,14 +75,14 @@ void GazeTracker::detect()
 	}
 }
 
-bool GazeTracker::GetEyes(cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor, bool equalizeHist)
+bool GazeTrackerManager::GetEyes(cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor, bool equalizeHist)
 {
 	if (!m_Camera.GetCamera()->isOpened()) return false;
 	cv::Mat frame = m_Camera.GetFrame(true, true);
 	return m_FaceDetection.GetEyes(frame, leftEye, rightEye, resizeFactor, equalizeHist);
 }
 
-void GazeTracker::GetEyesWithIrisDetection(cv::Mat& leftIris, cv::Mat& rightIris, double resizeFactor)
+void GazeTrackerManager::GetEyesWithIrisDetection(cv::Mat& leftIris, cv::Mat& rightIris, double resizeFactor)
 {
 	if (!m_Camera.GetCamera()->isOpened()) return;
 	cv::Mat frame = m_Camera.GetFrame(true, true);

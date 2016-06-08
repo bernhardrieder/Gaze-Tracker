@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "FaceDetection.h"
-
+using namespace gt;
 cv::String FaceDetection::eyeLeftTemplateName = "template_matching/eye_left.png";
 cv::String FaceDetection::eyeRightTemplateName = "template_matching/eye_right.png";
 

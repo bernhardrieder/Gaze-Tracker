@@ -1,15 +1,30 @@
 ﻿#pragma once
 #include "ui_cornerconfigurationui.h"
 
-class CornerConfigurationUI : public QWidget
+namespace gt
 {
-	Q_OBJECT
+	class CornerConfigurationUI : public QWidget
+	{
+		Q_OBJECT
 
-public:
-	CornerConfigurationUI(QWidget* parent = Q_NULLPTR);
-	~CornerConfigurationUI();
+	public:
+		CornerConfigurationUI(QWidget* parent = Q_NULLPTR);
+		~CornerConfigurationUI();
 
-private:
-	Ui::CornerConfigurationUI ui;
-};
+		signals:
+		void configurationSuccess();
+	private slots:
+		void saveTopLeft();
+		void saveTopMiddle();
+		void saveTopRight();
+		void saveMiddleLeft();
+		void saveMiddleMiddle();
+		void saveMiddleRight();
+		void saveBottomLeft();
+		void saveBottomMiddle();
+		void saveBottomRight();
+	private:
+		Ui::CornerConfigurationUI ui;
+	};
+}
 
