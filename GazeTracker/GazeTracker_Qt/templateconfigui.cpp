@@ -57,12 +57,6 @@ void TemplateConfigUI::show()
 	checkUseButton();
 }
 
-void TemplateConfigUI::close()
-{
-	m_EyesUpdateWorker->Stop();
-	QWidget::close();
-}
-
 void TemplateConfigUI_EyesUpdateWorker::process()
 {
 	TemplateConfigUI* config = UISystem::GetInstance()->GetEyeTemplateConfigurationUI();
@@ -75,13 +69,13 @@ void TemplateConfigUI_EyesUpdateWorker::process()
 			QImage leftEye, rightEye;
 			if(!leftEyePic.empty() && !config->m_OnLeftEyeClicked)
 			{
-				TemplateConfigUI::convertMatToQImage(leftEyePic, leftEye);
+				QtHelper::ConvertMatToQImage(leftEyePic, leftEye);
 				config->m_LeftEyeTemplateSelect->setPixmap(QPixmap::fromImage(leftEye));
 				emit leftEyeImageShown();
 			}
 			if(!rightEyePic.empty() && !config->m_OnRightEyeClicked)
 			{
-				TemplateConfigUI::convertMatToQImage(rightEyePic, rightEye);
+				QtHelper::ConvertMatToQImage(rightEyePic, rightEye);
 				config->m_RightEyeTemplateSelect->setPixmap(QPixmap::fromImage(rightEye));
 				emit rightEyeImageShown();
 			}
@@ -103,7 +97,7 @@ void TemplateConfigUI::onLeftEyeStartRect()
 }
 void TemplateConfigUI::onLeftEyeStopRect(const QRect& rect)
 {
-	m_LeftEyeReady = rect.width() > 10 && rect.height() > 10;
+	m_LeftEyeReady = rect.width() > 10 && rect.height() > 10 || rect.width() < -10 && rect.height() < -10;
 	m_SelectedIrisLeft = m_LeftEyeTemplateSelect->pixmap()->copy(rect);
 	checkUseButton();
 }
@@ -122,7 +116,7 @@ void TemplateConfigUI::onRightEyeStartRect()
 }
 void TemplateConfigUI::onRightEyeStopRect(const QRect& rect)
 {
-	m_RightEyeReady = rect.width() > 10 && rect.height() > 10;
+	m_RightEyeReady = rect.width() > 10 && rect.height() > 10 || rect.width() < -10 && rect.height() < -10;
 	m_SelectedIrisRight = m_RightEyeTemplateSelect->pixmap()->copy(rect);
 	checkUseButton();
 }
@@ -131,37 +125,6 @@ void TemplateConfigUI::onRightEyeClear()
 	m_OnRightEyeClicked = false;
 	m_RightEyeReady = false;
 	checkUseButton();
-}
-
-//http://stackoverflow.com/questions/11543298/qt-opencv-displaying-images-on-qlabel
-void TemplateConfigUI::convertMatToQImage(cv::Mat& picture, QImage& img)
-{
-	// 8-bits unsigned, NO. OF CHANNELS=1
-	if (picture.type() == CV_8UC1)
-	{
-		// Set the color table (used to translate colour indexes to qRgb values)
-		QVector<QRgb> colorTable;
-		for (int i = 0; i<256; i++)
-			colorTable.push_back(qRgb(i, i, i));
-		// Copy input Mat
-		const uchar *qImageBuffer = static_cast<const uchar*>(picture.data);
-		// Create QImage with same dimensions as input Mat
-		img = QImage(qImageBuffer, picture.cols, picture.rows, picture.step, QImage::Format_Indexed8);
-		img.setColorTable(colorTable);
-	}
-	// 8-bits unsigned, NO. OF CHANNELS=3
-	if (picture.type() == CV_8UC3)
-	{
-		// Copy input Mat
-		const uchar *qImageBuffer = static_cast<const uchar*>(picture.data);
-		// Create QImage with same dimensions as input Mat
-		img = QImage(qImageBuffer, picture.cols, picture.rows, picture.step, QImage::Format_RGB888);
-		img = img.rgbSwapped();
-	}
-	else
-	{
-		qDebug() << "ERROR: Mat could not be converted to QImage.";
-	}
 }
 
 void TemplateConfigUI::checkUseButton() const

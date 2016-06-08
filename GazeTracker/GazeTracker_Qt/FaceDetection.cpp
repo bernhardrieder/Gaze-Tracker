@@ -72,7 +72,6 @@ void FaceDetection::adjustEyeROI(const cv::Rect& faceRegion, const std::vector<c
 	}
 }
 
-
 bool FaceDetection::GetEyes(const cv::Mat& flippedFrameGray, cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor, bool equalizeHist)
 {
 	if (flippedFrameGray.empty()) return false;
@@ -106,16 +105,31 @@ bool FaceDetection::GetEyes(const cv::Mat& flippedFrameGray, cv::Mat& leftEye, c
 	return false;
 }
 
+void FaceDetection::GetEyesForIrisDetection(const cv::Mat& flippedFrameGray, cv::Mat& leftIris, cv::Mat& rightIris)
+{
+	if (flippedFrameGray.empty()) return;
+	std::vector<FaceROI> faces; 
+	CheckForFaceROIsWithCascadeClassifier(flippedFrameGray, faces);
+	if(faces.size() > 0)
+	{
+		for(auto face : faces)
+		{
+			EyesROI eyesROI;
+			CheckForEyesROIWithCascadeClassifier(flippedFrameGray, face, eyesROI); //check if new eye pos found
+			createEyeROIFomFaceROI(face, eyesROI);
+
+			leftIris = flippedFrameGray(eyesROI.left);
+			rightIris = flippedFrameGray(eyesROI.right);
+		}
+	}
+}
+
 void FaceDetection::GetIrisesCenterPositions(const cv::Mat& flippedFrameGray, const FaceROI& faceROI, cv::Point& leftIris, cv::Point& rightIris)
 {
 	if (flippedFrameGray.empty()) return;
 	EyesROI eyesROI;
-	CheckForEyesROIWithCascadeClassifier(flippedFrameGray, faceROI, eyesROI); //check if new eye pos found
-
-	//because of eyeCascadeClassifier isn't very reliable we dont use the received ROI
-	//instead of using the eye roi, we are gonna using the roi of the face and create our own eye roi
-	createEyeROIFomFaceROI(faceROI.leftSideROI, m_LastDetectedEyesROIFromCascadeClassifier.left, eyesROI.left);
-	createEyeROIFomFaceROI(faceROI.rightSideROI, m_LastDetectedEyesROIFromCascadeClassifier.right, eyesROI.right);
+	CheckForEyesROIWithCascadeClassifier(flippedFrameGray, faceROI, eyesROI);
+	createEyeROIFomFaceROI(faceROI, eyesROI);
 
 	/*------------------DEBUG------------------*/
 	//cv::Mat left, right;
@@ -138,7 +152,7 @@ void FaceDetection::GetIrisesCenterPositions(const cv::Mat& flippedFrameGray, co
 	}
 }
 
-void FaceDetection::detectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray)
+void FaceDetection::DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool drawFace, bool drawEye, bool drawIris)
 {
 	std::vector<FaceROI> out;
 	CheckForFaceROIsWithCascadeClassifier(flippedFrameGray, out);
@@ -146,15 +160,24 @@ void FaceDetection::detectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray)
 	{
 		for(auto roi : out)
 		{
-			cv::rectangle(flippedFrameGray, roi.leftSideROI, cv::Scalar(255, 255, 0));
-			cv::rectangle(flippedFrameGray, roi.rightSideROI, cv::Scalar(255, 0, 255));
+			if(drawFace)
+			{
+				cv::rectangle(flippedFrameGray, roi.leftSideROI, cv::Scalar(255, 255, 0));
+				cv::rectangle(flippedFrameGray, roi.rightSideROI, cv::Scalar(255, 0, 255));
+			}
 
-			detectEyeAndDraw(flippedFrameGray, roi);
-			detectIrisesAndDraw(flippedFrameGray, roi);
+			detectEyeAndDraw(flippedFrameGray, roi, drawEye);
+			detectIrisesAndDraw(flippedFrameGray, roi, drawIris);
 		}
 	}
+}
 
-	cv::imshow("result", flippedFrameGray);
+void FaceDetection::createEyeROIFomFaceROI(const FaceROI& faceROI, EyesROI& outEyeROI) const
+{
+	//because of eyeCascadeClassifier isn't very reliable we dont use the received ROI
+	//instead of using the eye roi, we are gonna using the roi of the face and create our own eye roi
+	createEyeROIFomFaceROI(faceROI.leftSideROI, m_LastDetectedEyesROIFromCascadeClassifier.left, outEyeROI.left);
+	createEyeROIFomFaceROI(faceROI.rightSideROI, m_LastDetectedEyesROIFromCascadeClassifier.right, outEyeROI.right);
 }
 
 void FaceDetection::createEyeROIFomFaceROI(const cv::Rect& faceROI, const cv::Rect& lastDetectedEyeROI, cv::Rect& outEyeROI)
@@ -169,29 +192,35 @@ void FaceDetection::createEyeROIFomFaceROI(const cv::Rect& faceROI, const cv::Re
 	}
 }
 
-void FaceDetection::detectEyeAndDraw(cv::Mat& flippedFrameGray, const FaceROI& face)
+void FaceDetection::detectEyeAndDraw(cv::Mat& flippedFrameGray, const FaceROI& face, bool draw)
 {
 	if (flippedFrameGray.empty()) return;
 	EyesROI eyes;
 	CheckForEyesROIWithCascadeClassifier(flippedFrameGray, face, eyes);
 
-	cv::rectangle(flippedFrameGray, eyes.left, cv::Scalar(255, 0, 0));
-	cv::rectangle(flippedFrameGray, eyes.right, cv::Scalar(255, 0, 0));
+	if(draw)
+	{
+		cv::rectangle(flippedFrameGray, eyes.left, cv::Scalar(255, 0, 0));
+		cv::rectangle(flippedFrameGray, eyes.right, cv::Scalar(255, 0, 0));
+	}
 }
 
-void FaceDetection::detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI& faceROI)
+void FaceDetection::detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI& faceROI, bool draw)
 {
 	if (flippedFrameGray.empty()) return;
 	cv::Point leftIris, rightIris;
 	GetIrisesCenterPositions(flippedFrameGray, faceROI, leftIris, rightIris);
 	int radius = 3;
-	if(leftIris.x != 0 || leftIris.y != 0)
+	if (draw)
 	{
-		circle(flippedFrameGray, leftIris, radius, cv::Scalar(255, 255, 255), -1);
-	}
-	if (rightIris.x != 0 || rightIris.y != 0)
-	{
-		circle(flippedFrameGray, rightIris, radius, cv::Scalar(255, 255, 255), -1);
+		if (leftIris.x != 0 || leftIris.y != 0)
+		{
+			circle(flippedFrameGray, leftIris, radius, cv::Scalar(255, 255, 255), -1);
+		}
+		if (rightIris.x != 0 || rightIris.y != 0)
+		{
+			circle(flippedFrameGray, rightIris, radius, cv::Scalar(255, 255, 255), -1);
+		}
 	}
 }
 

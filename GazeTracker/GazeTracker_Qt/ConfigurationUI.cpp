@@ -17,7 +17,8 @@ ConfigurationUI::ConfigurationUI(QWidget * parent) : QWidget(parent) {
 	QObject::connect(ui.eyeTemplateConfigButton, SIGNAL(clicked()), this, SLOT(openEyeTemplateConfig()));
 	QObject::connect(ui.templateMethodButton, SIGNAL(clicked()), this, SLOT(openTemplateMethodSelection()));
 	QObject::connect(ui.cornerConfigButton, SIGNAL(clicked()), this, SLOT(openCornerConfig()));
-	QObject::connect(UISystem::GetInstance()->GetEyeTemplateConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateConfigSuccess())); 
+	QObject::connect(UISystem::GetInstance()->GetEyeTemplateConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateConfigSuccess()));
+	QObject::connect(UISystem::GetInstance()->GetTemplateMatchingMethodConfigUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateMathingMethodConfigSuccess()));
 
 
 	m_Thread = new QThread();
@@ -83,6 +84,7 @@ void ConfigurationUI::openCornerConfig()
 
 void ConfigurationUI::openTemplateMethodSelection()
 {
+	UISystem::GetInstance()->GetTemplateMatchingMethodConfigUI()->show();
 }
 
 void ConfigurationUI::stateChanged(int state) const
@@ -116,7 +118,10 @@ void ConfigurationUI::eyeTemplateConfigSuccess() const
 {
 	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone));
 }
-
+void ConfigurationUI::eyeTemplateMathingMethodConfigSuccess() const
+{
+	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateMethodSelectionDone));
+}
 void ConfigurationUI_StateWorker::process()
 {
 	while(static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && !m_StopThreads)

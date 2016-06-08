@@ -46,6 +46,7 @@ private slots:
 	static void openTemplateMethodSelection();
 	void stateChanged(int) const;
 	void eyeTemplateConfigSuccess() const;
+	void eyeTemplateMathingMethodConfigSuccess() const;
 
 private:
 	Ui::ConfigurationUI ui;

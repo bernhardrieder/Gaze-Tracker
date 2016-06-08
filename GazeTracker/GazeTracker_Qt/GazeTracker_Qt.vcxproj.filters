@@ -122,6 +122,18 @@
     <ClCompile Include="EyeTemplateSelect.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
+    <ClCompile Include="TemplateMatchingMethodConfigUI.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TemplateMatchingMethodConfigUI.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TemplateMatchingMethodConfigUI.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="QtHelper.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -163,6 +175,12 @@
     <ClInclude Include="UISystem.h">
       <Filter>Header Dateien\Qt</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_TemplateMatchingMethodConfigUI.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="QtHelper.h">
+      <Filter>Header Dateien\Qt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gazetracker_ui.qrc">
@@ -200,6 +218,12 @@
     </CustomBuild>
     <CustomBuild Include="EyeTemplateSelect.hpp">
       <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TemplateMatchingMethodConfigUI.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TemplateMatchingMethodConfigUI.ui">
+      <Filter>Form Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

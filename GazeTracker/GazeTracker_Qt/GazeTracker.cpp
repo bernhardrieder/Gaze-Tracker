@@ -60,7 +60,7 @@ void GazeTracker::detect()
 			break;
 		}
 
-		faceDetectionSplit.detectFaceEyeIrisAndDraw(frame);
+		faceDetectionSplit.DetectFaceEyeIrisAndDraw(frame);
 
 		if (cv::waitKey(1) == 27 || m_stopApp) // escape
 		{
@@ -75,4 +75,18 @@ bool GazeTracker::GetEyes(cv::Mat& leftEye, cv::Mat& rightEye, double resizeFact
 	if (!m_Camera.GetCamera()->isOpened()) return false;
 	cv::Mat frame = m_Camera.GetFrame(true, true);
 	return m_FaceDetection.GetEyes(frame, leftEye, rightEye, resizeFactor, equalizeHist);
+}
+
+void GazeTracker::GetEyesWithIrisDetection(cv::Mat& leftIris, cv::Mat& rightIris, double resizeFactor)
+{
+	if (!m_Camera.GetCamera()->isOpened()) return;
+	cv::Mat frame = m_Camera.GetFrame(true, true);
+	m_FaceDetection.DetectFaceEyeIrisAndDraw(frame, false, false, true); // here is an error!!
+	m_FaceDetection.GetEyesForIrisDetection(frame, leftIris, rightIris);
+
+	if(resizeFactor > 0)
+	{
+		cv::resize(leftIris, leftIris, cv::Size(), resizeFactor, resizeFactor);
+		cv::resize(rightIris, rightIris, cv::Size(), resizeFactor, resizeFactor);
+	}
 }

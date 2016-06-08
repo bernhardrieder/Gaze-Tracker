@@ -36,7 +36,6 @@ signals:
 
 public slots:
 	void show();
-	void close();
 private slots:
 	void saveTemplates();
 	void onLeftEyeStartRect();
@@ -55,6 +54,5 @@ private:
 	bool m_OnLeftEyeClicked, m_OnRightEyeClicked, m_LeftEyeReady, m_RightEyeReady;
 	QPixmap m_SelectedIrisLeft, m_SelectedIrisRight;
 
-	static void convertMatToQImage(cv::Mat& pic, QImage& img);
 	void checkUseButton() const;
 };

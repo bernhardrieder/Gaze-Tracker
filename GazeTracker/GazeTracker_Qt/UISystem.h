@@ -13,11 +13,13 @@ public:
 	ConfigurationUI* GetConfigurationUI();
 	TemplateConfigUI* GetEyeTemplateConfigurationUI();
 	CornerConfigurationUI* GetCornerConfigurationUI();
+	TemplateMatchingMethodConfigUI* GetTemplateMatchingMethodConfigUI();
 
 private:
 	QWidget* m_StartUI = nullptr;
 	QWidget* m_ConfigurationUI = nullptr;
 	QWidget* m_EyeTemplateConfigurationUI = nullptr;
 	QWidget* m_CornerConfigurationUI = nullptr;
+	QWidget* m_TemplateMatchingMethodConfigUI = nullptr;
 };
 

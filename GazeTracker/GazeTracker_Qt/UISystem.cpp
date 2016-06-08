@@ -13,6 +13,7 @@ UISystem::~UISystem()
 	delete m_ConfigurationUI;
 	delete m_CornerConfigurationUI;
 	delete m_EyeTemplateConfigurationUI;
+	delete m_TemplateMatchingMethodConfigUI;
 }
 
 StartUI* UISystem::GetStartUI()
@@ -41,4 +42,11 @@ CornerConfigurationUI* UISystem::GetCornerConfigurationUI()
 	if (m_CornerConfigurationUI == nullptr)
 		m_CornerConfigurationUI = new CornerConfigurationUI();
 	return static_cast<CornerConfigurationUI*>(m_CornerConfigurationUI);
+}
+
+TemplateMatchingMethodConfigUI* UISystem::GetTemplateMatchingMethodConfigUI()
+{
+	if (m_TemplateMatchingMethodConfigUI == nullptr)
+		m_TemplateMatchingMethodConfigUI = new TemplateMatchingMethodConfigUI();
+	return static_cast<TemplateMatchingMethodConfigUI*>(m_TemplateMatchingMethodConfigUI);
 }

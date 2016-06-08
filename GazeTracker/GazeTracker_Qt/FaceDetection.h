@@ -21,8 +21,9 @@ public:
 	void CheckForFaceROIsWithCascadeClassifier(const cv::Mat& flippedFrameGray, std::vector<FaceROI>& out);
 	void CheckForEyesROIWithCascadeClassifier(const cv::Mat& flippedFrameGray, const FaceROI& face, EyesROI& out);
 	bool GetEyes(const cv::Mat& flippedFrameGray, cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor = 0.0, bool equalizeHist = false);
+	void GetEyesForIrisDetection(const const cv::Mat& flippedFrameGray, cv::Mat& leftIris, cv::Mat& rightIris);
 	void GetIrisesCenterPositions(const cv::Mat& flippedFrameGray, const FaceROI& faceROI, cv::Point& leftIris, cv::Point& rightIris);
-	void detectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray);
+	void DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool drawFace = true, bool drawEye = true, bool drawIris = true);
 
 	int templateMatchingMethod = 0;
 	static cv::String eyeLeftTemplateName;
@@ -31,10 +32,11 @@ public:
 private:
 	bool initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
 	static void adjustEyeROI(const cv::Rect& faceRegion, const std::vector<cv::Rect>& eye, cv::Rect& out);
+	void createEyeROIFomFaceROI(const FaceROI& faceROI, EyesROI& outEyeROI) const;
 	static void createEyeROIFomFaceROI(const cv::Rect& faceROI, const cv::Rect& lastDetectedEyeROI, cv::Rect& outEyeROI);
 	void getIrisCenterPosition(const cv::Mat& flippedFrameGray, const cv::Rect& eyeROI, const cv::Mat& eyeTemplate, cv::Point& out) const;
-	void detectEyeAndDraw(cv::Mat& flippedFrameGray, const FaceROI& face);
-	void detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI& faceROI);
+	void detectEyeAndDraw(cv::Mat& flippedFrameGray, const FaceROI& face, bool draw = true);
+	void detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI& faceROI, bool draw = true);
 
 	cv::CascadeClassifier m_FaceCascadeClassifier;
 	cv::CascadeClassifier m_LeftEyeCascadeClassifier;

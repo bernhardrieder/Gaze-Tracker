@@ -38,4 +38,5 @@
 #include "templateconfigui.hpp"
 #include "startui.hpp"
 #include "cornerconfigurationui.hpp"
-
+#include "TemplateMatchingMethodConfigUI.hpp"
+#include "QtHelper.h"
