@@ -5,13 +5,18 @@ class GazeData
 {
 public:
 	GazeData() : id(), time(0), gazePosition(), frameFileName()
-	{}
+	{
+	}
+
 	explicit GazeData(std::string id, double time, cv::Vec2f gazePos, std::string frameFileName) : id(id), time(time), gazePosition(gazePos), frameFileName(frameFileName) // explicit to avoid implicit conversion
-	{}
+	{
+	}
+
 	void write(cv::FileStorage& fs) const //Write serialization for this class
 	{
-		fs << "{" << "id" << id << "time" << time << "gazePosition" << gazePosition << "frameFileName" << frameFileName  <<"}";
+		fs << "{" << "id" << id << "time" << time << "gazePosition" << gazePosition << "frameFileName" << frameFileName << "}";
 	}
+
 	void read(const cv::FileNode& node) //Read serialization for this class
 	{
 		id = static_cast<std::string>(node["id"]);
@@ -19,7 +24,8 @@ public:
 		gazePosition = static_cast<cv::Vec2f>(node["gazePosition"]);
 		id = static_cast<std::string>(node["frameFileName"]);
 	}
-public:   // Data Members
+
+public: // Data Members
 	std::string id; //really needed?
 	double time; //use cpu clock time
 	cv::Vec2f gazePosition;
@@ -32,7 +38,8 @@ static void write(cv::FileStorage& fs, const std::string&, const GazeData& x)
 	x.write(fs);
 }
 
-static void read(const cv::FileNode& node, GazeData& x, const GazeData& default_value = GazeData()) {
+static void read(const cv::FileNode& node, GazeData& x, const GazeData& default_value = GazeData())
+{
 	if (node.empty())
 		x = default_value;
 	else
@@ -48,3 +55,4 @@ static std::ostream& operator<<(std::ostream& out, const GazeData& m)
 	out << "frameFileName = " << m.frameFileName << "}";
 	return out;
 }
+

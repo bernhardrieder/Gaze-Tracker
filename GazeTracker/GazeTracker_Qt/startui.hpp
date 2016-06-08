@@ -1,11 +1,12 @@
 ﻿#pragma once
 #include "ui_startui.h"
 
-class StartUI : public QWidget {
+class StartUI : public QWidget
+{
 	Q_OBJECT
 
 public:
-	StartUI(QWidget * parent = Q_NULLPTR);
+	StartUI(QWidget* parent = Q_NULLPTR);
 	~StartUI();
 
 private:
@@ -16,3 +17,4 @@ private slots:
 	void showAbout();
 	static void recordDataChanged(int state);
 };
+

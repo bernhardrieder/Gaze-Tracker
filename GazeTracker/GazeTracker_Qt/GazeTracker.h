@@ -3,7 +3,7 @@
 
 class GazeTracker : public Singleton<GazeTracker>
 {
-	friend class Singleton <GazeTracker>;
+	friend class Singleton<GazeTracker>;
 public:
 	GazeTracker();
 	~GazeTracker();
@@ -17,11 +17,30 @@ public:
 	bool GetEyes(cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor = 0.0, bool equalizeHist = false);
 	void GetEyesWithIrisDetection(cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor = 0.0);
 
-	void SetRecordData(bool record) { m_RecordData = record; }
-	bool GetRecordData() const	{ return m_RecordData; }
-	void SetEyeTemplateResizeFactor(double factor) { m_FaceDetection.eyeTemplateResizeFactor = factor; }
-	double GetEyeTemplateResizeFactor() const { return m_FaceDetection.eyeTemplateResizeFactor; }
-	void SetTemplateMatchingMethod(int method) { m_FaceDetection.templateMatchingMethod = method; }
+	void SetRecordData(bool record)
+	{
+		m_RecordData = record;
+	}
+
+	bool GetRecordData() const
+	{
+		return m_RecordData;
+	}
+
+	void SetEyeTemplateResizeFactor(double factor)
+	{
+		m_FaceDetection.eyeTemplateResizeFactor = factor;
+	}
+
+	double GetEyeTemplateResizeFactor() const
+	{
+		return m_FaceDetection.eyeTemplateResizeFactor;
+	}
+
+	void SetTemplateMatchingMethod(int method)
+	{
+		m_FaceDetection.templateMatchingMethod = method;
+	}
 
 private:
 	bool m_stopApp;

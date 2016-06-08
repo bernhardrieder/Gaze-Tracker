@@ -2,9 +2,10 @@
 #include <QWidget>
 #include "ui_configurationui.h"
 
-class ConfigurationUI_StateWorker : public  QObject
+class ConfigurationUI_StateWorker : public QObject
 {
 	Q_OBJECT
+
 public:
 	enum class ConfigurationState
 	{
@@ -15,13 +16,23 @@ public:
 		EyeTemplateMethodSelectionDone,
 		CornerConfigDone
 	};
-	ConfigurationUI_StateWorker() : m_StopThreads(false){};
-	~ConfigurationUI_StateWorker() {};
-	void StopThreads() { m_StopThreads = true; };
+
+	ConfigurationUI_StateWorker() : m_StopThreads(false)
+	{
+	};
+
+	~ConfigurationUI_StateWorker()
+	{
+	};
+
+	void StopThreads()
+	{
+		m_StopThreads = true;
+	};
 
 public slots:
 	void process();
-signals:
+	signals:
 	void finished();
 	void stateChanged(int);
 private:
@@ -30,11 +41,13 @@ private:
 };
 
 
-class ConfigurationUI : public QWidget {
+class ConfigurationUI : public QWidget
+{
 	Q_OBJECT
-		friend class ConfigurationUI_StateWorker;
+
+	friend class ConfigurationUI_StateWorker;
 public:
-	ConfigurationUI(QWidget * parent = Q_NULLPTR);
+	ConfigurationUI(QWidget* parent = Q_NULLPTR);
 	~ConfigurationUI();
 public slots:
 	void show();
@@ -52,8 +65,5 @@ private:
 	Ui::ConfigurationUI ui;
 	QThread* m_Thread;
 	ConfigurationUI_StateWorker* m_StateWorker;
-
-	static void changeColor(QLabel* label, const QString& color);
-	static void changeColor(QPushButton* button, const QString& color);
-
 };
+

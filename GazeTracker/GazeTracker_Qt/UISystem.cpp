@@ -50,3 +50,4 @@ TemplateMatchingMethodConfigUI* UISystem::GetTemplateMatchingMethodConfigUI()
 		m_TemplateMatchingMethodConfigUI = new TemplateMatchingMethodConfigUI();
 	return static_cast<TemplateMatchingMethodConfigUI*>(m_TemplateMatchingMethodConfigUI);
 }
+

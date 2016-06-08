@@ -5,37 +5,50 @@
 class TemplateConfigUI_EyesUpdateWorker : public QObject
 {
 	Q_OBJECT
+
 public:
 	TemplateConfigUI_EyesUpdateWorker(Ui::TemplateConfig* ui): m_StopProcess(false), ui(ui)
-	{}
-	~TemplateConfigUI_EyesUpdateWorker() {}
+	{
+	}
 
-	void Start() { m_StopProcess = false; };
-public slots:
-	void process();
-	void Stop() { m_StopProcess = true; };
-signals:
+	~TemplateConfigUI_EyesUpdateWorker()
+	{
+	}
+
+	void Start()
+	{
+		m_StopProcess = false;
+	};
+
+	signals:
 	void finished();
 	void leftEyeImageShown();
 	void rightEyeImageShown();
+public slots:
+	void process();
+	void stop();
+
 private:
 	bool m_StopProcess;
 	Ui::TemplateConfig* ui;
 };
 
-class TemplateConfigUI : public QWidget {
+class TemplateConfigUI : public QWidget
+{
 	Q_OBJECT
+
 	friend class TemplateConfigUI_EyesUpdateWorker;
 public:
-	TemplateConfigUI(QWidget * parent = Q_NULLPTR);
+	TemplateConfigUI(QWidget* parent = Q_NULLPTR);
 	~TemplateConfigUI();
 
-signals:
+	signals:
 	void configurationSuccess();
 	void onShow();
 
 public slots:
 	void show();
+	void close();
 private slots:
 	void saveTemplates();
 	void onLeftEyeStartRect();
@@ -56,3 +69,4 @@ private:
 
 	void checkUseButton() const;
 };
+

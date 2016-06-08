@@ -4,7 +4,7 @@
 
 class UISystem : public Singleton<UISystem>
 {
-	friend class Singleton <UISystem>;
+	friend class Singleton<UISystem>;
 public:
 	UISystem();
 	~UISystem();

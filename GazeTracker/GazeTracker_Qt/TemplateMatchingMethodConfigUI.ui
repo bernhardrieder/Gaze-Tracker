@@ -2,11 +2,14 @@
 <ui version="4.0">
  <class>TemplateMatchingMethodConfig</class>
  <widget class="QWidget" name="TemplateMatchingMethodConfig">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>653</width>
+    <width>882</width>
     <height>312</height>
    </rect>
   </property>
@@ -18,20 +21,23 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>653</width>
+    <width>882</width>
     <height>312</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>16777215</width>
-    <height>1000000</height>
+    <width>1017</width>
+    <height>395</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Template Matching Method Configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -49,7 +55,7 @@
         </size>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Please select a specific template matching method. Choose the method, which fits best to your eyes and brightness! Please ensure that your irises are overlaid with a white circle!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Please select a specific template matching method. Choose the method, which fits best to your eyes and brightness! Please ensure that your irises are overlaid with a white circle (or something like that)! If nothing fits best, repeat the previous task.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
@@ -79,6 +85,12 @@
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QGroupBox" name="groupBox_2">
+         <property name="minimumSize">
+          <size>
+           <width>696</width>
+           <height>223</height>
+          </size>
+         </property>
          <property name="title">
           <string>Processed Eyes</string>
          </property>

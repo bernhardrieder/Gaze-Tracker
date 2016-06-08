@@ -1,17 +1,15 @@
 ﻿#include <stdafx.h>
 #include "ConfigurationUI.hpp"
 
-#define COLOR_RED "red"
-#define COLOR_GREEN "green"
-
-ConfigurationUI::ConfigurationUI(QWidget * parent) : QWidget(parent) {
+ConfigurationUI::ConfigurationUI(QWidget* parent) : QWidget(parent)
+{
 	ui.setupUi(this);
 
-	changeColor(ui.webCamLabel, COLOR_RED);
-	changeColor(ui.faceLabel, COLOR_RED);
-	changeColor(ui.eyeTemplateConfigButton, COLOR_RED);
-	changeColor(ui.templateMethodButton, COLOR_RED);
-	changeColor(ui.cornerConfigButton, COLOR_RED);
+	QtHelper::changeColor(*ui.webCamLabel, "red");
+	QtHelper::changeColor(*ui.faceLabel, "red");
+	QtHelper::changeColor(*ui.eyeTemplateConfigButton, "red");
+	QtHelper::changeColor(*ui.templateMethodButton, "red");
+	QtHelper::changeColor(*ui.cornerConfigButton, "red");
 
 	QObject::connect(ui.cancelButton, SIGNAL(clicked()), this, SLOT(closeApplication()));
 	QObject::connect(ui.eyeTemplateConfigButton, SIGNAL(clicked()), this, SLOT(openEyeTemplateConfig()));
@@ -31,7 +29,8 @@ ConfigurationUI::ConfigurationUI(QWidget * parent) : QWidget(parent) {
 	QObject::connect(m_Thread, &QThread::finished, m_Thread, &QObject::deleteLater);
 }
 
-ConfigurationUI::~ConfigurationUI() {
+ConfigurationUI::~ConfigurationUI()
+{
 	m_Thread->quit();
 	m_Thread->wait();
 
@@ -41,7 +40,7 @@ ConfigurationUI::~ConfigurationUI() {
 
 void ConfigurationUI::show()
 {
-	QWidget::show(); 
+	QWidget::show();
 	m_Thread->start();
 }
 
@@ -50,15 +49,6 @@ void ConfigurationUI::close()
 	QWidget::close();
 }
 
-void ConfigurationUI::changeColor(QLabel* label, const QString& color)
-{
-	label->setStyleSheet("QLabel {color: "+ color + ";}");
-}
-
-void ConfigurationUI::changeColor(QPushButton* button, const QString& color)
-{
-	button->setStyleSheet("QPushButton {color: " + color + ";}");
-}
 
 void ConfigurationUI::closeApplication()
 {
@@ -89,25 +79,25 @@ void ConfigurationUI::openTemplateMethodSelection()
 
 void ConfigurationUI::stateChanged(int state) const
 {
-	switch(static_cast<ConfigurationUI_StateWorker::ConfigurationState>(state))
+	switch (static_cast<ConfigurationUI_StateWorker::ConfigurationState>(state))
 	{
 		case ConfigurationUI_StateWorker::ConfigurationState::WebCamDetected:
-			changeColor(ui.webCamLabel, COLOR_GREEN); 
+			QtHelper::changeColor(*ui.webCamLabel, "green");
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::FaceDetected:
-			changeColor(ui.faceLabel, COLOR_GREEN);
-			ui.eyeTemplateConfigButton->setEnabled(true); 
+			QtHelper::changeColor(*ui.faceLabel, "green");
+			ui.eyeTemplateConfigButton->setEnabled(true);
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone:
-			changeColor(ui.eyeTemplateConfigButton, COLOR_GREEN);
+			QtHelper::changeColor(*ui.eyeTemplateConfigButton, "green");
 			ui.templateMethodButton->setEnabled(true);
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateMethodSelectionDone:
-			changeColor(ui.templateMethodButton, COLOR_GREEN);
+			QtHelper::changeColor(*ui.templateMethodButton, "green");
 			ui.cornerConfigButton->setEnabled(true);
 			break;
-		case ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone: 
-			changeColor(ui.cornerConfigButton, COLOR_GREEN);
+		case ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone:
+			QtHelper::changeColor(*ui.cornerConfigButton, "green");
 			ui.doneButton->setEnabled(true);
 			break;
 		default: break;
@@ -118,20 +108,22 @@ void ConfigurationUI::eyeTemplateConfigSuccess() const
 {
 	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone));
 }
+
 void ConfigurationUI::eyeTemplateMathingMethodConfigSuccess() const
 {
 	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateMethodSelectionDone));
 }
+
 void ConfigurationUI_StateWorker::process()
 {
-	while(static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && !m_StopThreads)
+	while (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && !m_StopThreads)
 	{
-		if(static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::WebCamDetected) && GazeTracker::GetInstance()->IsCameraOpened())
+		if (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::WebCamDetected) && GazeTracker::GetInstance()->IsCameraOpened())
 		{
 			m_configState = ConfigurationState::WebCamDetected;
 			emit stateChanged(static_cast<int>(m_configState));
 		}
-		if(static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && GazeTracker::GetInstance()->IsFaceDetected())
+		if (static_cast<int>(m_configState) < static_cast<int>(ConfigurationState::FaceDetected) && GazeTracker::GetInstance()->IsFaceDetected())
 		{
 			m_configState = ConfigurationState::FaceDetected;
 			emit stateChanged(static_cast<int>(m_configState));
@@ -140,3 +132,4 @@ void ConfigurationUI_StateWorker::process()
 	}
 	emit finished();
 }
+

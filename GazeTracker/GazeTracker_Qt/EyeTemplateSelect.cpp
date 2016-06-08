@@ -1,14 +1,15 @@
 ﻿#include <stdafx.h>
 #include "EyeTemplateSelect.hpp"
 
-EyeTemplateSelect::EyeTemplateSelect(QWidget * parent) : QLabel(parent) {
+EyeTemplateSelect::EyeTemplateSelect(QWidget* parent) : QLabel(parent)
+{
 	setMouseTracking(true);
 	setAlignment(Qt::AlignLeft);
 	setAlignment(Qt::AlignTop);
 }
 
-EyeTemplateSelect::~EyeTemplateSelect() {
-	
+EyeTemplateSelect::~EyeTemplateSelect()
+{
 }
 
 void EyeTemplateSelect::reset()
@@ -24,7 +25,7 @@ void EyeTemplateSelect::imageAvailable()
 void EyeTemplateSelect::mouseMoveEvent(QMouseEvent* event)
 {
 	if (!m_ImageAvailable) return;
-	if(m_MouseDown)
+	if (m_MouseDown)
 	{
 		if (event->type() == QEvent::MouseMove)
 			m_Rect.setBottomRight(event->pos());
@@ -36,7 +37,7 @@ void EyeTemplateSelect::mouseMoveEvent(QMouseEvent* event)
 void EyeTemplateSelect::mousePressEvent(QMouseEvent* event)
 {
 	if (!m_ImageAvailable) return;
-	if(event->button() == Qt::MouseButton::LeftButton)
+	if (event->button() == Qt::MouseButton::LeftButton)
 	{
 		emit mouseLeftClicked();
 		m_MouseDown = true;
@@ -67,16 +68,18 @@ void EyeTemplateSelect::paintEvent(QPaintEvent* event)
 	QLabel::paintEvent(event);
 	m_Painter.begin(this);
 	m_Painter.setPen(Qt::red);
-	if (m_MouseDown && !pixmap()->isNull()) {
-		m_Painter.drawPixmap(0,0, m_Pixmap);
+	if (m_MouseDown && !pixmap()->isNull())
+	{
+		m_Painter.drawPixmap(0, 0, m_Pixmap);
 		m_Painter.drawRect(m_Rect);
 
 		m_DrawStarted = true;
 	}
 	else if (m_DrawStarted && !pixmap()->isNull())
 	{
-		m_Painter.drawPixmap(0,0, m_Pixmap);
+		m_Painter.drawPixmap(0, 0, m_Pixmap);
 		m_Painter.drawRect(m_Rect);
 	}
 	m_Painter.end();
 }
+

@@ -12,10 +12,10 @@
 #include <opencv2/flann.hpp> //Clustering and Search in Multi-Dimensional Spaces
 #include <opencv2/photo.hpp> //Computational Photography
 #include <opencv2/stitching.hpp> //Images stitching
-//cuda files not included -> not sure if we need this
 #include <opencv2/shape.hpp> //Shape Distance and Matching
 #include <opencv2/superres.hpp> //Super Resolution
 #include <opencv2/videostab.hpp> //Video Stabilization
+
 
 /*			Qt			*/
 #include <QtWidgets>
@@ -40,3 +40,4 @@
 #include "cornerconfigurationui.hpp"
 #include "TemplateMatchingMethodConfigUI.hpp"
 #include "QtHelper.h"
+

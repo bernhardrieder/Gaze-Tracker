@@ -1,7 +1,8 @@
 ﻿#include <stdafx.h>
 #include "startui.hpp"
 
-StartUI::StartUI(QWidget * parent) : QWidget(parent){
+StartUI::StartUI(QWidget* parent) : QWidget(parent)
+{
 	ui.setupUi(this);
 	QObject::connect(ui.quitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
 	QObject::connect(ui.aboutButton, SIGNAL(clicked()), this, SLOT(showAbout()));
@@ -9,8 +10,8 @@ StartUI::StartUI(QWidget * parent) : QWidget(parent){
 	QObject::connect(ui.startButton, SIGNAL(clicked()), this, SLOT(startApplication()));
 }
 
-StartUI::~StartUI() {
-	
+StartUI::~StartUI()
+{
 }
 
 void StartUI::startApplication()
@@ -20,11 +21,12 @@ void StartUI::startApplication()
 }
 
 void StartUI::showAbout()
-{	
-	QMessageBox::information(this, tr("GazeTracker v1.0"), tr("This application was made by Michael Pichler and Bernhard Rieder."));	
+{
+	QMessageBox::information(this, tr("GazeTracker v1.0"), tr("This application was made by Michael Pichler and Bernhard Rieder."));
 }
 
 void StartUI::recordDataChanged(int state)
 {
 	GazeTracker::GetInstance()->SetRecordData(state == Qt::Checked);
 }
+

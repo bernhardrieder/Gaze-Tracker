@@ -9,7 +9,7 @@ GazeTracker::GazeTracker() : m_stopApp(true), m_RecordData(false), m_Camera(0, 8
 }
 
 
-GazeTracker::~GazeTracker() 
+GazeTracker::~GazeTracker()
 {
 }
 
@@ -26,9 +26,11 @@ void GazeTracker::Stop()
 }
 
 bool GazeTracker::IsCameraOpened() const
-{ return m_Camera.GetCamera()->isOpened(); }
+{
+	return m_Camera.GetCamera()->isOpened();
+}
 
-bool GazeTracker::IsFaceDetected() 
+bool GazeTracker::IsFaceDetected()
 {
 	std::vector<FaceDetection::FaceROI> out;
 	cv::Mat frame = m_Camera.GetFrame(true, true);
@@ -40,10 +42,11 @@ void GazeTracker::detect()
 {
 	m_stopApp = false;
 	FaceDetection faceDetectionSplit;
+	faceDetectionSplit.eyeTemplateResizeFactor = 5;
 	Camera camera = Camera(0, 800, 600);
 	auto webCamCap = camera.GetCamera();
 
-	ScreenCapture screenCapture{ GetDesktopWindow() };
+	ScreenCapture screenCapture{GetDesktopWindow()};
 	screenCapture.StartCapture(30, 0.75f);
 
 	CV_Assert(webCamCap->isOpened());
@@ -61,6 +64,7 @@ void GazeTracker::detect()
 		}
 
 		faceDetectionSplit.DetectFaceEyeIrisAndDraw(frame);
+		cv::imshow("result", frame);
 
 		if (cv::waitKey(1) == 27 || m_stopApp) // escape
 		{
@@ -81,12 +85,20 @@ void GazeTracker::GetEyesWithIrisDetection(cv::Mat& leftIris, cv::Mat& rightIris
 {
 	if (!m_Camera.GetCamera()->isOpened()) return;
 	cv::Mat frame = m_Camera.GetFrame(true, true);
-	m_FaceDetection.DetectFaceEyeIrisAndDraw(frame, false, false, true); // here is an error!!
+	m_FaceDetection.DetectFaceEyeIrisAndDraw(frame, false, false, true);
 	m_FaceDetection.GetEyesForIrisDetection(frame, leftIris, rightIris);
 
-	if(resizeFactor > 0)
+	if (resizeFactor > 0 && !leftIris.empty() && !rightIris.empty())
 	{
-		cv::resize(leftIris, leftIris, cv::Size(), resizeFactor, resizeFactor);
-		cv::resize(rightIris, rightIris, cv::Size(), resizeFactor, resizeFactor);
+		try
+		{
+			cv::resize(leftIris, leftIris, cv::Size(), resizeFactor, resizeFactor);
+			cv::resize(rightIris, rightIris, cv::Size(), resizeFactor, resizeFactor);
+		}
+		catch (...)
+		{
+			qDebug() << "EXCEPTION: resize error in GetEyesWithIrisDetection";
+		}
 	}
 }
+

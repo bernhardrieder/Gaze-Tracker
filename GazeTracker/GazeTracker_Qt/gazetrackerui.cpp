@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "gazetrackerui.h"
 
-GazeTrackerUI::GazeTrackerUI(QWidget *parent)
+GazeTrackerUI::GazeTrackerUI(QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
@@ -9,5 +9,5 @@ GazeTrackerUI::GazeTrackerUI(QWidget *parent)
 
 GazeTrackerUI::~GazeTrackerUI()
 {
-
 }
+

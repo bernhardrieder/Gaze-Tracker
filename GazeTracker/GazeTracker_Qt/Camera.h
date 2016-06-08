@@ -11,7 +11,10 @@ public:
 	bool IsInitialized() const;
 	bool Initialize();
 
-	void setCameraIndex(int index) { m_CameraIndex = index; }
+	void setCameraIndex(int index)
+	{
+		m_CameraIndex = index;
+	}
 
 private:
 	cv::Ptr<cv::VideoCapture> m_Camera;

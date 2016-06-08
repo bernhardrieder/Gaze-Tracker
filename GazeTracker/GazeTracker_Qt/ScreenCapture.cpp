@@ -13,7 +13,7 @@ ScreenCapture::~ScreenCapture()
 		m_saveFramesThread.join();
 }
 
-void ScreenCapture::StartCapture(int fps, const cv::Size frameSize, const float frameScale) 
+void ScreenCapture::StartCapture(int fps, const cv::Size frameSize, const float frameScale)
 {
 	m_frameSize = frameSize;
 	m_frameSize.height *= frameScale;
@@ -47,7 +47,7 @@ void ScreenCapture::saveFramesThread()
 {
 	double msBetweenFrames = 1000 / m_fps;
 	m_isCapturing = true;
-	while(!m_stopCapture)
+	while (!m_stopCapture)
 	{
 		auto startTime = std::chrono::high_resolution_clock::now();
 
@@ -111,11 +111,12 @@ cv::Mat ScreenCapture::hwnd2Mat(HWND& hwnd)
 	// copy from the window device context to the bitmap device context
 	StretchBlt(hwindowCompatibleDC, 0, 0, width, height, hwindowDC, 0, 0, width, height, SRCCOPY); //change SRCCOPY to NOTSRCCOPY for wacky colors !
 	GetDIBits(hwindowCompatibleDC, hbwindow, 0, height, out.data, reinterpret_cast<BITMAPINFO *>(&bi), DIB_RGB_COLORS); //copy from hwindowCompatibleDC to hbwindow
-	
+
 	// avoid memory leak
-	DeleteObject(hbwindow); 
+	DeleteObject(hbwindow);
 	DeleteDC(hwindowCompatibleDC);
 	ReleaseDC(hwnd, hwindowDC);
 
 	return out;
 }
+

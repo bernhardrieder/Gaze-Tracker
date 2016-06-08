@@ -2,13 +2,15 @@
 #include <QLabel>
 
 //like http://mangoprojects.info/c/qtc-drawing-a-line-or-rectangle-dynamically/
-class EyeTemplateSelect : public QLabel {
+class EyeTemplateSelect : public QLabel
+{
 	Q_OBJECT
+
 public:
-	EyeTemplateSelect(QWidget * parent = Q_NULLPTR);
+	EyeTemplateSelect(QWidget* parent = Q_NULLPTR);
 	~EyeTemplateSelect();
 
-signals:
+	signals:
 	void mouseLeftClicked();
 	void mouseLeftReleased(const QRect&);
 	void mouseRightClicked();
@@ -18,10 +20,10 @@ public slots:
 	void imageAvailable();
 
 protected:
-	void mouseMoveEvent(QMouseEvent *event) override;
-	void mousePressEvent(QMouseEvent *event) override;
-	void mouseReleaseEvent(QMouseEvent *event) override;
-	void paintEvent(QPaintEvent *event) override;
+	void mouseMoveEvent(QMouseEvent* event) override;
+	void mousePressEvent(QMouseEvent* event) override;
+	void mouseReleaseEvent(QMouseEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
 
 private:
 	bool m_ImageAvailable = false;
@@ -31,3 +33,4 @@ private:
 	QPixmap m_Pixmap;
 	QRect m_Rect;
 };
+

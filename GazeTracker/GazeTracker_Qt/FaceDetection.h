@@ -1,6 +1,6 @@
 #pragma once
 
-class FaceDetection 
+class FaceDetection
 {
 public:
 	/*uses default cascades defined in this headerfile*/
@@ -31,6 +31,7 @@ public:
 	double eyeTemplateResizeFactor;
 private:
 	bool initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName);
+	static void setEyeROI(const std::vector<cv::Rect>& eyes, const cv::Rect& faceRegion, cv::Rect& eye, cv::Rect& lastDeteced);
 	static void adjustEyeROI(const cv::Rect& faceRegion, const std::vector<cv::Rect>& eye, cv::Rect& out);
 	void createEyeROIFomFaceROI(const FaceROI& faceROI, EyesROI& outEyeROI) const;
 	static void createEyeROIFomFaceROI(const cv::Rect& faceROI, const cv::Rect& lastDetectedEyeROI, cv::Rect& outEyeROI);
@@ -50,3 +51,4 @@ private:
 	const cv::String m_left_eye_cascade_name_default = "cascade_classifier/haarcascades/opencv/haarcascade_lefteye_2splits.xml";
 	const cv::String m_right_eye_cascade_name_default = "cascade_classifier/haarcascades/opencv/haarcascade_righteye_2splits.xml";
 };
+
