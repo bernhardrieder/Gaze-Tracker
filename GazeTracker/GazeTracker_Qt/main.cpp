@@ -1,11 +1,10 @@
 #include "stdafx.h"
-#include "startui.hpp"
-using namespace gt;
+#include "GazeTracker.h"
 
 int main(int argc, char* argv[])
 {
-	QApplication a(argc, argv);
-	GazeTrackerManager::Start();
-	return a.exec();
+	GazeTracker tracker(argc, argv);
+	tracker.StartApplication();
+	return tracker.exec();
 }
 

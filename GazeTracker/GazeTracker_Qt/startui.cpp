@@ -15,6 +15,12 @@ StartUI::~StartUI()
 {
 }
 
+void StartUI::show()
+{
+	QWidget::show();
+	GazeTrackerManager::GetInstance()->SetActiveState(GazeTrackerState::Start_UI);
+}
+
 void StartUI::startApplication()
 {
 	UISystem::GetInstance()->GetConfigurationUI()->show();

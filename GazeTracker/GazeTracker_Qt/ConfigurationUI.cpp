@@ -43,6 +43,7 @@ void ConfigurationUI::show()
 {
 	QWidget::show();
 	m_Thread->start();
+	GazeTrackerManager::GetInstance()->SetActiveState(GazeTrackerState::Configuration_UI);
 }
 
 void ConfigurationUI::close()

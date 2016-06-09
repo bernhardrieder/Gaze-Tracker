@@ -71,6 +71,7 @@ void CornerConfigurationUI::saveCurrentCornerAs(bool var, Configuration::Corners
 	if (var)
 	{
 		m_setCorners += static_cast<int>(corner);
+
 		//gazetracker should be started already and save the actual irisposition (continously)
 		//Configuration::GetInstance()->SetCorner(/*iris point*/, corner);
 	}

@@ -3,10 +3,12 @@
 
 using namespace gt;
 
-GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow())
+GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow()), m_ActiveState(GazeTrackerState::Start_UI)
 {
 	CreateDirectory(LPWSTR(std::wstring(L"Frames").c_str()), NULL);
 	CreateDirectory(LPWSTR(std::wstring(L"template_matching").c_str()), NULL);
+	m_LastIrisesPositions.left = cv::Point(0, 0);
+	m_LastIrisesPositions.right = cv::Point(0, 0);
 }
 
 
@@ -17,12 +19,19 @@ GazeTrackerManager::~GazeTrackerManager()
 
 void GazeTrackerManager::Start()
 {
-	UISystem::GetInstance()->GetStartUI()->show();
+	m_stopApp = false;
+	if(m_ActiveState == GazeTrackerState::Running && Configuration::GetInstance()->GetRecordData())
+	{
+		m_ScreenCapture.StartCapture(30);
+	}
 }
 
 void GazeTrackerManager::Stop()
 {
-	m_ScreenCapture.StopCapture();
+	if (m_ActiveState == GazeTrackerState::Running && Configuration::GetInstance()->GetRecordData())
+	{
+		m_ScreenCapture.StopCapture();
+	}
 	m_stopApp = true;
 }
 
@@ -101,5 +110,67 @@ void GazeTrackerManager::GetEyesWithIrisDetection(cv::Mat& leftIris, cv::Mat& ri
 			qDebug() << "EXCEPTION: resize error in GetEyesWithIrisDetection";
 		}
 	}
+}
+
+void GazeTrackerManager::SetActiveState(GazeTrackerState state)
+{
+	m_ActiveState = state;
+}
+
+GazeTrackerState GazeTrackerManager::GetActiveState() const
+{
+	return m_ActiveState;
+}
+
+IrisesPositions GazeTrackerManager::GetLastDetectedIrisesPositions() const
+{
+	return IrisesPositions();
+}
+
+void GazeTrackerManager::detectIrisesPositions()
+{
+	if (!m_Camera.GetCamera()->isOpened()) return;
+	while (!m_stopApp)
+	{
+		cv::Mat frame = m_Camera.GetFrame(true, true);
+		std::vector<FaceDetection::FaceROI> faces;
+		m_FaceDetection.CheckForFaceROIsWithCascadeClassifier(frame, faces);
+		if(faces.size() > 0)
+		{
+			for(auto face : faces)
+			{
+				cv::Point leftIris, rightIris;
+				m_FaceDetection.GetIrisesCenterPositions(frame, face, leftIris, rightIris);
+				setLastIrisesPositions(leftIris, rightIris);
+			}
+		}
+		cv::waitKey(1);
+	}
+}
+
+void GazeTrackerManager::setLastIrisesPositions(cv::Point& left, cv::Point& right)
+{
+	setLastIrisPosition(left, m_LastIrisesPositions.left);
+	setLastIrisPosition(right, m_LastIrisesPositions.right);
+}
+
+void GazeTrackerManager::setLastIrisPosition(cv::Point& current, cv::Point& last)
+{
+	static cv::Point outlierMax(10,10);
+	if (current.x == 0 && current.y == 0) return;
+	if((last.x == 0 && last.y == 0) ||
+		//check if current isn't an outlier!! need to know the max changes -> observe!! 
+		(current.x >= (last.x - outlierMax.x) && current.x <= (last.x + outlierMax.x) && 
+		current.y >= (last.y - outlierMax.y) && current.y <= (last.y + outlierMax.y)))
+	{
+		last = current;
+	}
+}
+
+cv::Point GazeTrackerManager::convertIrisesPointsToScreenPosition(int screenWidth, int screenHeight)
+{
+	auto leftCorners = Configuration::GetInstance()->GetCorners(Configuration::Iris::Left);
+	auto rightCorners = Configuration::GetInstance()->GetCorners(Configuration::Iris::Right);
+	return cv::Point();
 }
 

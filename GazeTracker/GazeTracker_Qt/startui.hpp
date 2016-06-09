@@ -11,6 +11,8 @@ namespace gt
 		StartUI(QWidget* parent = Q_NULLPTR);
 		~StartUI();
 
+	public slots:
+		void show();
 	private:
 		Ui::StartUi ui;
 

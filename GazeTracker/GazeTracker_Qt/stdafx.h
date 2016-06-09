@@ -48,6 +48,7 @@
 #include "ScreenCapture.h"
 #include "GazeTrackerManager.h"
 #include "Configuration.h"
+#include "GazeData.h"
 
 /*			UI			*/
 #include "UISystem.h"
