@@ -11,8 +11,11 @@ namespace gt
 		CornerConfigurationUI(QWidget* parent = Q_NULLPTR);
 		~CornerConfigurationUI();
 
-		signals:
+	signals:
 		void configurationSuccess();
+	public slots:
+		void show();
+		void close();
 	private slots:
 		void saveTopLeft(bool);
 		void saveTopMiddle(bool);
@@ -28,6 +31,7 @@ namespace gt
 		unsigned int m_setCorners;
 		void saveCurrentCornerAs(bool var, Configuration::Corners corner);
 		bool allCornersSet() const;
+		void resetCorners() const;
 	};
 }
 

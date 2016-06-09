@@ -62,6 +62,7 @@ namespace gt
 		void stateChanged(int) const;
 		void eyeTemplateConfigSuccess() const;
 		void eyeTemplateMathingMethodConfigSuccess() const;
+		void cornerConfigurationSuccess() const;
 
 	private:
 		Ui::ConfigurationUI ui;

@@ -2,7 +2,7 @@
 #include "cornerconfigurationui.hpp"
 using namespace gt;
 
-CornerConfigurationUI::CornerConfigurationUI(QWidget* parent) : QWidget(parent)
+CornerConfigurationUI::CornerConfigurationUI(QWidget* parent) : QWidget(parent), m_setCorners(0)
 {
 	ui.setupUi(this);
 
@@ -19,6 +19,21 @@ CornerConfigurationUI::CornerConfigurationUI(QWidget* parent) : QWidget(parent)
 
 CornerConfigurationUI::~CornerConfigurationUI()
 {
+}
+
+void CornerConfigurationUI::show()
+{
+	QWidget::show();
+	GazeTrackerManager::GetInstance()->Start();
+	showMaximized();
+}
+
+void CornerConfigurationUI::close()
+{
+	GazeTrackerManager::GetInstance()->Stop();
+	if (allCornersSet())
+		emit configurationSuccess();
+	QWidget::close();
 }
 
 void CornerConfigurationUI::saveTopLeft(bool var)
@@ -71,9 +86,17 @@ void CornerConfigurationUI::saveCurrentCornerAs(bool var, Configuration::Corners
 	if (var)
 	{
 		m_setCorners += static_cast<int>(corner);
-
-		//gazetracker should be started already and save the actual irisposition (continously)
-		//Configuration::GetInstance()->SetCorner(/*iris point*/, corner);
+		auto pos = GazeTrackerManager::GetInstance()->GetLastDetectedIrisesPositions();
+		Configuration::GetInstance()->SetCorner(pos.left, corner, Configuration::Iris::Left);
+		Configuration::GetInstance()->SetCorner(pos.right, corner, Configuration::Iris::Right);
+		if(allCornersSet())
+		{
+			int ret = QMessageBox::information(this, tr("Corners set!"), tr("All corners set! Apply?"), QMessageBox::Yes | QMessageBox::No);
+			if (ret == QMessageBox::Yes)
+				close();
+			else
+				resetCorners();
+		}
 	}
 	else
 	{
@@ -95,3 +118,15 @@ bool CornerConfigurationUI::allCornersSet() const
 		static_cast<int>(Configuration::Corners::BottomRight));
 }
 
+void CornerConfigurationUI::resetCorners() const
+{
+	ui.leftTopButton->setChecked(false);
+	ui.leftBottomButton->setChecked(false);
+	ui.leftMiddleButton->setChecked(false);
+	ui.middleTopButton->setChecked(false);
+	ui.middleButton->setChecked(false);
+	ui.middleBottomButton->setChecked(false);
+	ui.rightTopButton->setChecked(false);
+	ui.rightMiddleButton->setChecked(false);
+	ui.rightBottomButton->setChecked(false);
+}

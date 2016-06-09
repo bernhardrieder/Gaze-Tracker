@@ -18,6 +18,7 @@ ConfigurationUI::ConfigurationUI(QWidget* parent) : QWidget(parent)
 	QObject::connect(ui.cornerConfigButton, SIGNAL(clicked()), this, SLOT(openCornerConfig()));
 	QObject::connect(UISystem::GetInstance()->GetEyeTemplateConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateConfigSuccess()));
 	QObject::connect(UISystem::GetInstance()->GetTemplateMatchingMethodConfigUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateMathingMethodConfigSuccess()));
+	QObject::connect(UISystem::GetInstance()->GetCornerConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(cornerConfigurationSuccess()));
 
 
 	m_Thread = new QThread();
@@ -114,6 +115,11 @@ void ConfigurationUI::eyeTemplateConfigSuccess() const
 void ConfigurationUI::eyeTemplateMathingMethodConfigSuccess() const
 {
 	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateMethodSelectionDone));
+}
+
+void ConfigurationUI::cornerConfigurationSuccess() const
+{
+	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone));
 }
 
 void ConfigurationUI_StateWorker::process()
