@@ -25,7 +25,8 @@ void CornerConfigurationUI::show()
 {
 	QWidget::show();
 	GazeTrackerManager::GetInstance()->Start();
-	showMaximized();
+	showFullScreen();
+	QMessageBox::information(this, tr("Important Note!"), tr("Every button represents a corner of your screen. Please focus your eyes on one button per time and click on it!"), QMessageBox::Ok);
 }
 
 void CornerConfigurationUI::close()
