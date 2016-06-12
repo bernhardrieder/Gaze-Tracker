@@ -24,6 +24,8 @@ namespace gt
 			return m_isCapturing;
 		};
 
+		static cv::Size GetFrameSize(HWND window);
+
 	private:
 		HWND m_window;
 		cv::Mat m_lastFrame;

@@ -25,7 +25,10 @@ namespace gt
 		bool GetEyes(const cv::Mat& flippedFrameGray, cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor = 0.0, bool equalizeHist = false);
 		void GetEyesForIrisDetection(const cv::Mat& flippedFrameGray, cv::Mat& leftIris, cv::Mat& rightIris);
 		void GetIrisesCenterPositions(const cv::Mat& flippedFrameGray, const FaceROI& faceROI, cv::Point& leftIris, cv::Point& rightIris);
+		cv::Size GetAverageHeadSize();
+		cv::Point GetHeadCenterPosition() const;
 		void DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool drawFace = true, bool drawEye = true, bool drawIris = true);
+		void ReloadTemplates();
 
 		int templateMatchingMethod = 0;
 		static cv::String eyeLeftTemplateName;
@@ -40,11 +43,14 @@ namespace gt
 		void getIrisCenterPosition(const cv::Mat& flippedFrameGray, const cv::Rect& eyeROI, const cv::Mat& eyeTemplate, cv::Point& out) const;
 		void detectEyeAndDraw(cv::Mat& flippedFrameGray, const FaceROI& face, bool draw = true);
 		void detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI& faceROI, bool draw = true);
+		void addHeadSize(cv::Size size);
 
 		cv::CascadeClassifier m_FaceCascadeClassifier;
 		cv::CascadeClassifier m_LeftEyeCascadeClassifier;
 		cv::CascadeClassifier m_RightEyeCascadeClassifier;
 		EyesROI m_LastDetectedEyesROIFromCascadeClassifier;
+		std::list<cv::Size> m_LastDetectedSizesOfHeadsWithEyes;
+		cv::Point m_LastDetectedCenterPointOfHeadWithEyes;
 
 		cv::Mat m_EyeLeftTemplate;
 		cv::Mat m_EyeRightTemplate;

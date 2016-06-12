@@ -12,19 +12,24 @@ QtHelper::~QtHelper()
 {
 }
 
-void QtHelper::changeColor(QLabel& label, const QString& color)
+void QtHelper::ChangeTextColor(QLabel& label, const QString& color)
 {
 	label.setStyleSheet("QLabel {color: " + color + ";}");
 }
 
-void QtHelper::changeColor(QPushButton& button, const QString& color)
+void QtHelper::ChangeTextColor(QPushButton& button, const QString& color)
 {
 	button.setStyleSheet("QPushButton {color: " + color + ";}");
 }
 
-void QtHelper::changeColor(QRadioButton& button, const QString& color)
+void QtHelper::ChangeTextColor(QRadioButton& button, const QString& color)
 {
 	button.setStyleSheet("QRadioButton {color: " + color + ";}");
+}
+
+void QtHelper::ChangeBackgroundColor(QPushButton& btn, const QString& color)
+{
+	btn.setStyleSheet("QPushButton { background-color: " + color + ";}");
 }
 
 //http://stackoverflow.com/questions/11543298/qt-opencv-displaying-images-on-qlabel

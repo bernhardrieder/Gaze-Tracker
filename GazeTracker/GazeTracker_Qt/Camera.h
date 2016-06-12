@@ -9,6 +9,8 @@ namespace gt
 
 		cv::Mat GetFrame() const;
 		cv::Mat GetFrame(bool inGray, bool flipped = false) const;
+		void ConvertToGray(cv::Mat& frame) const;
+		void Flip(cv::Mat& frame) const;
 		cv::Ptr<cv::VideoCapture> GetCamera() const;
 		bool IsInitialized() const;
 		bool Initialize();

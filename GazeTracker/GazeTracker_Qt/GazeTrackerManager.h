@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include "GazeConverter.h"
 
 namespace gt
 {
@@ -33,6 +34,7 @@ namespace gt
 		void SetActiveState(GazeTrackerState state);
 		GazeTrackerState GetActiveState() const;
 		IrisesPositions GetLastDetectedIrisesPositions() const;
+		void ReloadEyeTemplates();
 
 	private:
 		bool m_stopApp;
@@ -41,11 +43,12 @@ namespace gt
 		ScreenCapture m_ScreenCapture;
 		IrisesPositions m_LastIrisesPositions;
 		GazeTrackerState m_ActiveState;
+		GazeConverter m_GazeConverter;
+		std::thread m_DetectIrisesPositionsThread;
 
-		void detectIrisesPositions();
+		void detectIrisesPositionsThread();
 		void setLastIrisesPositions(cv::Point& left, cv::Point& right);
 		static void setLastIrisPosition(cv::Point& current, cv::Point& last);
-		cv::Point convertIrisesPointsToScreenPosition(int screenWidth, int screenHeight);
 	};
 }
 

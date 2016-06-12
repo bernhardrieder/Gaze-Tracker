@@ -15,6 +15,18 @@ CornerConfigurationUI::CornerConfigurationUI(QWidget* parent) : QWidget(parent),
 	QObject::connect(ui.rightTopButton, SIGNAL(toggled(bool)), this, SLOT(saveTopRight(bool)));
 	QObject::connect(ui.rightMiddleButton, SIGNAL(toggled(bool)), this, SLOT(saveMiddleRight(bool)));
 	QObject::connect(ui.rightBottomButton, SIGNAL(toggled(bool)), this, SLOT(saveBottomRight(bool)));
+
+	//without middle button
+	m_CornerButtons.push_back(ui.leftTopButton);
+	m_CornerButtons.push_back(ui.leftBottomButton);
+	m_CornerButtons.push_back(ui.leftMiddleButton);
+	m_CornerButtons.push_back(ui.middleTopButton);
+	m_CornerButtons.push_back(ui.middleBottomButton);
+	m_CornerButtons.push_back(ui.rightTopButton);
+	m_CornerButtons.push_back(ui.rightMiddleButton);
+	m_CornerButtons.push_back(ui.rightBottomButton);
+
+	resetCorners();
 }
 
 CornerConfigurationUI::~CornerConfigurationUI()
@@ -26,7 +38,7 @@ void CornerConfigurationUI::show()
 	QWidget::show();
 	GazeTrackerManager::GetInstance()->Start();
 	showFullScreen();
-	QMessageBox::information(this, tr("Important Note!"), tr("Every button represents a corner of your screen. Please focus your eyes on one button per time and click on it!"), QMessageBox::Ok);
+	QMessageBox::information(this, tr("Important Note!"), tr("Every button represents a corner of your screen. Please focus your eyes on one button per time and click on it! Start with the center!"), QMessageBox::Ok);
 }
 
 void CornerConfigurationUI::close()
@@ -39,53 +51,60 @@ void CornerConfigurationUI::close()
 
 void CornerConfigurationUI::saveTopLeft(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::TopLeft);
+	saveCurrentCornerAs(ui.leftTopButton, var, Configuration::Corners::TopLeft);
 }
 
 void CornerConfigurationUI::saveTopMiddle(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::Top);
+	saveCurrentCornerAs(ui.middleTopButton, var, Configuration::Corners::Top);
 }
 
 void CornerConfigurationUI::saveTopRight(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::TopRight);
+	saveCurrentCornerAs(ui.rightTopButton, var, Configuration::Corners::TopRight);
 }
 
 void CornerConfigurationUI::saveMiddleLeft(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::Left);
+	saveCurrentCornerAs(ui.leftMiddleButton, var, Configuration::Corners::Left);
 }
 
 void CornerConfigurationUI::saveMiddleMiddle(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::Center);
+	saveCurrentCornerAs(ui.middleButton, var, Configuration::Corners::Center);
+
+	if (var)
+		for (auto& btn : m_CornerButtons)
+			btn->setEnabled(var);
+	else
+		resetCornerButtons();
 }
 
 void CornerConfigurationUI::saveMiddleRight(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::Right);
+	saveCurrentCornerAs(ui.rightMiddleButton, var, Configuration::Corners::Right);
 }
 
 void CornerConfigurationUI::saveBottomLeft(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::BottomLeft);
+	saveCurrentCornerAs(ui.leftBottomButton, var, Configuration::Corners::BottomLeft);
 }
 
 void CornerConfigurationUI::saveBottomMiddle(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::Bottom);
+	saveCurrentCornerAs(ui.middleBottomButton, var, Configuration::Corners::Bottom);
 }
 
 void CornerConfigurationUI::saveBottomRight(bool var)
 {
-	saveCurrentCornerAs(var, Configuration::Corners::BottomRight);
+	saveCurrentCornerAs(ui.rightBottomButton, var, Configuration::Corners::BottomRight);
 }
 
-void CornerConfigurationUI::saveCurrentCornerAs(bool var, Configuration::Corners corner)
+void CornerConfigurationUI::saveCurrentCornerAs(QPushButton* btn, bool var, Configuration::Corners corner)
 {
 	if (var)
 	{
+		QtHelper::ChangeBackgroundColor(*btn, "green");
 		m_setCorners += static_cast<int>(corner);
 		auto pos = GazeTrackerManager::GetInstance()->GetLastDetectedIrisesPositions();
 		Configuration::GetInstance()->SetCorner(pos.left, corner, Configuration::Iris::Left);
@@ -101,6 +120,7 @@ void CornerConfigurationUI::saveCurrentCornerAs(bool var, Configuration::Corners
 	}
 	else
 	{
+		QtHelper::ChangeBackgroundColor(*btn, "red");
 		m_setCorners -= static_cast<int>(corner);
 	}
 }
@@ -121,13 +141,17 @@ bool CornerConfigurationUI::allCornersSet() const
 
 void CornerConfigurationUI::resetCorners() const
 {
-	ui.leftTopButton->setChecked(false);
-	ui.leftBottomButton->setChecked(false);
-	ui.leftMiddleButton->setChecked(false);
-	ui.middleTopButton->setChecked(false);
 	ui.middleButton->setChecked(false);
-	ui.middleBottomButton->setChecked(false);
-	ui.rightTopButton->setChecked(false);
-	ui.rightMiddleButton->setChecked(false);
-	ui.rightBottomButton->setChecked(false);
+	QtHelper::ChangeBackgroundColor(*ui.middleButton, "red");
+	resetCornerButtons();
+}
+
+void CornerConfigurationUI::resetCornerButtons() const
+{
+	for (auto& btn : m_CornerButtons)
+	{
+		QtHelper::ChangeBackgroundColor(*btn, "red");
+		btn->setChecked(false);
+		btn->setEnabled(false);
+	}
 }

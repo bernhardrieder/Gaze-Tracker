@@ -49,6 +49,7 @@
 #include "GazeTrackerManager.h"
 #include "Configuration.h"
 #include "GazeData.h"
+#include "GazeConverter.h"
 
 /*			UI			*/
 #include "UISystem.h"

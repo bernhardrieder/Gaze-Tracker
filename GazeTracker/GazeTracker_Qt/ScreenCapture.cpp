@@ -28,8 +28,13 @@ void ScreenCapture::StartCapture(int fps, const cv::Size frameSize, const float 
 
 void ScreenCapture::StartCapture(int fps, const float frameScale)
 {
-	cv::Mat screen = hwnd2Mat(m_window);
-	StartCapture(fps, cv::Size(screen.size().width, screen.size().height), frameScale);
+	StartCapture(fps, GetFrameSize(m_window), frameScale);
+}
+
+cv::Size ScreenCapture::GetFrameSize(HWND window)
+{
+	cv::Mat screen = hwnd2Mat(window);
+	return cv::Size(screen.size().width, screen.size().height);
 }
 
 void ScreenCapture::captureThread()

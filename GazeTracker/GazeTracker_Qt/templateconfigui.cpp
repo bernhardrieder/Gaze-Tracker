@@ -98,6 +98,7 @@ void TemplateConfigUI::saveTemplates()
 {
 	m_SelectedIrisLeft.save(QString(FaceDetection::eyeLeftTemplateName.c_str()), Q_NULLPTR, 100);
 	m_SelectedIrisRight.save(QString(FaceDetection::eyeRightTemplateName.c_str()), Q_NULLPTR, 100);
+	GazeTrackerManager::GetInstance()->ReloadEyeTemplates();
 	emit configurationSuccess();
 }
 

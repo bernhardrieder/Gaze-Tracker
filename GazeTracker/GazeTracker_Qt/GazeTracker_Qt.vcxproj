@@ -158,6 +158,7 @@
     <ClCompile Include="EyeTemplateSelect.cpp" />
     <ClCompile Include="FaceDetection.cpp" />
     <ClCompile Include="GazeData.cpp" />
+    <ClCompile Include="GazeConverter.cpp" />
     <ClCompile Include="GazeTracker.cpp" />
     <ClCompile Include="GazeTrackerManager.cpp" />
     <ClCompile Include="gazetrackerui.cpp" />
@@ -280,6 +281,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../TemplateMatchingMethodConfigUI.hpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I$(OPENCV_DIR)\..\..\include" "-I$(NOINHERIT)\."</Command>
     </CustomBuild>
     <ClInclude Include="Configuration.h" />
+    <ClInclude Include="GazeConverter.h" />
     <ClInclude Include="GazeTracker.h" />
     <ClInclude Include="GeneratedFiles\ui_TemplateMatchingMethodConfigUI.h" />
     <ClInclude Include="QtHelper.h" />

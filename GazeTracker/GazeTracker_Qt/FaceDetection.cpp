@@ -11,8 +11,7 @@ FaceDetection::FaceDetection() : FaceDetection(m_face_cascade_name_default, m_le
 FaceDetection::FaceDetection(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName)
 {
 	initClassifiers(faceCascadeName, leftEyeCascadeName, rightEyeCascadeName);
-	m_EyeLeftTemplate = cv::imread(eyeLeftTemplateName, cv::IMREAD_GRAYSCALE);
-	m_EyeRightTemplate = cv::imread(eyeRightTemplateName, cv::IMREAD_GRAYSCALE);
+
 
 	m_LastDetectedEyesROIFromCascadeClassifier.left.x = m_LastDetectedEyesROIFromCascadeClassifier.right.x = m_LastDetectedEyesROIFromCascadeClassifier.left.y = m_LastDetectedEyesROIFromCascadeClassifier.right.y = 0;
 }
@@ -21,7 +20,6 @@ FaceDetection::~FaceDetection()
 {
 }
 
-//flips frame automatically
 void FaceDetection::CheckForFaceROIsWithCascadeClassifier(const cv::Mat& flippedFrameGray, std::vector<FaceROI>& out)
 {
 	if (flippedFrameGray.empty()) return;
@@ -70,6 +68,12 @@ void FaceDetection::CheckForEyesROIWithCascadeClassifier(const cv::Mat& flippedF
 	}
 	setEyeROI(eyesLeft, face.leftSideROI, out.left, m_LastDetectedEyesROIFromCascadeClassifier.left);
 	setEyeROI(eyesRight, face.rightSideROI, out.right, m_LastDetectedEyesROIFromCascadeClassifier.right);
+	if (eyesLeft.size() != 0 || eyesRight.size() != 0)
+	{
+		addHeadSize(cv::Size(face.leftSideROI.width + face.rightSideROI.width, face.leftSideROI.height));
+		m_LastDetectedCenterPointOfHeadWithEyes.x = face.leftSideROI.x + face.leftSideROI.width;
+		m_LastDetectedCenterPointOfHeadWithEyes.y = face.leftSideROI.y + face.leftSideROI.height / 2;
+	}
 }
 
 void FaceDetection::setEyeROI(const std::vector<cv::Rect>& eyes, const cv::Rect& faceRegion, cv::Rect& eye, cv::Rect& lastDeteced)
@@ -170,6 +174,25 @@ void FaceDetection::GetIrisesCenterPositions(const cv::Mat& flippedFrameGray, co
 	}
 }
 
+cv::Size FaceDetection::GetAverageHeadSize()
+{
+	cv::Size result = cv::Size(0,0);
+	if(m_LastDetectedSizesOfHeadsWithEyes.size() != 0)
+	{
+		for (auto size : m_LastDetectedSizesOfHeadsWithEyes)
+		{
+			result += size;
+		}
+		result /= static_cast<int>(m_LastDetectedSizesOfHeadsWithEyes.size());
+	}
+	return result;
+}
+
+cv::Point FaceDetection::GetHeadCenterPosition() const
+{
+	return m_LastDetectedCenterPointOfHeadWithEyes;
+}
+
 void FaceDetection::DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool drawFace, bool drawEye, bool drawIris)
 {
 	std::vector<FaceROI> faces;
@@ -182,6 +205,18 @@ void FaceDetection::DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool dra
 			{
 				cv::rectangle(flippedFrameGray, face.leftSideROI, cv::Scalar(255, 255, 0));
 				cv::rectangle(flippedFrameGray, face.rightSideROI, cv::Scalar(255, 0, 255));
+
+				static cv::Point headCenterPoint, errorPoint = cv::Point(0, 0);
+				static cv::Size averageHeadSize, errorSize = cv::Size(0, 0);
+				headCenterPoint = GetHeadCenterPosition();
+				if(headCenterPoint != errorPoint)
+					cv::circle(flippedFrameGray, m_LastDetectedCenterPointOfHeadWithEyes, 5, cv::Scalar(255, 255, 0), -1);
+				averageHeadSize = GetAverageHeadSize();
+				if(averageHeadSize != errorSize)
+				{
+					cv::Rect head = cv::Rect(headCenterPoint.x - averageHeadSize.width/2, headCenterPoint.y - averageHeadSize.height/2, averageHeadSize.width, averageHeadSize.height);
+					cv::rectangle(flippedFrameGray, head, cv::Scalar(255, 0, 255), 3);
+				}
 			}
 
 			detectEyeAndDraw(flippedFrameGray, face, drawEye);
@@ -190,9 +225,15 @@ void FaceDetection::DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool dra
 	}
 }
 
+void FaceDetection::ReloadTemplates()
+{
+	m_EyeLeftTemplate = cv::imread(eyeLeftTemplateName, cv::IMREAD_GRAYSCALE);
+	m_EyeRightTemplate = cv::imread(eyeRightTemplateName, cv::IMREAD_GRAYSCALE);
+}
+
 void FaceDetection::createEyeROIFomFaceROI(const FaceROI& faceROI, EyesROI& outEyeROI) const
 {
-	//because of eyeCascadeClassifier isn't very reliable we dont use the received ROI
+	//because eyeCascadeClassifier isn't very reliable we wont use the received ROI
 	//instead of using the eye roi, we are gonna using the roi of the face and create our own eye roi
 	createEyeROIFomFaceROI(faceROI.leftSideROI, m_LastDetectedEyesROIFromCascadeClassifier.left, outEyeROI.left);
 	createEyeROIFomFaceROI(faceROI.rightSideROI, m_LastDetectedEyesROIFromCascadeClassifier.right, outEyeROI.right);
@@ -239,6 +280,20 @@ void FaceDetection::detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI
 		{
 			cv::circle(flippedFrameGray, rightIris, radius, cv::Scalar(255, 255, 255), -1);
 		}
+	}
+}
+
+void FaceDetection::addHeadSize(cv::Size size)
+{
+	static int maxSize = 10;
+	if(m_LastDetectedSizesOfHeadsWithEyes.size() <= maxSize)
+	{
+		m_LastDetectedSizesOfHeadsWithEyes.push_back(size);
+	}
+	else
+	{
+		m_LastDetectedSizesOfHeadsWithEyes.pop_front();
+		addHeadSize(size);
 	}
 }
 

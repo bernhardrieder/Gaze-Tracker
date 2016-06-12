@@ -6,11 +6,11 @@ ConfigurationUI::ConfigurationUI(QWidget* parent) : QWidget(parent)
 {
 	ui.setupUi(this);
 
-	QtHelper::changeColor(*ui.webCamLabel, "red");
-	QtHelper::changeColor(*ui.faceLabel, "red");
-	QtHelper::changeColor(*ui.eyeTemplateConfigButton, "red");
-	QtHelper::changeColor(*ui.templateMethodButton, "red");
-	QtHelper::changeColor(*ui.cornerConfigButton, "red");
+	QtHelper::ChangeTextColor(*ui.webCamLabel, "red");
+	QtHelper::ChangeTextColor(*ui.faceLabel, "red");
+	QtHelper::ChangeTextColor(*ui.eyeTemplateConfigButton, "red");
+	QtHelper::ChangeTextColor(*ui.templateMethodButton, "red");
+	QtHelper::ChangeTextColor(*ui.cornerConfigButton, "red");
 
 	QObject::connect(ui.cancelButton, SIGNAL(clicked()), this, SLOT(closeApplication()));
 	QObject::connect(ui.eyeTemplateConfigButton, SIGNAL(clicked()), this, SLOT(openEyeTemplateConfig()));
@@ -19,7 +19,7 @@ ConfigurationUI::ConfigurationUI(QWidget* parent) : QWidget(parent)
 	QObject::connect(UISystem::GetInstance()->GetEyeTemplateConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateConfigSuccess()));
 	QObject::connect(UISystem::GetInstance()->GetTemplateMatchingMethodConfigUI(), SIGNAL(configurationSuccess()), this, SLOT(eyeTemplateMathingMethodConfigSuccess()));
 	QObject::connect(UISystem::GetInstance()->GetCornerConfigurationUI(), SIGNAL(configurationSuccess()), this, SLOT(cornerConfigurationSuccess()));
-
+	QObject::connect(ui.doneButton, SIGNAL(clicked()), this, SLOT(openGazeTracker()));
 
 	m_Thread = new QThread();
 	m_StateWorker = new ConfigurationUI_StateWorker();
@@ -85,22 +85,22 @@ void ConfigurationUI::stateChanged(int state) const
 	switch (static_cast<ConfigurationUI_StateWorker::ConfigurationState>(state))
 	{
 		case ConfigurationUI_StateWorker::ConfigurationState::WebCamDetected:
-			QtHelper::changeColor(*ui.webCamLabel, "green");
+			QtHelper::ChangeTextColor(*ui.webCamLabel, "green");
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::FaceDetected:
-			QtHelper::changeColor(*ui.faceLabel, "green");
+			QtHelper::ChangeTextColor(*ui.faceLabel, "green");
 			ui.eyeTemplateConfigButton->setEnabled(true);
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateConfigDone:
-			QtHelper::changeColor(*ui.eyeTemplateConfigButton, "green");
+			QtHelper::ChangeTextColor(*ui.eyeTemplateConfigButton, "green");
 			ui.templateMethodButton->setEnabled(true);
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::EyeTemplateMethodSelectionDone:
-			QtHelper::changeColor(*ui.templateMethodButton, "green");
+			QtHelper::ChangeTextColor(*ui.templateMethodButton, "green");
 			ui.cornerConfigButton->setEnabled(true);
 			break;
 		case ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone:
-			QtHelper::changeColor(*ui.cornerConfigButton, "green");
+			QtHelper::ChangeTextColor(*ui.cornerConfigButton, "green");
 			ui.doneButton->setEnabled(true);
 			break;
 		default: break;
@@ -120,6 +120,12 @@ void ConfigurationUI::eyeTemplateMathingMethodConfigSuccess() const
 void ConfigurationUI::cornerConfigurationSuccess() const
 {
 	stateChanged(static_cast<int>(ConfigurationUI_StateWorker::ConfigurationState::CornerConfigDone));
+}
+
+void ConfigurationUI::openGazeTracker()
+{
+	GazeTrackerManager::GetInstance()->SetActiveState(GazeTrackerState::Running);
+	GazeTrackerManager::GetInstance()->Start();
 }
 
 void ConfigurationUI_StateWorker::process()

@@ -29,9 +29,12 @@ namespace gt
 	private:
 		Ui::CornerConfigurationUI ui;
 		unsigned int m_setCorners;
-		void saveCurrentCornerAs(bool var, Configuration::Corners corner);
+		std::vector<QPushButton*> m_CornerButtons;
+
+		void saveCurrentCornerAs(QPushButton* btn, bool var, Configuration::Corners corner);
 		bool allCornersSet() const;
 		void resetCorners() const;
+		void resetCornerButtons() const;
 	};
 }
 

@@ -63,6 +63,7 @@ namespace gt
 		void eyeTemplateConfigSuccess() const;
 		void eyeTemplateMathingMethodConfigSuccess() const;
 		void cornerConfigurationSuccess() const;
+		void openGazeTracker();
 
 	private:
 		Ui::ConfigurationUI ui;

@@ -23,12 +23,13 @@ bool Configuration::GetRecordData() const
 
 void Configuration::SetCorners(CornerConfigurationPoints corners, Iris iris)
 {
-	GetCorners(iris) = corners;
+	auto& current = GetCorners(iris);
+	current = corners;
 }
 
 void Configuration::SetCorner(cv::Point point, Corners corner, Iris iris)
 {
-	auto corners = GetCorners(iris);
+	auto& corners = GetCorners(iris);
 	switch(corner)
 	{
 		case Corners::TopLeft: corners.topLeft = point; break;
@@ -51,7 +52,6 @@ Configuration::CornerConfigurationPoints& Configuration::GetCorners(Iris iris)
 		case Iris::Left: return m_CornersLeftIris;;
 		case Iris::Right: return m_CornersRightIris;;
 	}
-	
 }
 
 void Configuration::SetEyeTemplateResizeFactor(double factor)

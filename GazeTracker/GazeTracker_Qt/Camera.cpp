@@ -28,11 +28,21 @@ cv::Mat Camera::GetFrame(bool inGray, bool flipped) const
 	if (!frame.empty())
 	{
 		if (inGray)
-			cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+			ConvertToGray(frame);
 		if (flipped)
-			cv::flip(frame, frame, 1);
+			Flip(frame);
 	}
 	return frame;
+}
+
+void Camera::ConvertToGray(cv::Mat& frame) const
+{
+	cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+}
+
+void Camera::Flip(cv::Mat& frame) const
+{
+	cv::flip(frame, frame, 1);
 }
 
 cv::Ptr<cv::VideoCapture> Camera::GetCamera() const

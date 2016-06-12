@@ -12,12 +12,12 @@ void TemplateMatchingMethodConfigUI_EyesUpdateWorker::process()
 
 		QImage leftEye, rightEye;
 
-		if (!leftEyePic.empty() && QtHelper::ConvertMatToQImage(leftEyePic, leftEye) && leftEyePic.rows <= 500 && leftEyePic.cols <= 500)
+		if (!leftEyePic.empty() && QtHelper::ConvertMatToQImage(leftEyePic, leftEye) && leftEyePic.rows <= 500 && leftEyePic.cols <= 500 && leftEyePic.rows >= 100 && leftEyePic.cols >= 100)
 		{
 			config->ui.eyeLeftLabel->clear();
 			config->ui.eyeLeftLabel->setPixmap(QPixmap::fromImage(leftEye));
 		}
-		if (!rightEyePic.empty() && QtHelper::ConvertMatToQImage(rightEyePic, rightEye) && rightEyePic.rows <= 500 && rightEyePic.cols <= 500)
+		if (!rightEyePic.empty() && QtHelper::ConvertMatToQImage(rightEyePic, rightEye) && rightEyePic.rows <= 500 && rightEyePic.cols <= 500 && rightEyePic.rows >= 100 && rightEyePic.cols >= 100)
 		{
 			config->ui.eyeRightLabel->clear();
 			config->ui.eyeRightLabel->setPixmap(QPixmap::fromImage(rightEye));
@@ -47,7 +47,7 @@ TemplateMatchingMethodConfigUI::TemplateMatchingMethodConfigUI(QWidget* parent) 
 	QObject::connect(ui.tm_coeff, SIGNAL(toggled(bool)), this, SLOT(chooseTMCOEFF(bool)));
 	QObject::connect(ui.tm_coeff_normed, SIGNAL(toggled(bool)), this, SLOT(chooseTMCOEFFNORMED(bool)));
 
-	QtHelper::changeColor(*getRadioButtonForTemplateMethod(0), "green");
+	QtHelper::ChangeTextColor(*getRadioButtonForTemplateMethod(0), "green");
 }
 
 TemplateMatchingMethodConfigUI::~TemplateMatchingMethodConfigUI()
@@ -107,7 +107,7 @@ void TemplateMatchingMethodConfigUI::chooseTMCOEFFNORMED(bool val)
 void TemplateMatchingMethodConfigUI::changeMethod()
 {
 	Configuration::SetTemplateMatchingMethod(m_ChoosenMethod);
-	QtHelper::changeColor(*getRadioButtonForTemplateMethod(m_ChoosenMethod), "green");
+	QtHelper::ChangeTextColor(*getRadioButtonForTemplateMethod(m_ChoosenMethod), "green");
 }
 
 void TemplateMatchingMethodConfigUI::setTemplateMethodAndButton(bool val, int method, QRadioButton& button)
@@ -115,7 +115,7 @@ void TemplateMatchingMethodConfigUI::setTemplateMethodAndButton(bool val, int me
 	if (val)
 		m_ChoosenMethod = method;
 	else
-		QtHelper::changeColor(button, "black");
+		QtHelper::ChangeTextColor(button, "black");
 }
 
 QRadioButton* TemplateMatchingMethodConfigUI::getRadioButtonForTemplateMethod(int method) const
