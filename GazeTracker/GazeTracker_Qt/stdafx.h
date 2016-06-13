@@ -59,4 +59,5 @@
 #include "cornerconfigurationui.hpp"
 #include "TemplateMatchingMethodConfigUI.hpp"
 #include "QtHelper.h"
-
+#include "GazeVisualizationUI.h"
+#include "GazeVisualizationToolbox.hpp"

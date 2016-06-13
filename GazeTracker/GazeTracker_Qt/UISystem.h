@@ -16,6 +16,7 @@ namespace gt
 		TemplateConfigUI* GetEyeTemplateConfigurationUI();
 		CornerConfigurationUI* GetCornerConfigurationUI();
 		TemplateMatchingMethodConfigUI* GetTemplateMatchingMethodConfigUI();
+		GazeVisualizationUI* GetGazeTrackerUI();
 
 	private:
 		QWidget* m_StartUI = nullptr;
@@ -23,6 +24,7 @@ namespace gt
 		QWidget* m_EyeTemplateConfigurationUI = nullptr;
 		QWidget* m_CornerConfigurationUI = nullptr;
 		QWidget* m_TemplateMatchingMethodConfigUI = nullptr;
+		QWidget* m_GazeTrackerUI = nullptr;
 	};
 }
 

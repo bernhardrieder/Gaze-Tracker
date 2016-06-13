@@ -35,6 +35,7 @@ CornerConfigurationUI::~CornerConfigurationUI()
 
 void CornerConfigurationUI::show()
 {
+	resetCorners();
 	QWidget::show();
 	GazeTrackerManager::GetInstance()->Start();
 	showFullScreen();

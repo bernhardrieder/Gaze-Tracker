@@ -71,15 +71,6 @@
     <ClCompile Include="startui.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_gazetrackerui.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_gazetrackerui.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="gazetrackerui.cpp">
-      <Filter>Source Dateien\Qt</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_templateconfigui.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -143,6 +134,24 @@
     <ClCompile Include="GazeConverter.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GazeVisualizationUI.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GazeVisualizationUI.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeVisualizationUI.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GazeVisualizationToolbox.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GazeVisualizationToolbox.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeVisualizationToolbox.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -165,9 +174,6 @@
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Header Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_gazetrackerui.h">
-      <Filter>Generierte Dateien</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_templateconfigui.h">
       <Filter>Generierte Dateien</Filter>
@@ -199,6 +205,12 @@
     <ClInclude Include="GazeConverter.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_gazevisualizationui.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GazeVisualizationToolbox.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gazetracker_ui.qrc">
@@ -209,12 +221,6 @@
     </CustomBuild>
     <CustomBuild Include="startui.hpp">
       <Filter>Header Dateien\Qt</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gazetrackerui.h">
-      <Filter>Header Dateien\Qt</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gazetrackerui.ui">
-      <Filter>Form Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="templateconfigui.ui">
       <Filter>Form Dateien</Filter>
@@ -242,6 +248,18 @@
     </CustomBuild>
     <CustomBuild Include="TemplateMatchingMethodConfigUI.ui">
       <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gazevisualizationui.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GazeVisualizationUI.h">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GazeVisualizationToolbox.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GazeVisualizationToolbox.hpp">
+      <Filter>Header Dateien\Qt</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

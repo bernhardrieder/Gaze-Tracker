@@ -14,6 +14,7 @@ GazeTracker::~GazeTracker()
 void GazeTracker::StartApplication() const
 {
 	gt::UISystem::GetInstance()->GetStartUI()->show();
+	//gt::UISystem::GetInstance()->GetGazeTrackerUI()->show();
 }
 
 void GazeTracker::StopApplication() const

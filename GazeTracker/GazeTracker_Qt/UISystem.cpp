@@ -15,6 +15,7 @@ UISystem::~UISystem()
 	delete m_CornerConfigurationUI;
 	delete m_EyeTemplateConfigurationUI;
 	delete m_TemplateMatchingMethodConfigUI;
+	delete m_GazeTrackerUI;
 }
 
 StartUI* UISystem::GetStartUI()
@@ -52,3 +53,9 @@ TemplateMatchingMethodConfigUI* UISystem::GetTemplateMatchingMethodConfigUI()
 	return static_cast<TemplateMatchingMethodConfigUI*>(m_TemplateMatchingMethodConfigUI);
 }
 
+GazeVisualizationUI* UISystem::GetGazeTrackerUI()
+{
+	if (m_GazeTrackerUI == nullptr)
+		m_GazeTrackerUI = new GazeVisualizationUI();
+	return static_cast<GazeVisualizationUI*>(m_GazeTrackerUI);
+}

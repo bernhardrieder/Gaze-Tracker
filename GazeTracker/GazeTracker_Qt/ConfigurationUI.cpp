@@ -8,9 +8,6 @@ ConfigurationUI::ConfigurationUI(QWidget* parent) : QWidget(parent)
 
 	QtHelper::ChangeTextColor(*ui.webCamLabel, "red");
 	QtHelper::ChangeTextColor(*ui.faceLabel, "red");
-	QtHelper::ChangeTextColor(*ui.eyeTemplateConfigButton, "red");
-	QtHelper::ChangeTextColor(*ui.templateMethodButton, "red");
-	QtHelper::ChangeTextColor(*ui.cornerConfigButton, "red");
 
 	QObject::connect(ui.cancelButton, SIGNAL(clicked()), this, SLOT(closeApplication()));
 	QObject::connect(ui.eyeTemplateConfigButton, SIGNAL(clicked()), this, SLOT(openEyeTemplateConfig()));
@@ -27,14 +24,16 @@ ConfigurationUI::ConfigurationUI(QWidget* parent) : QWidget(parent)
 	QObject::connect(m_StateWorker, SIGNAL(stateChanged(int)), this, SLOT(stateChanged(int)));
 	QObject::connect(m_Thread, SIGNAL(started()), m_StateWorker, SLOT(process()));
 	QObject::connect(m_StateWorker, SIGNAL(finished()), m_Thread, SLOT(quit()));
-	QObject::connect(m_StateWorker, SIGNAL(finished()), m_StateWorker, SLOT(deleteLater()));
-	QObject::connect(m_Thread, &QThread::finished, m_Thread, &QObject::deleteLater);
+	//QObject::connect(m_StateWorker, SIGNAL(finished()), m_StateWorker, SLOT(deleteLater()));
+	//QObject::connect(m_Thread, &QThread::finished, m_Thread, &QObject::deleteLater);
 }
 
 ConfigurationUI::~ConfigurationUI()
 {
 	m_Thread->quit();
 	m_Thread->wait();
+	m_StateWorker->deleteLater();
+	m_Thread->deleteLater();
 
 	delete m_Thread;
 	delete m_StateWorker;
@@ -42,6 +41,12 @@ ConfigurationUI::~ConfigurationUI()
 
 void ConfigurationUI::show()
 {
+	QtHelper::ChangeTextColor(*ui.eyeTemplateConfigButton, "red");
+	QtHelper::ChangeTextColor(*ui.templateMethodButton, "red");
+	QtHelper::ChangeTextColor(*ui.cornerConfigButton, "red");
+	ui.templateMethodButton->setEnabled(false);
+	ui.cornerConfigButton->setEnabled(false);
+	ui.doneButton->setEnabled(false);
 	QWidget::show();
 	m_Thread->start();
 	GazeTrackerManager::GetInstance()->SetActiveState(GazeTrackerState::Configuration_UI);
@@ -124,8 +129,8 @@ void ConfigurationUI::cornerConfigurationSuccess() const
 
 void ConfigurationUI::openGazeTracker()
 {
-	GazeTrackerManager::GetInstance()->SetActiveState(GazeTrackerState::Running);
-	GazeTrackerManager::GetInstance()->Start();
+	close();
+	UISystem::GetInstance()->GetGazeTrackerUI()->show();
 }
 
 void ConfigurationUI_StateWorker::process()
