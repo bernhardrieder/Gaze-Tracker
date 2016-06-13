@@ -5,6 +5,8 @@ using namespace gt;
 
 ScreenCapture::ScreenCapture(HWND window) : m_window(window), m_stopCapture(true), m_isCapturing(false), m_fps(0)
 {
+	if (Configuration::GetInstance()->GetRecordData())
+		DataTrackingSystem::GetInstance()->WriteDesktopSize(GetFrameSize(window));
 }
 
 ScreenCapture::~ScreenCapture()
@@ -28,13 +30,30 @@ void ScreenCapture::StartCapture(int fps, const cv::Size frameSize, const float 
 
 void ScreenCapture::StartCapture(int fps, const float frameScale)
 {
+	if (Configuration::GetInstance()->GetRecordData())
+		DataTrackingSystem::GetInstance()->WriteScreenCaptureResizeFactor(fps, frameScale);
 	StartCapture(fps, GetFrameSize(m_window), frameScale);
+}
+
+void ScreenCapture::StopCapture()
+{
+	m_stopCapture = true;
+}
+
+bool ScreenCapture::IsCapturing() const
+{
+	return m_isCapturing;
 }
 
 cv::Size ScreenCapture::GetFrameSize(HWND window)
 {
 	cv::Mat screen = hwnd2Mat(window);
 	return cv::Size(screen.size().width, screen.size().height);
+}
+
+std::string ScreenCapture::GetLastFrameFileName() const
+{
+	return m_LastFrameFileName;
 }
 
 void ScreenCapture::captureThread()
@@ -64,7 +83,9 @@ void ScreenCapture::saveFramesThread()
 		if (!m_lastFrame.empty())
 		{
 			static int count = 0;
-			cv::imwrite(std::string(DataTrackingSystem::GetInstance()->GetFramesDirectoryName() +"/" + std::to_string(++count) + ".jpg"), m_lastFrame);
+			std::string filename = std::to_string(++count) + ".jpg";
+			cv::imwrite(std::string(DataTrackingSystem::GetInstance()->GetFramesDirectoryName() +"/" + filename), m_lastFrame);
+			m_LastFrameFileName = filename;
 		}
 		unique_lock.unlock();
 		auto endTime = std::chrono::high_resolution_clock::now();

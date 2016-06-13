@@ -20,7 +20,7 @@ namespace gt
 		double time; //use cpu clock time
 		cv::Point gazePosition;
 		std::string frameFileName;
-
+	private:
 		const std::string t = "time";
 		const std::string pos = "gazeScreenPos";
 		const std::string file = "frameFile";

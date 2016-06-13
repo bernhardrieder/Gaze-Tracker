@@ -5,7 +5,7 @@ gt::GazeData::GazeData(): GazeData(0,cv::Point(0,0), "")
 {
 }
 
-gt::GazeData::GazeData(double time, cv::Point gazePos, std::string frameFileName): /*id(id),*/ time(time), gazePosition(gazePos), frameFileName(frameFileName)
+gt::GazeData::GazeData(double time, cv::Point gazePos, std::string frameFileName): time(time), gazePosition(gazePos), frameFileName(frameFileName)
 {
 }
 
@@ -30,8 +30,6 @@ void gt::GazeData::read(const cv::FileNode& node)
 	frameFileName = static_cast<std::string>(node[file.c_str()]);
 }
 
-
-
 void gt::GazeData::write(cv::FileStorage& fs, const std::string&, const GazeData& x)
 {
 	x.write(fs);
@@ -47,8 +45,8 @@ void gt::GazeData::read(const cv::FileNode& node, GazeData& x, const GazeData& d
 
 std::ostream & gt::operator<<(std::ostream & out, const GazeData & m)
 {
-	out << "{" << m.t << " = " << m.time << ", ";
-	out << m.pos << " = " << m.gazePosition << ", ";
-	out << m.file << " = " << m.frameFileName << "}";
+	out << "{" << "time" << " = " << m.time << ", ";
+	out << "gazePosition" << " = " << m.gazePosition << ", ";
+	out << "frameFileName" << " = " << m.frameFileName << "}";
 	return out;
 }

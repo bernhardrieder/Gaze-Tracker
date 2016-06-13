@@ -4,7 +4,7 @@
 
 using namespace gt;
 
-DataTrackingSystem::DataTrackingSystem()
+DataTrackingSystem::DataTrackingSystem() : m_FirstGazeData(false)
 {
 }
 
@@ -34,27 +34,32 @@ void DataTrackingSystem::OpenFile()
 
 void DataTrackingSystem::CloseFile()
 {
-	m_FileStorage << "]"; //closes gazedata sequence
+	if (!m_FileStorage.isOpened()) return;
+	if(m_FirstGazeData)
+		m_FileStorage << "]"; //closes gazedata sequence
 	m_FileStorage.release();
 }
 
-void DataTrackingSystem::WriteDesktopSize(cv::Size size)
+void DataTrackingSystem::WriteDesktopSize(const cv::Size& size)
 {
+	if (!m_FileStorage.isOpened()) return;
 	m_FileStorage << "DesktopSize" << size;
 }
 
-void DataTrackingSystem::WriteScreenCaptureResizeFactor(double resizeFactor)
+void DataTrackingSystem::WriteScreenCaptureResizeFactor(int fps, double resizeFactor)
 {
+	if (!m_FileStorage.isOpened()) return;
+	m_FileStorage << "TRIED_FPS" << fps;
 	m_FileStorage << "ScreenCaptureResizeFactor" << resizeFactor;
 }
 
-void DataTrackingSystem::WriteGazeData(GazeData data)
+void DataTrackingSystem::WriteGazeData(const GazeData& data)
 {
-	static bool firstData = false;
-	if(!firstData)
+	if (!m_FileStorage.isOpened()) return;
+	if(!m_FirstGazeData)
 	{
 		m_FileStorage << "GazeData" << "[";
-		firstData = true;
+		m_FirstGazeData = true;
 	}
 	m_FileStorage << data;
 }
@@ -70,6 +75,8 @@ std::string DataTrackingSystem::GetFramesDirectoryName() const
 //	fs.open("C://GazeTracker//Output//tracked_data_13-06-2016_22-52-36.xml", cv::FileStorage::READ);
 //	cv::Size DesktopSize;
 //	fs["DesktopSize"] >> DesktopSize;
+//	int TRIED_FPS;
+//	TRIED_FPS = static_cast<int>(fs["TRIED_FPS"]);
 //	double ScreenCaptureResizeFactor;
 //	ScreenCaptureResizeFactor = static_cast<double>(fs["ScreenCaptureResizeFactor"]);
 //	cv::FileNode n = fs["GazeData"];                         // Read string sequence - Get node

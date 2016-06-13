@@ -11,20 +11,12 @@ namespace gt
 		~ScreenCapture();
 
 		void StartCapture(int fps, const cv::Size frameSize, const float frameScale = 0.75f);
-		/*uses frameSize of window*/
 		void StartCapture(int fps, const float frameScale = 0.75f);
-
-		void StopCapture()
-		{
-			m_stopCapture = true;
-		};
-
-		bool IsCapturing() const
-		{
-			return m_isCapturing;
-		};
+		void StopCapture();
+		bool IsCapturing() const;
 
 		static cv::Size GetFrameSize(HWND window);
+		std::string GetLastFrameFileName() const;
 
 	private:
 		HWND m_window;
@@ -37,6 +29,7 @@ namespace gt
 		bool m_isCapturing = false;
 		int m_fps;
 		cv::Size m_frameSize;
+		std::string m_LastFrameFileName;
 
 		void captureThread();
 		void saveFramesThread();

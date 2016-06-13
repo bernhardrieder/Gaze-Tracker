@@ -156,7 +156,12 @@ void GazeTrackerManager::detectIrisesPositionsThread()
 			cv::Point gazePoint = m_GazeConverter.ConvertToScreenPosition(m_LastIrisesPositions);
 			if(!m_GazeConverter.IsError(gazePoint))
 			{
-				UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(GazeData(0, gazePoint, ".."));
+				double time = clock() / static_cast<double>(CLOCKS_PER_SEC);
+				std::string framename = m_ScreenCapture.GetLastFrameFileName();
+				GazeData data{ time, gazePoint, framename };
+				UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(data);
+				if (Configuration::GetInstance()->GetRecordData())
+					DataTrackingSystem::GetInstance()->WriteGazeData(data);
 			}
 			else
 			{
