@@ -12,9 +12,10 @@ namespace gt
 		void OpenFile();
 		void CloseFile();
 		void WriteDesktopSize(cv::Size size);
-		void WriteScreenCaptureProperties(bool screenCaptured, cv::String folderName, float resizeFactor); //
+		void WriteScreenCaptureResizeFactor(double resizeFactor);
+		//IMPORTANT: call WriteDesktopSize and WriteScreenCaptureResizeFactor first
 		void WriteGazeData(GazeData data);
-		std::string GetFramesDirectoryName();
+		std::string GetFramesDirectoryName() const;
 
 		std::string DefaultStorageFolder = "C://GazeTracker//output";
 	private:
@@ -23,7 +24,7 @@ namespace gt
 		std::string m_FileName;
 
 		std::string& getStoragePath();
-		std::string getFileName();
 	};
-
+	static void write(cv::FileStorage& fs, const std::string& str, const GazeData& x);
+	static void read(const cv::FileNode& node, GazeData& x, const GazeData& default_value = GazeData());
 }

@@ -34,34 +34,70 @@ void DataTrackingSystem::OpenFile()
 
 void DataTrackingSystem::CloseFile()
 {
+	m_FileStorage << "]"; //closes gazedata sequence
 	m_FileStorage.release();
 }
 
 void DataTrackingSystem::WriteDesktopSize(cv::Size size)
 {
+	m_FileStorage << "DesktopSize" << size;
 }
 
-void DataTrackingSystem::WriteScreenCaptureProperties(bool screenCaptured, cv::String folderName, float resizeFactor)
+void DataTrackingSystem::WriteScreenCaptureResizeFactor(double resizeFactor)
 {
+	m_FileStorage << "ScreenCaptureResizeFactor" << resizeFactor;
 }
 
 void DataTrackingSystem::WriteGazeData(GazeData data)
 {
+	static bool firstData = false;
+	if(!firstData)
+	{
+		m_FileStorage << "GazeData" << "[";
+		firstData = true;
+	}
+	m_FileStorage << data;
 }
 
-std::string DataTrackingSystem::GetFramesDirectoryName()
+std::string DataTrackingSystem::GetFramesDirectoryName() const
 {
 	return std::string(m_FileName + "_frames");
 }
 
-std::string DataTrackingSystem::getFileName()
-{
-	return m_FileName;
-}
+//void DataTrackingSystem::READTEST()
+//{
+//	cv::FileStorage fs;
+//	fs.open("C://GazeTracker//Output//tracked_data_13-06-2016_22-52-36.xml", cv::FileStorage::READ);
+//	cv::Size DesktopSize;
+//	fs["DesktopSize"] >> DesktopSize;
+//	double ScreenCaptureResizeFactor;
+//	ScreenCaptureResizeFactor = static_cast<double>(fs["ScreenCaptureResizeFactor"]);
+//	cv::FileNode n = fs["GazeData"];                         // Read string sequence - Get node
+//	if (n.type() == cv::FileNode::SEQ)
+//	{
+//		cv::FileNodeIterator it = n.begin(), it_end = n.end(); // Go through the node
+//		for (; it != it_end; ++it)
+//		{
+//			GazeData data;
+//			*it >> data;
+//			data;
+//		}
+//	}
+//}
 
 std::string & DataTrackingSystem::getStoragePath()
 {
 	if (!m_StoragePath.empty())
 		return m_StoragePath;
 	return DefaultStorageFolder;
+}
+
+void gt::write(cv::FileStorage& fs, const std::string& str, const GazeData& x)
+{
+	GazeData::write(fs, str, x);
+}
+
+void gt::read(const cv::FileNode& node, GazeData& x, const GazeData& default_value)
+{
+	GazeData::read(node, x, default_value);
 }
