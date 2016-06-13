@@ -1,12 +1,9 @@
 #include "stdafx.h"
 #include "GazeTrackerManager.h"
-
 using namespace gt;
 
 GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow()), m_ActiveState(GazeTrackerState::Start_UI), m_GazeConverter(ScreenCapture::GetFrameSize(GetDesktopWindow()))
 {
-	CreateDirectory(LPWSTR(std::wstring(L"Frames").c_str()), NULL);
-	CreateDirectory(LPWSTR(std::wstring(L"template_matching").c_str()), NULL);
 	m_LastIrisesPositions.left = cv::Point(0, 0);
 	m_LastIrisesPositions.right = cv::Point(0, 0);
 }
@@ -24,8 +21,7 @@ void GazeTrackerManager::Start()
 	{
 		m_ScreenCapture.StartCapture(30);
 	}
-//#warning create thread!!
-	//detectIrisesPositionsThread(); 
+
 	m_DetectIrisesPositionsThread = std::thread(&GazeTrackerManager::detectIrisesPositionsThread, this);
 }
 
@@ -160,7 +156,11 @@ void GazeTrackerManager::detectIrisesPositionsThread()
 			cv::Point gazePoint = m_GazeConverter.ConvertToScreenPosition(m_LastIrisesPositions);
 			if(!m_GazeConverter.IsError(gazePoint))
 			{
-
+				UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(GazeData(0, gazePoint, ".."));
+			}
+			else
+			{
+				UISystem::GetInstance()->GetGazeTrackerUI()->ClearCurrentGazePoint();
 			}
 		}
 	}

@@ -37,8 +37,8 @@ void GazeVisualizationUI::ClearCurrentGazePoint()
 
 void GazeVisualizationUI::paintEvent(QPaintEvent * event)
 {
-	static QColor col = QColor(0, 250, 0, 128);
-	static int ellipseWidth = 20, ellipseHeight = 10;
+	static QColor col = QColor(0, 250, 0, 200);
+	static int ellipseWidth = 30, ellipseHeight = 15;
 
 	QPainter painter(this);
 	painter.setPen(QPen(QBrush(col), 1, Qt::PenStyle::DotLine));

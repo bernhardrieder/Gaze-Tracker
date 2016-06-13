@@ -50,6 +50,7 @@
 #include "Configuration.h"
 #include "GazeData.h"
 #include "GazeConverter.h"
+#include "DataTrackingSystem.h"
 
 /*			UI			*/
 #include "UISystem.h"

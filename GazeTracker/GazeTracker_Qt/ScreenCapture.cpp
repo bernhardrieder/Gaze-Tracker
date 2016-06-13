@@ -64,7 +64,7 @@ void ScreenCapture::saveFramesThread()
 		if (!m_lastFrame.empty())
 		{
 			static int count = 0;
-			cv::imwrite(std::string("Frames/ " + std::to_string(++count) + ".jpg"), m_lastFrame);
+			cv::imwrite(std::string(DataTrackingSystem::GetInstance()->GetFramesDirectoryName() +"/" + std::to_string(++count) + ".jpg"), m_lastFrame);
 		}
 		unique_lock.unlock();
 		auto endTime = std::chrono::high_resolution_clock::now();

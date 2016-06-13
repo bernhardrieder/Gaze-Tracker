@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "FaceDetection.h"
 using namespace gt;
-cv::String FaceDetection::eyeLeftTemplateName = "template_matching/eye_left.png";
-cv::String FaceDetection::eyeRightTemplateName = "template_matching/eye_right.png";
+cv::String FaceDetection::eyeLeftTemplateName = "C:/GazeTracker/tmp/template_matching/eye_left.png";
+cv::String FaceDetection::eyeRightTemplateName = "C:/GazeTracker/tmp/template_matching/eye_right.png";
 
 FaceDetection::FaceDetection() : FaceDetection(m_face_cascade_name_default, m_left_eye_cascade_name_default, m_right_eye_cascade_name_default)
 {
@@ -11,8 +11,6 @@ FaceDetection::FaceDetection() : FaceDetection(m_face_cascade_name_default, m_le
 FaceDetection::FaceDetection(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName)
 {
 	initClassifiers(faceCascadeName, leftEyeCascadeName, rightEyeCascadeName);
-
-
 	m_LastDetectedEyesROIFromCascadeClassifier.left.x = m_LastDetectedEyesROIFromCascadeClassifier.right.x = m_LastDetectedEyesROIFromCascadeClassifier.left.y = m_LastDetectedEyesROIFromCascadeClassifier.right.y = 0;
 }
 

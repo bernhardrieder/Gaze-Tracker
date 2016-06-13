@@ -15,11 +15,13 @@ namespace gt
 		void show();
 	private:
 		Ui::StartUi ui;
+		QFileDialog* m_FileDialog;
 
 	private slots:
 		static void startApplication();
 		void showAbout();
-		static void recordDataChanged(int state);
+		void recordDataChanged(int state) const;
+		void pathChanged(const QString& path);
 	};
 }
 
