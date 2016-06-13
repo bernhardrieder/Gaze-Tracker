@@ -1,11 +1,10 @@
 #include "stdafx.h"
-#include "gazetrackerui.h"
-#include <QtWidgets/QApplication>
-#include "startui.hpp"
+#include "GazeTracker.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-	QApplication a(argc, argv);
-	GazeTrackerMain::GetInstance()->Welcome();
-	return a.exec();
+	GazeTracker tracker(argc, argv);
+	tracker.StartApplication();
+	return tracker.exec();
 }
+

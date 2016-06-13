@@ -1,21 +1,27 @@
 ﻿#pragma once
-#include <QWidget>
 #include "ui_startui.h"
-#include "GazeTrackerMain.h"
 
-class StartUI : public QWidget {
-	Q_OBJECT
+namespace gt
+{
+	class StartUI : public QWidget
+	{
+		Q_OBJECT
 
-public:
-	StartUI(QWidget * parent = Q_NULLPTR);
-	~StartUI();
+	public:
+		StartUI(QWidget* parent = Q_NULLPTR);
+		~StartUI();
 
-private:
-	Ui::StartUi ui;
-	bool m_RecordData;
+	public slots:
+		void show();
+	private:
+		Ui::StartUi ui;
+		QFileDialog* m_FileDialog;
 
-private slots:
-	static void startApplication();
-	void showAbout();
-	void recordDataChanged(int state);
-};
+	private slots:
+		static void startApplication();
+		void showAbout();
+		void recordDataChanged(int state) const;
+		void pathChanged(const QString& path);
+	};
+}
+

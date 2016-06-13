@@ -3,7 +3,7 @@
 #ifndef _SINGLETON_H
 #define _SINGLETON_H
 
-template<typename T>
+template <typename T>
 class Singleton
 {
 public:
@@ -12,20 +12,31 @@ public:
 
 private:
 
-	Singleton(Singleton const&) {};
-	Singleton& operator=(Singleton const&) {};
+	Singleton(Singleton const&)
+	{
+	};
+
+	Singleton& operator=(Singleton const&)
+	{
+	};
 
 protected:
 	static T* m_instance;
 
-	Singleton() { m_instance = static_cast <T*> (this); };
-	~Singleton() {  };
+	Singleton()
+	{
+		m_instance = static_cast<T*>(this);
+	};
+
+	~Singleton()
+	{
+	};
 };
 
-template<typename T>
+template <typename T>
 typename T* Singleton<T>::m_instance = 0;
 
-template<typename T>
+template <typename T>
 T* Singleton<T>::GetInstance()
 {
 	if (!m_instance)
@@ -36,7 +47,7 @@ T* Singleton<T>::GetInstance()
 	return m_instance;
 }
 
-template<typename T>
+template <typename T>
 void Singleton<T>::destroy()
 {
 	delete Singleton<T>::m_instance;
@@ -44,3 +55,4 @@ void Singleton<T>::destroy()
 }
 
 #endif
+

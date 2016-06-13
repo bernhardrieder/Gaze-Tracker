@@ -1,143 +1,343 @@
 #include "stdafx.h"
 #include "FaceDetection.h"
-
-cv::String eyeLeftTemplateName = "template_matching/eye_left.png";
-cv::String eyeRightTemplateName = "template_matching/eye_right.png";
+using namespace gt;
+cv::String FaceDetection::eyeLeftTemplateName = "C:/GazeTracker/tmp/template_matching/eye_left.png";
+cv::String FaceDetection::eyeRightTemplateName = "C:/GazeTracker/tmp/template_matching/eye_right.png";
 
 FaceDetection::FaceDetection() : FaceDetection(m_face_cascade_name_default, m_left_eye_cascade_name_default, m_right_eye_cascade_name_default)
-{}
+{
+}
 
 FaceDetection::FaceDetection(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName)
 {
 	initClassifiers(faceCascadeName, leftEyeCascadeName, rightEyeCascadeName);
-	m_EyeLeftTemplate = cv::imread(eyeLeftTemplateName, cv::IMREAD_GRAYSCALE);
-	m_EyeRightTemplate = cv::imread(eyeRightTemplateName, cv::IMREAD_GRAYSCALE);
+	m_LastDetectedEyesROIFromCascadeClassifier.left.x = m_LastDetectedEyesROIFromCascadeClassifier.right.x = m_LastDetectedEyesROIFromCascadeClassifier.left.y = m_LastDetectedEyesROIFromCascadeClassifier.right.y = 0;
 }
 
 FaceDetection::~FaceDetection()
 {
 }
 
-void FaceDetection::detectAndDraw(cv::Mat& frame)
+void FaceDetection::CheckForFaceROIsWithCascadeClassifier(const cv::Mat& flippedFrameGray, std::vector<FaceROI>& out)
 {
-	cv::flip(frame, frame, 1);
+	if (flippedFrameGray.empty()) return;
 	std::vector<cv::Rect> faces;
-	cv::Mat frame_gray;
-	cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
-	if (frame_gray.empty()) return;
-	cv::equalizeHist(frame_gray, frame_gray);
-	//-- Detect faces
-	m_FaceCascadeClassifier.detectMultiScale(frame_gray, faces, 1.2, 5, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING | cv::CASCADE_FIND_BIGGEST_OBJECT, cv::Size(30, 30));
-	for (size_t i = 0; i < faces.size(); i++)
+	cv::Mat frameHist = flippedFrameGray.clone();
+	cv::equalizeHist(frameHist, frameHist);
+	try
 	{
-		/* 
-		"Within the face region, 20 % from the top(forehead) and 40 % from the bottom (face below nostrils) can be cropped and rejected from further analysis[65].Inspected region limitation let to gain several milliseconds for every cycle of the method." - Paper: "Single web camera robust interactive eye-gaze tracking method", by "A. WOJCIECHOWSKI and K. FORNALCZYK" 
-		-> this causes cv::Mat exceptions?
-		
-		*/
-		faces[i].y += faces[i].y * 0.2f;
-		faces[i] += cv::Size(0, -(faces[i].height * 0.6f));
-
-		cv::Rect leftSide = faces[i];
-		leftSide -= cv::Size(faces[i].width * 0.5f, 0);
-		cv::Rect rightSide = leftSide;
-		rightSide.x += leftSide.width;
-
-
-		cv::rectangle(frame, leftSide, cv::Scalar(255, 255, 0));
-		cv::rectangle(frame, rightSide, cv::Scalar(255, 0, 255));
-
-
-		eyeDetection(frame, frame_gray, leftSide, Eye::LEFT);
-		eyeDetection(frame, frame_gray, rightSide, Eye::RIGHT);
+		m_FaceCascadeClassifier.detectMultiScale(frameHist, faces, 1.2, 5, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING | cv::CASCADE_FIND_BIGGEST_OBJECT, cv::Size(30, 30));
 	}
-	//-- Show what you got
-	cv::imshow("result", frame);
-}
-
-void FaceDetection::eyeDetection(cv::Mat& frame, cv::Mat& frame_gray, cv::Rect& faceRegion, Eye eyeSide)
-{
-
-	cv::Mat roi = frame_gray.clone();
-	roi = roi(faceRegion);
-	if (roi.empty()) return;
-	std::vector<cv::Rect> eye;
-	cv::CascadeClassifier* classifier = nullptr;
-	switch(eyeSide)
+	catch (...)
 	{
-	case Eye::LEFT: classifier = &m_LeftEyeCascadeClassifier;
-	case Eye::RIGHT: classifier = &m_RightEyeCascadeClassifier;
+		qDebug() << "EXCEPTION: in face detection";
 	}
-	CV_Assert(classifier != nullptr);
-	classifier->detectMultiScale(roi, eye, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING,
-		cv::Size(20, 20));
-
-	for (size_t j = 0; j < eye.size(); j++)
+	if (faces.size() != 0)
 	{
-		float offsetX = eye[j].width / 3.;
-		float yDivid = 3.;
-		float offsetY = eye[j].height / yDivid;
-		cv::Rect eyeRegion = cv::Rect(faceRegion.x + eye[j].x + offsetX / 2, faceRegion.y + eye[j].y + offsetY*(yDivid / 2), eye[j].width - offsetX, eye[j].height - offsetY * 2);
-		cv::rectangle(frame, eyeRegion, cv::Scalar(255, 0, 0));
-		cv::Mat roi = frame_gray.clone();
-		roi = roi(eyeRegion);
-		if (roi.empty()) break;
-		pupilDetection(frame, roi, eyeSide, eyeRegion);
+		for (auto face : faces)
+		{
+			FaceROI faceROI;
+			faceROI.leftSideROI = face;
+			faceROI.leftSideROI -= cv::Size(face.width * 0.5f, 0);
+			faceROI.rightSideROI = faceROI.leftSideROI;
+			faceROI.rightSideROI.x += faceROI.leftSideROI.width;
+			out.push_back(faceROI);
+		}
 	}
 }
 
-void FaceDetection::pupilDetection(cv::Mat& frame, cv::Mat& roi, Eye eyeSide, cv::Rect roiRect)
+void FaceDetection::CheckForEyesROIWithCascadeClassifier(const cv::Mat& flippedFrameGray, const FaceROI& face, EyesROI& out)
 {
-	if (roi.empty()) return;
-	cv::equalizeHist(roi, roi);
+	if (flippedFrameGray.empty()) return;
+	cv::Mat frameHist, leftSide, rightSide;
+	cv::equalizeHist(flippedFrameGray, frameHist); // -> really needed for better face detection?
+	leftSide = frameHist.clone()(face.leftSideROI);
+	rightSide = frameHist.clone()(face.rightSideROI);
 
-	double resize = 10;
-
-	cv::resize(roi, roi, cv::Size(), resize, resize);
-	cv::imshow(ToString(eyeSide) + "_hist", roi); // use this to config the templates
-	pupilTemplateMatching(frame, roi, eyeSide, roiRect);
+	std::vector<cv::Rect> eyesLeft, eyesRight;
+	try
+	{
+		m_LeftEyeCascadeClassifier.detectMultiScale(leftSide, eyesLeft, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, cv::Size(20, 20));
+		m_RightEyeCascadeClassifier.detectMultiScale(rightSide, eyesRight, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE | cv::CASCADE_DO_CANNY_PRUNING, cv::Size(20, 20));
+	}
+	catch (...)
+	{
+		qDebug() << "EXCEPTION: in eye detection";
+	}
+	setEyeROI(eyesLeft, face.leftSideROI, out.left, m_LastDetectedEyesROIFromCascadeClassifier.left);
+	setEyeROI(eyesRight, face.rightSideROI, out.right, m_LastDetectedEyesROIFromCascadeClassifier.right);
+	if (eyesLeft.size() != 0 || eyesRight.size() != 0)
+	{
+		addHeadSize(cv::Size(face.leftSideROI.width + face.rightSideROI.width, face.leftSideROI.height));
+		m_LastDetectedCenterPointOfHeadWithEyes.x = face.leftSideROI.x + face.leftSideROI.width;
+		m_LastDetectedCenterPointOfHeadWithEyes.y = face.leftSideROI.y + face.leftSideROI.height / 2;
+	}
 }
 
-void FaceDetection::pupilTemplateMatching(cv::Mat& frame, cv::Mat& eyeRoi, Eye eyeSide, cv::Rect& roiRect)
+void FaceDetection::setEyeROI(const std::vector<cv::Rect>& eyes, const cv::Rect& faceRegion, cv::Rect& eye, cv::Rect& lastDeteced)
 {
-	//TODO: 4.06.2016 - config eye templates -> define roi of each eye and save roi size and eyetemplate size. change size of template if head moves in z axis?
-	//TODO: rescale images -> they need to have the same sizes in relation to each other (eyeRoi and template). i think this will lead to some problems in finding the middle point of the pupil. another issue is facing with the template image -> should it be an qubic image? should be the pupil the middle of the picture? -> due to exact middle point detection!!
-	cv::Mat result, templ;
-	switch(eyeSide)
+	if (eyes.size() != 0)
 	{
-	case Eye::RIGHT: templ = m_EyeLeftTemplate;
-	case Eye::LEFT: templ = m_EyeLeftTemplate;
+		adjustEyeROI(faceRegion, eyes, eye);
+		if (eye.x != 0 || eye.y != 0)
+			lastDeteced = eye;
 	}
-	//img.copyTo(img_display);
-	//cv::Mat newTmplt;
-	//float cubicSize = eyeRoi.rows;;
-	//cv::resize(templ, newTmplt, cv::Size(cubicSize - (cubicSize / 2), cubicSize - (cubicSize / 2)));
-	//templ = newTmplt;
-	int result_cols = eyeRoi.cols - templ.cols + 1;
-	int result_rows = eyeRoi.rows - templ.rows + 1;
-	if (result_cols < 0 || result_rows < 0) return;
-	result.create(result_rows, result_cols, CV_32FC1);
-	cv::matchTemplate(eyeRoi, templ, result, templateMatchingMethod);
-	cv::normalize(result, result, 0, 1, cv::NORM_MINMAX, -1, cv::Mat());
-	double minVal, maxVal;
-	cv::Point minLoc, maxLoc, matchLoc;
-	cv::minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
-	if (templateMatchingMethod == cv::TM_SQDIFF || templateMatchingMethod == cv::TM_SQDIFF_NORMED)
-		matchLoc = minLoc;
+}
+
+void FaceDetection::adjustEyeROI(const cv::Rect& faceRegion, const std::vector<cv::Rect>& eyes, cv::Rect& out)
+{
+	for (auto eye : eyes)
+	{
+		out = cv::Rect(faceRegion.x + eye.x, faceRegion.y + eye.y, eye.width, eye.height);
+	}
+}
+
+bool FaceDetection::GetEyes(const cv::Mat& flippedFrameGray, cv::Mat& leftEye, cv::Mat& rightEye, double resizeFactor, bool equalizeHist)
+{
+	if (flippedFrameGray.empty()) return false;
+	std::vector<FaceROI> faces;
+	EyesROI eyes;
+	CheckForFaceROIsWithCascadeClassifier(flippedFrameGray, faces);
+	if (faces.size() != 0)
+	{
+		for (auto face : faces)
+		{
+			CheckForEyesROIWithCascadeClassifier(flippedFrameGray, face, eyes);
+		}
+		leftEye = flippedFrameGray.clone()(eyes.left);
+		rightEye = flippedFrameGray.clone()(eyes.right);
+		if (resizeFactor > 0)
+		{
+			if (!leftEye.empty())
+				cv::resize(leftEye, leftEye, cv::Size(), resizeFactor, resizeFactor);
+			if (!rightEye.empty())
+				cv::resize(rightEye, rightEye, cv::Size(), resizeFactor, resizeFactor);
+		}
+		if (equalizeHist)
+		{
+			if (!leftEye.empty())
+				cv::equalizeHist(leftEye, leftEye);
+			if (!rightEye.empty())
+				cv::equalizeHist(rightEye, rightEye);
+		}
+		return true;
+	}
+	return false;
+}
+
+void FaceDetection::GetEyesForIrisDetection(const cv::Mat& flippedFrameGray, cv::Mat& leftIris, cv::Mat& rightIris)
+{
+	if (flippedFrameGray.empty()) return;
+	std::vector<FaceROI> faces;
+	CheckForFaceROIsWithCascadeClassifier(flippedFrameGray, faces);
+	if (faces.size() != 0)
+	{
+		for (auto face : faces)
+		{
+			EyesROI eyesROI;
+			CheckForEyesROIWithCascadeClassifier(flippedFrameGray, face, eyesROI); //check if new eye pos found
+			createEyeROIFomFaceROI(face, eyesROI);
+
+			leftIris = flippedFrameGray(eyesROI.left);
+			rightIris = flippedFrameGray(eyesROI.right);
+		}
+	}
+}
+
+void FaceDetection::GetIrisesCenterPositions(const cv::Mat& flippedFrameGray, const FaceROI& faceROI, cv::Point& leftIris, cv::Point& rightIris)
+{
+	if (flippedFrameGray.empty()) return;
+	EyesROI eyesROI;
+	CheckForEyesROIWithCascadeClassifier(flippedFrameGray, faceROI, eyesROI);
+	createEyeROIFomFaceROI(faceROI, eyesROI);
+
+	/*------------------DEBUG------------------*/
+	//cv::Mat left, right;
+	//left = flippedFrameGray(eyesROI.left);
+	//cv::resize(left, left, cv::Size(), 15, 15);
+	//right = flippedFrameGray(eyesROI.right);
+	//cv::resize(right, right, cv::Size(), 15, 15);
+	//cv::imshow("left test", left);
+	//cv::imshow("right test", right);
+	/*------------------DEBUG------------------*/
+
+	int radius = 3;
+	if (eyesROI.left.x != 0 || eyesROI.left.y != 0)
+	{
+		getIrisCenterPosition(flippedFrameGray, eyesROI.left, m_EyeLeftTemplate, leftIris);
+	}
+	if (eyesROI.right.x != 0 || eyesROI.right.y != 0)
+	{
+		getIrisCenterPosition(flippedFrameGray, eyesROI.right, m_EyeRightTemplate, rightIris);
+	}
+}
+
+cv::Size FaceDetection::GetAverageHeadSize()
+{
+	cv::Size result = cv::Size(0,0);
+	if(m_LastDetectedSizesOfHeadsWithEyes.size() != 0)
+	{
+		for (auto size : m_LastDetectedSizesOfHeadsWithEyes)
+		{
+			result += size;
+		}
+		result /= static_cast<int>(m_LastDetectedSizesOfHeadsWithEyes.size());
+	}
+	return result;
+}
+
+cv::Point FaceDetection::GetHeadCenterPosition() const
+{
+	return m_LastDetectedCenterPointOfHeadWithEyes;
+}
+
+void FaceDetection::DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool drawFace, bool drawEye, bool drawIris)
+{
+	std::vector<FaceROI> faces;
+	CheckForFaceROIsWithCascadeClassifier(flippedFrameGray, faces);
+	if (faces.size() != 0)
+	{
+		for (auto face : faces)
+		{
+			if (drawFace)
+			{
+				cv::rectangle(flippedFrameGray, face.leftSideROI, cv::Scalar(255, 255, 0));
+				cv::rectangle(flippedFrameGray, face.rightSideROI, cv::Scalar(255, 0, 255));
+
+				static cv::Point headCenterPoint, errorPoint = cv::Point(0, 0);
+				static cv::Size averageHeadSize, errorSize = cv::Size(0, 0);
+				headCenterPoint = GetHeadCenterPosition();
+				if(headCenterPoint != errorPoint)
+					cv::circle(flippedFrameGray, m_LastDetectedCenterPointOfHeadWithEyes, 5, cv::Scalar(255, 255, 0), -1);
+				averageHeadSize = GetAverageHeadSize();
+				if(averageHeadSize != errorSize)
+				{
+					cv::Rect head = cv::Rect(headCenterPoint.x - averageHeadSize.width/2, headCenterPoint.y - averageHeadSize.height/2, averageHeadSize.width, averageHeadSize.height);
+					cv::rectangle(flippedFrameGray, head, cv::Scalar(255, 0, 255), 3);
+				}
+			}
+
+			detectEyeAndDraw(flippedFrameGray, face, drawEye);
+			detectIrisesAndDraw(flippedFrameGray, face, drawIris);
+		}
+	}
+}
+
+void FaceDetection::ReloadTemplates()
+{
+	m_EyeLeftTemplate = cv::imread(eyeLeftTemplateName, cv::IMREAD_GRAYSCALE);
+	m_EyeRightTemplate = cv::imread(eyeRightTemplateName, cv::IMREAD_GRAYSCALE);
+}
+
+void FaceDetection::createEyeROIFomFaceROI(const FaceROI& faceROI, EyesROI& outEyeROI) const
+{
+	//because eyeCascadeClassifier isn't very reliable we wont use the received ROI
+	//instead of using the eye roi, we are gonna using the roi of the face and create our own eye roi
+	createEyeROIFomFaceROI(faceROI.leftSideROI, m_LastDetectedEyesROIFromCascadeClassifier.left, outEyeROI.left);
+	createEyeROIFomFaceROI(faceROI.rightSideROI, m_LastDetectedEyesROIFromCascadeClassifier.right, outEyeROI.right);
+}
+
+void FaceDetection::createEyeROIFomFaceROI(const cv::Rect& faceROI, const cv::Rect& lastDetectedEyeROI, cv::Rect& outEyeROI)
+{
+	outEyeROI = faceROI;
+	if (lastDetectedEyeROI.x != 0 || lastDetectedEyeROI.y != 0)
+	{
+		outEyeROI.height /= 8;
+		outEyeROI.y = lastDetectedEyeROI.y + (lastDetectedEyeROI.height / 2) - (outEyeROI.height / 4); // y pos of height/2 of eye
+		outEyeROI.width /= 2;
+		outEyeROI.x = lastDetectedEyeROI.x + (lastDetectedEyeROI.width / 2) - (outEyeROI.width / 2); // x pos of width/2 of eye
+	}
+}
+
+void FaceDetection::detectEyeAndDraw(cv::Mat& flippedFrameGray, const FaceROI& face, bool draw)
+{
+	if (flippedFrameGray.empty()) return;
+	EyesROI eyes;
+	CheckForEyesROIWithCascadeClassifier(flippedFrameGray, face, eyes);
+
+	if (draw)
+	{
+		cv::rectangle(flippedFrameGray, eyes.left, cv::Scalar(255, 0, 0));
+		cv::rectangle(flippedFrameGray, eyes.right, cv::Scalar(255, 0, 0));
+	}
+}
+
+void FaceDetection::detectIrisesAndDraw(cv::Mat& flippedFrameGray, const FaceROI& faceROI, bool draw)
+{
+	if (flippedFrameGray.empty()) return;
+	cv::Point leftIris, rightIris;
+	GetIrisesCenterPositions(flippedFrameGray, faceROI, leftIris, rightIris);
+	if (draw)
+	{
+		int radius = 3;
+		if (leftIris.x != 0 || leftIris.y != 0)
+		{
+			cv::circle(flippedFrameGray, leftIris, radius, cv::Scalar(255, 255, 255), -1);
+		}
+		if (rightIris.x != 0 || rightIris.y != 0)
+		{
+			cv::circle(flippedFrameGray, rightIris, radius, cv::Scalar(255, 255, 255), -1);
+		}
+	}
+}
+
+void FaceDetection::addHeadSize(cv::Size size)
+{
+	static int maxSize = 10;
+	if(m_LastDetectedSizesOfHeadsWithEyes.size() <= maxSize)
+	{
+		m_LastDetectedSizesOfHeadsWithEyes.push_back(size);
+	}
 	else
-		matchLoc = maxLoc;
-	double mul = 1. / 10.; // resize factor 
-	cv::Rect rect = cv::Rect(matchLoc *mul, cv::Point(matchLoc.x + templ.cols, matchLoc.y + templ.rows) * mul);
-	rect.x += roiRect.x;
-	rect.y += roiRect.y;
-	//cv::rectangle(frame, rect, cv::Scalar::all(0), 2, 8, 0);
-	cv::Point c(rect.x + (rect.width / 2), rect.y + (rect.height / 2));
-	int r = 3;
-	circle(frame, c, r, cv::Scalar(255, 255, 255), -1);
-	//cv::rectangle(result, rect, cv::Scalar::all(0), 2, 8, 0);
-	//cv:imshow("img", img_display);
-	//cv::imshow(result_window, result);
-	//return &rect;
+	{
+		m_LastDetectedSizesOfHeadsWithEyes.pop_front();
+		addHeadSize(size);
+	}
+}
+
+void FaceDetection::getIrisCenterPosition(const cv::Mat& flippedFrameGray, const cv::Rect& eyeROI, const cv::Mat& eyeTemplate, cv::Point& out) const
+{
+	if (flippedFrameGray.empty()) return;
+
+	//euqlize hist for better processing and resize frame because of template resize factor (so they fit to each other)
+	cv::Mat frameHistAndResized, result, templateHist;
+	cv::equalizeHist(flippedFrameGray, frameHistAndResized);
+	cv::equalizeHist(eyeTemplate, templateHist);
+	frameHistAndResized = frameHistAndResized(eyeROI);
+
+	cv::resize(frameHistAndResized, frameHistAndResized, cv::Size(), eyeTemplateResizeFactor, eyeTemplateResizeFactor);
+
+	//check if template isn't bigger than frame!
+	int result_cols = frameHistAndResized.cols - templateHist.cols + 1;
+	int result_rows = frameHistAndResized.rows - templateHist.rows + 1;
+	if (result_cols < 0 || result_rows < 0)
+		return;
+
+	//template matching
+	try
+	{
+		cv::matchTemplate(frameHistAndResized, templateHist, result, templateMatchingMethod);
+		cv::normalize(result, result, 0, 1, cv::NORM_MINMAX, -1, cv::Mat());
+		double minVal, maxVal;
+		cv::Point minLoc, maxLoc, matchLoc;
+		cv::minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
+		if (templateMatchingMethod == cv::TM_SQDIFF || templateMatchingMethod == cv::TM_SQDIFF_NORMED)
+			matchLoc = minLoc;
+		else
+			matchLoc = maxLoc;
+
+		//calculate center position
+		double resize = 1. / eyeTemplateResizeFactor; // resize factor 
+		cv::Rect rect = cv::Rect(matchLoc * resize, cv::Point(matchLoc.x + eyeTemplate.cols, matchLoc.y + eyeTemplate.rows) * resize);
+		rect.x += eyeROI.x;
+		rect.y += eyeROI.y;
+		out = cv::Point(rect.x + (rect.width / 2), rect.y + (rect.height / 2));
+	}
+	catch (...)
+	{
+		//sometimes i got weird breaks in ppl.h which pointed to curly braces ?! -> and i was able to continue the application like nothing happend before
+		out = cv::Point(0, 0);
+	}
 }
 
 bool FaceDetection::initClassifiers(const cv::String& faceCascadeName, const cv::String& leftEyeCascadeName, const cv::String& rightEyeCascadeName)
@@ -159,3 +359,4 @@ bool FaceDetection::initClassifiers(const cv::String& faceCascadeName, const cv:
 	}
 	return true;
 }
+

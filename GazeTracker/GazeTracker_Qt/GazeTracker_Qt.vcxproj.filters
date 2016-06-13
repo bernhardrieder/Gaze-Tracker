@@ -68,19 +68,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_startui.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GazeTrackerMain.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="startui.cpp">
-      <Filter>Source Dateien\Qt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_gazetrackerui.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_gazetrackerui.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="gazetrackerui.cpp">
       <Filter>Source Dateien\Qt</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_templateconfigui.cpp">
@@ -91,6 +79,81 @@
     </ClCompile>
     <ClCompile Include="templateconfigui.cpp">
       <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cornerconfigurationui.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cornerconfigurationui.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="cornerconfigurationui.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConfigurationUI.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConfigurationUI.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigurationUI.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="UISystem.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EyeTemplateSelect.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EyeTemplateSelect.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="EyeTemplateSelect.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="TemplateMatchingMethodConfigUI.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TemplateMatchingMethodConfigUI.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TemplateMatchingMethodConfigUI.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="QtHelper.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeTrackerManager.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeTracker.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeConverter.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GazeVisualizationUI.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GazeVisualizationUI.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeVisualizationUI.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GazeVisualizationToolbox.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GazeVisualizationToolbox.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeVisualizationToolbox.cpp">
+      <Filter>Source Dateien\Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTrackingSystem.cpp">
+      <Filter>Source Dateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,17 +175,47 @@
     <ClInclude Include="GeneratedFiles\ui_startui.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="GazeTrackerMain.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_gazetrackerui.h">
-      <Filter>Generierte Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_templateconfigui.h">
       <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cornerconfigurationui.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ConfigurationUI.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UISystem.h">
+      <Filter>Header Dateien\Qt</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_TemplateMatchingMethodConfigUI.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="QtHelper.h">
+      <Filter>Header Dateien\Qt</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GazeTrackerManager.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GazeTracker.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GazeConverter.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_gazevisualizationui.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GazeVisualizationToolbox.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTrackingSystem.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,16 +228,43 @@
     <CustomBuild Include="startui.hpp">
       <Filter>Header Dateien\Qt</Filter>
     </CustomBuild>
-    <CustomBuild Include="gazetrackerui.h">
-      <Filter>Header Dateien\Qt</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gazetrackerui.ui">
-      <Filter>Form Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="templateconfigui.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="templateconfigui.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cornerconfigurationui.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cornerconfigurationui.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ConfigurationUI.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ConfigurationUI.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EyeTemplateSelect.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TemplateMatchingMethodConfigUI.hpp">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TemplateMatchingMethodConfigUI.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gazevisualizationui.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GazeVisualizationUI.h">
+      <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GazeVisualizationToolbox.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GazeVisualizationToolbox.hpp">
       <Filter>Header Dateien\Qt</Filter>
     </CustomBuild>
   </ItemGroup>
