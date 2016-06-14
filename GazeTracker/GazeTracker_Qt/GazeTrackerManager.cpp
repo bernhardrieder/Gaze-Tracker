@@ -162,6 +162,7 @@ void GazeTrackerManager::detectIrisesPositionsThread()
 				UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(data);
 				if (Configuration::GetInstance()->GetRecordData())
 					DataTrackingSystem::GetInstance()->WriteGazeData(data);
+				qDebug() << std::string("x = " + std::to_string(gazePoint.x) + ", y = " + std::to_string(gazePoint.y)).c_str();
 			}
 			else
 			{
@@ -179,6 +180,7 @@ void GazeTrackerManager::setLastIrisesPositions(cv::Point& left, cv::Point& righ
 
 void GazeTrackerManager::setLastIrisPosition(cv::Point& current, cv::Point& last)
 {
+	//CHECK THIS FUNCTION -> OUTLIERMAX!!?
 	static cv::Point outlierMax(10,10);
 	if (current.x == 0 && current.y == 0) return;
 	if((last.x == 0 && last.y == 0) ||

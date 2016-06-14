@@ -37,6 +37,8 @@ void DataTrackingSystem::CloseFile()
 	if (!m_FileStorage.isOpened()) return;
 	if(m_FirstGazeData)
 		m_FileStorage << "]"; //closes gazedata sequence
+	m_FileStorage << "FramesCount" << m_FramesCount;
+	m_FileStorage << "FramesFileExtension" << m_FramesFileExtension;
 	m_FileStorage.release();
 }
 
@@ -51,6 +53,12 @@ void DataTrackingSystem::WriteScreenCaptureResizeFactor(int fps, double resizeFa
 	if (!m_FileStorage.isOpened()) return;
 	m_FileStorage << "TRIED_FPS" << fps;
 	m_FileStorage << "ScreenCaptureResizeFactor" << resizeFactor;
+}
+
+void DataTrackingSystem::WriteFramesCount(int count, const std::string& fileExtension)
+{
+	m_FramesCount = count;
+	m_FramesFileExtension = fileExtension;
 }
 
 void DataTrackingSystem::WriteGazeData(const GazeData& data)
@@ -69,28 +77,28 @@ std::string DataTrackingSystem::GetFramesDirectoryName() const
 	return std::string(m_FileName + "_frames");
 }
 
-//void DataTrackingSystem::READTEST()
-//{
-//	cv::FileStorage fs;
-//	fs.open("C://GazeTracker//Output//tracked_data_13-06-2016_22-52-36.xml", cv::FileStorage::READ);
-//	cv::Size DesktopSize;
-//	fs["DesktopSize"] >> DesktopSize;
-//	int TRIED_FPS;
-//	TRIED_FPS = static_cast<int>(fs["TRIED_FPS"]);
-//	double ScreenCaptureResizeFactor;
-//	ScreenCaptureResizeFactor = static_cast<double>(fs["ScreenCaptureResizeFactor"]);
-//	cv::FileNode n = fs["GazeData"];                         // Read string sequence - Get node
-//	if (n.type() == cv::FileNode::SEQ)
-//	{
-//		cv::FileNodeIterator it = n.begin(), it_end = n.end(); // Go through the node
-//		for (; it != it_end; ++it)
-//		{
-//			GazeData data;
-//			*it >> data;
-//			data;
-//		}
-//	}
-//}
+DataTrackingXML DataTrackingSystem::ReadXmlFile(cv::FileStorage fs)
+{
+	DataTrackingXML xml;
+	if (!fs.isOpened()) return xml;
+	fs["DesktopSize"] >> xml.DesktopSize;
+	xml.FPS = static_cast<int>(fs["TRIED_FPS"]);
+	xml.FrameScale = static_cast<double>(fs["ScreenCaptureResizeFactor"]);
+	xml.FrameCount = static_cast<int>(fs["FramesCount"]);
+	fs["FramesFileExtension"] >> xml.FrameFileExtension;
+	cv::FileNode n = fs["GazeData"];                         // Read string sequence - Get node
+	if (n.type() == cv::FileNode::SEQ)
+	{
+		cv::FileNodeIterator it = n.begin(), it_end = n.end(); // Go through the node
+		for (; it != it_end; ++it)
+		{
+			GazeData data;
+			*it >> data;
+			xml.Data.push_back(data);
+		}
+	}
+	return xml;
+}
 
 std::string & DataTrackingSystem::getStoragePath()
 {

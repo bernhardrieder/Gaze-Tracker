@@ -51,6 +51,7 @@
 #include "GazeData.h"
 #include "GazeConverter.h"
 #include "DataTrackingSystem.h"
+#include "GazeDataProcessing.hpp"
 
 /*			UI			*/
 #include "UISystem.h"

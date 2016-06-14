@@ -2,7 +2,7 @@
 #include "startui.hpp"
 using namespace gt;
 
-StartUI::StartUI(QWidget* parent) : QWidget(parent)
+StartUI::StartUI(QWidget* parent) : QWidget(parent), m_xmlSet(false), m_frameSet(false)
 {
 	ui.setupUi(this);
 	QObject::connect(ui.quitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
@@ -23,6 +23,13 @@ StartUI::StartUI(QWidget* parent) : QWidget(parent)
 
 	ui.folderLabel->setText(DataTrackingSystem::GetInstance()->DefaultStorageFolder.c_str());
 	ui.recordDataCheckBox->setChecked(Configuration::GetInstance()->GetRecordData());
+
+	m_dataProcessing = new GazeDataProcessing(this);
+
+	QObject::connect(ui.startAnalyticsButton, SIGNAL(clicked()), this, SLOT(startAnalytics()));
+	QObject::connect(ui.chooseXMLButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
+	QObject::connect(ui.chooseFramesButton, SIGNAL(clicked()), this, SLOT(chooseDir()));
+	QObject::connect(ui.videoButton, SIGNAL(clicked()), this, SLOT(chooseVideoOutputFile()));
 }
 
 StartUI::~StartUI()
@@ -62,3 +69,55 @@ void StartUI::pathChanged(const QString& path)
 	ui.folderLabel->setText(path);
 }
 
+void StartUI::chooseFile()
+{
+	xmlFileSelected(QFileDialog::getOpenFileName(this, tr("Select a File"), "", tr("XML File (*.xml)")));
+}
+
+void StartUI::chooseDir()
+{
+	folderPathChanged(QFileDialog::getExistingDirectory(this, tr("Select the frame directory")));
+}
+
+void StartUI::chooseVideoOutputFile()
+{
+	videoOutputChanged(QFileDialog::getExistingDirectory(this, tr("Select video output directory"), "C://GazeTracker//Output"));
+}
+
+void StartUI::xmlFileSelected(const QString& file)
+{
+	if (file.isEmpty()) return;
+	ui.xmlLabel->setEnabled(true);
+	ui.xmlLabel->setText(file);
+	m_xmlSet = true;
+	checkStartAnalyticsButton();
+	m_dataProcessing->InputFilename = file.toStdString();
+}
+
+void StartUI::folderPathChanged(const QString& path)
+{
+	if (path.isEmpty()) return;
+	ui.framesLabel->setEnabled(true);
+	ui.framesLabel->setText(path);
+	m_frameSet = true;
+	checkStartAnalyticsButton();
+	m_dataProcessing->InputFrameDirectory = path.toStdString();
+}
+
+void StartUI::videoOutputChanged(const QString& path)
+{
+	if (path.isEmpty()) return;
+	ui.videoLabel->setText(path);
+	m_dataProcessing->OutputFilePath = path.toStdString();
+}
+
+void StartUI::startAnalytics()
+{
+	m_dataProcessing->show();
+}
+
+
+void StartUI::checkStartAnalyticsButton() const
+{
+	ui.startAnalyticsButton->setEnabled(m_xmlSet && m_frameSet);
+}
