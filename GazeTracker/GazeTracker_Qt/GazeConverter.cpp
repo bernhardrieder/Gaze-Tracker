@@ -5,6 +5,7 @@ using namespace gt;
 
 GazeConverter::GazeConverter(cv::Size screenSize)
 {
+	//REWORK - DONE
 	setScreenSize(screenSize);
 }
 
@@ -127,12 +128,13 @@ void GazeConverter::createRect(GazeROI& roi, const Configuration::CornerConfigur
 
 void GazeConverter::setScreenSize(const cv::Size& screenSize)
 {
+	//REWORK - DONE
 	int screenWidthHalf = (screenSize.width / 2);
 	int screenHeightHalf = (screenSize.height / 2);
-	m_ScreenLeftBottom = cv::Rect(0, 0, screenWidthHalf, screenHeightHalf);
-	m_ScreenLeftTop = cv::Rect(0, screenHeightHalf, screenWidthHalf, screenHeightHalf);
-	m_ScreenRightBottom = cv::Rect(screenWidthHalf, 0, screenWidthHalf, screenHeightHalf);
-	m_ScreenRightTop = cv::Rect(screenWidthHalf, screenHeightHalf, screenWidthHalf, screenHeightHalf);
+	m_ScreenLeftTop = cv::Rect(0, 0, screenWidthHalf, screenHeightHalf);
+	m_ScreenLeftBottom = cv::Rect(0, screenHeightHalf, screenWidthHalf, screenHeightHalf);
+	m_ScreenRightTop = cv::Rect(screenWidthHalf, 0, screenWidthHalf, screenHeightHalf);
+	m_ScreenRightBottom = cv::Rect(screenWidthHalf, screenHeightHalf, screenWidthHalf, screenHeightHalf);
 }
 
 cv::Rect& GazeConverter::getScreenArea(GazeArea area)

@@ -54,6 +54,7 @@ void GazeTrackerManager::detect()
 	m_stopApp = false;
 	FaceDetection faceDetectionSplit;
 	faceDetectionSplit.eyeTemplateResizeFactor = 5;
+	faceDetectionSplit.ReloadTemplates();
 	Camera camera = Camera(0, 800, 600);
 	auto webCamCap = camera.GetCamera();
 
@@ -149,46 +150,32 @@ void GazeTrackerManager::detectIrisesPositionsThread()
 				m_FaceDetection.GetIrisesCenterPositions(frame, face, leftIris, rightIris);
 				setLastIrisesPositions(leftIris, rightIris);
 			}
+			if (m_ActiveState == Running)
+			{
+				cv::Point gazePoint = m_GazeConverter.ConvertToScreenPosition(m_LastIrisesPositions);
+				if (!m_GazeConverter.IsError(gazePoint))
+				{
+					double time = clock() / static_cast<double>(CLOCKS_PER_SEC);
+					std::string framename = m_ScreenCapture.GetLastFrameFileName();
+					GazeData data{ time, gazePoint, framename };
+					UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(data);
+					if (Configuration::GetInstance()->GetRecordData())
+						DataTrackingSystem::GetInstance()->WriteGazeData(data);
+					qDebug() << std::string("x = " + std::to_string(gazePoint.x) + ", y = " + std::to_string(gazePoint.y)).c_str();
+				}
+				else
+				{
+					UISystem::GetInstance()->GetGazeTrackerUI()->ClearCurrentGazePoint();
+				}
+			}
 		}
 
-		if(m_ActiveState == Running)
-		{
-			cv::Point gazePoint = m_GazeConverter.ConvertToScreenPosition(m_LastIrisesPositions);
-			if(!m_GazeConverter.IsError(gazePoint))
-			{
-				double time = clock() / static_cast<double>(CLOCKS_PER_SEC);
-				std::string framename = m_ScreenCapture.GetLastFrameFileName();
-				GazeData data{ time, gazePoint, framename };
-				UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(data);
-				if (Configuration::GetInstance()->GetRecordData())
-					DataTrackingSystem::GetInstance()->WriteGazeData(data);
-				qDebug() << std::string("x = " + std::to_string(gazePoint.x) + ", y = " + std::to_string(gazePoint.y)).c_str();
-			}
-			else
-			{
-				UISystem::GetInstance()->GetGazeTrackerUI()->ClearCurrentGazePoint();
-			}
-		}
 	}
 }
 
 void GazeTrackerManager::setLastIrisesPositions(cv::Point& left, cv::Point& right)
 {
-	setLastIrisPosition(left, m_LastIrisesPositions.left);
-	setLastIrisPosition(right, m_LastIrisesPositions.right);
-}
-
-void GazeTrackerManager::setLastIrisPosition(cv::Point& current, cv::Point& last)
-{
-	//CHECK THIS FUNCTION -> OUTLIERMAX!!?
-	static cv::Point outlierMax(10,10);
-	if (current.x == 0 && current.y == 0) return;
-	if((last.x == 0 && last.y == 0) ||
-		//check if current isn't an outlier!! need to know the max changes -> observe!! 
-		(current.x >= (last.x - outlierMax.x) && current.x <= (last.x + outlierMax.x) && 
-		current.y >= (last.y - outlierMax.y) && current.y <= (last.y + outlierMax.y)))
-	{
-		last = current;
-	}
+	m_LastIrisesPositions.left = left;
+	m_LastIrisesPositions.right = right;
 }
 

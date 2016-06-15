@@ -68,9 +68,10 @@ void FaceDetection::CheckForEyesROIWithCascadeClassifier(const cv::Mat& flippedF
 	setEyeROI(eyesRight, face.rightSideROI, out.right, m_LastDetectedEyesROIFromCascadeClassifier.right);
 	if (eyesLeft.size() != 0 || eyesRight.size() != 0)
 	{
-		addHeadSize(cv::Size(face.leftSideROI.width + face.rightSideROI.width, face.leftSideROI.height));
-		m_LastDetectedCenterPointOfHeadWithEyes.x = face.leftSideROI.x + face.leftSideROI.width;
-		m_LastDetectedCenterPointOfHeadWithEyes.y = face.leftSideROI.y + face.leftSideROI.height / 2;
+		//TODO: use this parameters in gazetrackermanager and allow head movement
+		addHeadSize(cv::Size(face.leftSideROI.width + face.rightSideROI.width, face.leftSideROI.height)); //tested - usable
+		m_LastDetectedCenterPointOfHeadWithEyes.x = face.leftSideROI.x + face.leftSideROI.width; //tested - usable
+		m_LastDetectedCenterPointOfHeadWithEyes.y = face.leftSideROI.y + face.leftSideROI.height / 2; //tested - usable
 	}
 }
 
@@ -226,7 +227,12 @@ void FaceDetection::DetectFaceEyeIrisAndDraw(cv::Mat& flippedFrameGray, bool dra
 void FaceDetection::ReloadTemplates()
 {
 	m_EyeLeftTemplate = cv::imread(eyeLeftTemplateName, cv::IMREAD_GRAYSCALE);
+	if (m_EyeLeftTemplate.empty())
+		qDebug() << "ERROR: Can't load left eye template picture!!";
+
 	m_EyeRightTemplate = cv::imread(eyeRightTemplateName, cv::IMREAD_GRAYSCALE);
+	if (m_EyeRightTemplate.empty())
+		qDebug() << "ERROR: Can't load right eye template picture!!";
 }
 
 void FaceDetection::createEyeROIFomFaceROI(const FaceROI& faceROI, EyesROI& outEyeROI) const
