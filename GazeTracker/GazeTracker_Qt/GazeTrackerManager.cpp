@@ -19,7 +19,7 @@ void GazeTrackerManager::Start()
 	m_stopApp = false;
 	if (m_ActiveState == GazeTrackerState::Running && Configuration::GetInstance()->GetRecordData())
 	{
-		m_ScreenCapture.StartCapture(30);
+		m_ScreenCapture.StartCapture(20);
 	}
 
 	m_DetectIrisesPositionsThread = std::thread(&GazeTrackerManager::detectIrisesPositionsThread, this);

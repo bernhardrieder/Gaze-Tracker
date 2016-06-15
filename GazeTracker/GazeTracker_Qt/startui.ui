@@ -85,7 +85,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QGroupBox" name="">
+          <widget class="QGroupBox" name="groupBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -381,6 +381,22 @@
     <hint type="destinationlabel">
      <x>177</x>
      <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>startButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StartUi</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>198</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>239</y>
     </hint>
    </hints>
   </connection>

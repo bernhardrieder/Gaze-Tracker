@@ -5,8 +5,6 @@ using namespace gt;
 
 ScreenCapture::ScreenCapture(HWND window) : m_window(window), m_stopCapture(true), m_isCapturing(false), m_fps(0)
 {
-	if (Configuration::GetInstance()->GetRecordData())
-		DataTrackingSystem::GetInstance()->WriteDesktopSize(GetFrameSize(window));
 }
 
 ScreenCapture::~ScreenCapture()
@@ -31,7 +29,10 @@ void ScreenCapture::StartCapture(int fps, const cv::Size frameSize, const float 
 void ScreenCapture::StartCapture(int fps, const float frameScale)
 {
 	if (Configuration::GetInstance()->GetRecordData())
+	{
 		DataTrackingSystem::GetInstance()->WriteScreenCaptureResizeFactor(fps, frameScale);
+		DataTrackingSystem::GetInstance()->WriteDesktopSize(GetFrameSize(m_window));
+	}
 	StartCapture(fps, GetFrameSize(m_window), frameScale);
 }
 

@@ -36,9 +36,11 @@ void DataTrackingSystem::CloseFile()
 {
 	if (!m_FileStorage.isOpened()) return;
 	if(m_FirstGazeData)
+	{
 		m_FileStorage << "]"; //closes gazedata sequence
-	m_FileStorage << "FramesCount" << m_FramesCount;
-	m_FileStorage << "FramesFileExtension" << m_FramesFileExtension;
+		m_FileStorage << "FramesCount" << m_FramesCount;
+		m_FileStorage << "FramesFileExtension" << m_FramesFileExtension;
+	}
 	m_FileStorage.release();
 }
 

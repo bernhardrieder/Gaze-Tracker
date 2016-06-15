@@ -27,7 +27,7 @@ void gt::GazeData::read(const cv::FileNode& node)
 {
 	time = static_cast<double>(node[t.c_str()]);
 	node[pos.c_str()] >> gazePosition;
-	frameFileName = static_cast<std::string>(node[file.c_str()]);
+	node[file.c_str()] >> frameFileName;
 }
 
 void gt::GazeData::write(cv::FileStorage& fs, const std::string&, const GazeData& x)
