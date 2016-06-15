@@ -1,6 +1,7 @@
 #pragma once
 #include "Singleton.h"
 #include "GazeConverter.h"
+#include "DataTrackingSystem.h"
 
 namespace gt
 {
@@ -35,7 +36,6 @@ namespace gt
 		GazeTrackerState GetActiveState() const;
 		IrisesPositions GetLastDetectedIrisesPositions() const;
 		void ReloadEyeTemplates();
-
 	private:
 		bool m_stopApp;
 		Camera m_Camera;

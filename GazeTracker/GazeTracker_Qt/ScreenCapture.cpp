@@ -5,8 +5,6 @@ using namespace gt;
 
 ScreenCapture::ScreenCapture(HWND window) : m_window(window), m_stopCapture(true), m_isCapturing(false), m_fps(0)
 {
-	if (Configuration::GetInstance()->GetRecordData())
-		DataTrackingSystem::GetInstance()->WriteDesktopSize(GetFrameSize(window));
 }
 
 ScreenCapture::~ScreenCapture()
@@ -31,7 +29,10 @@ void ScreenCapture::StartCapture(int fps, const cv::Size frameSize, const float 
 void ScreenCapture::StartCapture(int fps, const float frameScale)
 {
 	if (Configuration::GetInstance()->GetRecordData())
+	{
 		DataTrackingSystem::GetInstance()->WriteScreenCaptureResizeFactor(fps, frameScale);
+		DataTrackingSystem::GetInstance()->WriteDesktopSize(GetFrameSize(m_window));
+	}
 	StartCapture(fps, GetFrameSize(m_window), frameScale);
 }
 
@@ -86,6 +87,7 @@ void ScreenCapture::saveFramesThread()
 			std::string filename = std::to_string(++count) + ".jpg";
 			cv::imwrite(std::string(DataTrackingSystem::GetInstance()->GetFramesDirectoryName() +"/" + filename), m_lastFrame);
 			m_LastFrameFileName = filename;
+			DataTrackingSystem::GetInstance()->WriteFramesCount(count, ".jpg");
 		}
 		unique_lock.unlock();
 		auto endTime = std::chrono::high_resolution_clock::now();

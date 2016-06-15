@@ -39,6 +39,15 @@
     <Filter Include="Source Dateien\Qt">
       <UniqueIdentifier>{9b9426c5-5572-4eaa-9246-4ba1586b9148}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Analytics">
+      <UniqueIdentifier>{3ac3356c-5277-4161-9914-3214c0ce2164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Analytics">
+      <UniqueIdentifier>{90d29f4d-926e-4142-b625-360a41474e8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Dateien\Analytics">
+      <UniqueIdentifier>{c49aeaab-1246-448f-8c6b-8c7cd5855a2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -155,6 +164,24 @@
     <ClCompile Include="DataTrackingSystem.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GazeDataProcessing.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GazeDataProcessing.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ProcessingUI.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ProcessingUI.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GazeDataProcessing.cpp">
+      <Filter>Source Dateien\Analytics</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessingUI.cpp">
+      <Filter>Source Dateien\Analytics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -217,6 +244,9 @@
     <ClInclude Include="DataTrackingSystem.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ProcessingUI.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gazetracker_ui.qrc">
@@ -266,6 +296,15 @@
     </CustomBuild>
     <CustomBuild Include="GazeVisualizationToolbox.hpp">
       <Filter>Header Dateien\Qt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ProcessingUI.ui">
+      <Filter>Form Dateien\Analytics</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GazeDataProcessing.hpp">
+      <Filter>Header Dateien\Analytics</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ProcessingUI.hpp">
+      <Filter>Header Dateien\Analytics</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

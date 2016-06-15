@@ -3,6 +3,9 @@
 #ifndef _SINGLETON_H
 #define _SINGLETON_H
 
+namespace gt
+{
+	
 template <typename T>
 class Singleton
 {
@@ -54,5 +57,6 @@ void Singleton<T>::destroy()
 	Singleton<T>::m_instance = 0;
 }
 
+}
 #endif
 
