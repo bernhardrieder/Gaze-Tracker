@@ -47,12 +47,12 @@ cv::Point GazeConverter::getScreenPoint(const cv::Point& irisPos,const GazeROI& 
 {
 	if (gazeRoi.area != GazeArea::OutOfScreen)
 	{
-		return linearInterpolation(getScreenArea(gazeRoi.area), getValueInRange0To1(gazeRoi.areaRect, irisPos));
+		return linearInterpolationBetweenScreenAndIrisPos(getScreenArea(gazeRoi.area), getValueInRange0To1(gazeRoi.areaRect, irisPos));
 	}
 	return m_ErrorPoint;
 }
 
-cv::Point GazeConverter::linearInterpolation(const cv::Rect& rect, const Point2ld& value) const
+cv::Point GazeConverter::linearInterpolationBetweenScreenAndIrisPos(const cv::Rect& rect, const Point2ld& value) const
 {
 	cv::Point result;
 	result.x = linearInterpolation(rect.x, rect.width, value.x);
@@ -63,15 +63,6 @@ cv::Point GazeConverter::linearInterpolation(const cv::Rect& rect, const Point2l
 int GazeConverter::linearInterpolation(int min, int max, long double value)
 {
 	return (min*(1 - value) + max * value);
-}
-
-long double GazeConverter::getValueInRange0To1(int min, int max, int value)
-{
-	static short normalizedMin = 0, normalizedMax = 1;
-	long double divisor;
-	divisor = max - min;
-	value -= min; //to fit the divisor
-	return static_cast<long double>(value) / divisor;
 }
 
 GazeConverter::Point2ld GazeConverter::getValueInRange0To1(const cv::Rect& gazeRect, cv::Point value)
@@ -86,55 +77,77 @@ GazeConverter::Point2ld GazeConverter::getValueInRange0To1(const cv::Rect& gazeR
 
 void GazeConverter::getGazeROIs(const IrisesPositions & irisesPos, GazeROI & leftIris, GazeROI & rightIris) const
 {
-	auto& cornerLeftIris = Configuration::GetInstance()->GetCorners(Configuration::Iris::Left);
-	auto& cornerRightIris = Configuration::GetInstance()->GetCorners(Configuration::Iris::Right);
+	//REWORK - DONE
+	cv::Rect cornerLeftIris = Configuration::GetInstance()->GetCornersRect(Configuration::Iris::Left);
+	cv::Rect cornerRightIris = Configuration::GetInstance()->GetCornersRect(Configuration::Iris::Right);
 
 	leftIris.area = getGazeArea(irisesPos.left, cornerLeftIris);
 	rightIris.area = getGazeArea(irisesPos.right, cornerRightIris);
-	createRect(leftIris, cornerLeftIris);
-	createRect(rightIris, cornerRightIris);
+
+	fillAreaRect(leftIris, cornerLeftIris);
+	fillAreaRect(rightIris, cornerRightIris);
 }
 
-GazeConverter::GazeArea GazeConverter::getGazeArea(const cv::Point& irisPos, const Configuration::CornerConfigurationPoints& corners)
+GazeConverter::GazeArea GazeConverter::getGazeArea(const cv::Point& irisPos, const cv::Rect& corners)
 {
-	if (irisPos.x <= corners.center.x && irisPos.x >= corners.Left.x) //area is on left side
+	//REWORK - DONE
+	int left = corners.x;
+	int middle = corners.x + corners.width / 2;
+	int right = corners.x + corners.width;
+
+	if (irisPos.x >= left && irisPos.x <= middle) //area is on left side
 		return checkSideArea(irisPos, corners, GazeArea::LeftTop, GazeArea::LeftBottom);
-	if (irisPos.x > corners.center.x && irisPos.x <= corners.right.x) //area is on right side
+
+	if (irisPos.x > middle && irisPos.x <= right) //area is on right side
 		return checkSideArea(irisPos, corners, GazeArea::RightTop, GazeArea::RightBottom);
+
 	return GazeArea::OutOfScreen;
 }
 
-GazeConverter::GazeArea GazeConverter::checkSideArea(const cv::Point& irisPos, const Configuration::CornerConfigurationPoints& corners, GazeArea top, GazeArea bottom)
+GazeConverter::GazeArea GazeConverter::checkSideArea(const cv::Point& irisPos, const cv::Rect& corners, GazeArea topArea, GazeArea bottomArea)
 {
-	if (irisPos.y < corners.center.y && irisPos.y >= corners.top.y)
-		return top;
-	if (irisPos.y > corners.center.y && irisPos.y <= corners.bottom.y)
-		return bottom;
+	//REWORK - DONE
+	int top = corners.y;
+	int middle = corners.y + corners.height / 2;
+	int bottom = corners.y + corners.height;
+
+	if (irisPos.y >= top && irisPos.y <= middle)
+		return topArea;
+
+	if (irisPos.y > middle && irisPos.y <= bottom)
+		return bottomArea;
+
 	return GazeArea::OutOfScreen;
 }
 
-void GazeConverter::createRect(GazeROI& roi, const Configuration::CornerConfigurationPoints& corners) const
+void GazeConverter::fillAreaRect(GazeROI& roi, const cv::Rect& corners) const
 {
+	//REWORK - DONE
+	int widthHalf = corners.width / 2;
+	int heightHalf = corners.height / 2;
+	cv::Size size = cv::Size(widthHalf, heightHalf);
+
 	switch(roi.area)
 	{
-		case GazeArea::LeftTop: roi.areaRect = cv::Rect(corners.topLeft.x, corners.topLeft.y, corners.center.x - corners.Left.x, corners.center.y - corners.top.y); break;
-		case GazeArea::LeftBottom: roi.areaRect = cv::Rect(corners.Left.x, corners.Left.y, corners.center.x - corners.Left.x, corners.bottom.y - corners.center.y); break;
-		case GazeArea::RightTop: roi.areaRect = cv::Rect(corners.top.x, corners.top.y, corners.right.x - corners.center.x, corners.center.y - corners.top.y); break;
-		case GazeArea::RightBottom: roi.areaRect = cv::Rect(corners.center.x, corners.center.y, corners.right.x - corners.center.x, corners.bottom.y - corners.center.y); break;
-		case GazeArea::OutOfScreen: roi.areaRect = m_ErrorRect; break;
-		default: break;
+	case GazeArea::LeftTop: roi.areaRect = cv::Rect(cv::Point(corners.x, corners.y), size); break;
+	case GazeArea::LeftBottom: roi.areaRect = cv::Rect(cv::Point(corners.x, corners.y + heightHalf), size); break;
+	case GazeArea::RightTop: roi.areaRect = cv::Rect(cv::Point(corners.x + widthHalf, corners.y), size); break;
+	case GazeArea::RightBottom: roi.areaRect = cv::Rect(cv::Point(corners.x + widthHalf, corners.y + heightHalf), size); break;
+	case GazeArea::OutOfScreen: roi.areaRect = m_ErrorRect; break;
 	}
 }
 
 void GazeConverter::setScreenSize(const cv::Size& screenSize)
 {
 	//REWORK - DONE
-	int screenWidthHalf = (screenSize.width / 2);
-	int screenHeightHalf = (screenSize.height / 2);
-	m_ScreenLeftTop = cv::Rect(0, 0, screenWidthHalf, screenHeightHalf);
-	m_ScreenLeftBottom = cv::Rect(0, screenHeightHalf, screenWidthHalf, screenHeightHalf);
-	m_ScreenRightTop = cv::Rect(screenWidthHalf, 0, screenWidthHalf, screenHeightHalf);
-	m_ScreenRightBottom = cv::Rect(screenWidthHalf, screenHeightHalf, screenWidthHalf, screenHeightHalf);
+	int widthHalf = (screenSize.width / 2);
+	int heightHalf = (screenSize.height / 2);
+	cv::Size size = cv::Size(widthHalf, heightHalf);
+
+	m_ScreenLeftTop = cv::Rect(cv::Point(0, 0), size);
+	m_ScreenLeftBottom = cv::Rect(cv::Point(0, heightHalf), size);
+	m_ScreenRightTop = cv::Rect(cv::Point(widthHalf, 0), size);
+	m_ScreenRightBottom = cv::Rect(cv::Point(widthHalf, heightHalf), size);
 }
 
 cv::Rect& GazeConverter::getScreenArea(GazeArea area)

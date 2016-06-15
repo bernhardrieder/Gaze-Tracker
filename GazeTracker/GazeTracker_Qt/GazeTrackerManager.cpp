@@ -58,10 +58,10 @@ void GazeTrackerManager::detect()
 	Camera camera = Camera(0, 800, 600);
 	auto webCamCap = camera.GetCamera();
 
-	ScreenCapture screenCapture{GetDesktopWindow()};
-	screenCapture.StartCapture(30, 0.75f);
+	//ScreenCapture screenCapture{GetDesktopWindow()};
+	//screenCapture.StartCapture(30, 0.75f);
 
-	CV_Assert(webCamCap->isOpened());
+	//CV_Assert(webCamCap->isOpened());
 	cv::namedWindow("result");
 	const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
 	cv::createTrackbar(trackbar_label, "result", &faceDetectionSplit.templateMatchingMethod, 5);
@@ -80,7 +80,7 @@ void GazeTrackerManager::detect()
 
 		if (cv::waitKey(1) == 27 || m_stopApp) // escape
 		{
-			screenCapture.StopCapture();
+			//screenCapture.StopCapture();
 			break;
 		}
 	}
