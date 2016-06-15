@@ -15,6 +15,7 @@ GazeConverter::~GazeConverter()
 
 cv::Point GazeConverter::ConvertToScreenPosition(const IrisesPositions irisesPos)
 {
+	//REWORK - DONE
 	GazeROI leftIrisGazeROI, rightIrisGazeROI;
 	getGazeROIs(irisesPos, leftIrisGazeROI, rightIrisGazeROI);
 
@@ -23,12 +24,8 @@ cv::Point GazeConverter::ConvertToScreenPosition(const IrisesPositions irisesPos
 	bool useLeft = left != m_ErrorPoint;
 	bool useRight = right != m_ErrorPoint;
 
-	cv::Point result;
 	if (useLeft && useRight)
-	{
-		result = (left + right) / 2;
-		return result;
-	}
+		return (left + right) / 2;
 	if (useLeft)
 		return left;
 	if (useRight)
@@ -42,7 +39,6 @@ bool GazeConverter::IsError(const cv::Point& pt) const
 	return pt == m_ErrorPoint;
 }
 
-
 cv::Point GazeConverter::getScreenPoint(const cv::Point& irisPos,const GazeROI& gazeRoi)
 {
 	if (gazeRoi.area != GazeArea::OutOfScreen)
@@ -52,27 +48,31 @@ cv::Point GazeConverter::getScreenPoint(const cv::Point& irisPos,const GazeROI& 
 	return m_ErrorPoint;
 }
 
-cv::Point GazeConverter::linearInterpolationBetweenScreenAndIrisPos(const cv::Rect& rect, const Point2ld& value) const
+cv::Point GazeConverter::linearInterpolationBetweenScreenAndIrisPos(const cv::Rect& rect, const Point2ld value)
 {
-	cv::Point result;
-	result.x = linearInterpolation(rect.x, rect.width, value.x);
-	result.y = linearInterpolation(rect.y, rect.height, value.y);
-	return result;
+	//REWORK - DONE
+	int x = linearInterpolation(rect.x, rect.x + rect.width, value.x);
+	int y = linearInterpolation(rect.y, rect.y + rect.height, value.y);
+
+	return cv::Point(x,y);
 }
 
 int GazeConverter::linearInterpolation(int min, int max, long double value)
 {
-	return (min*(1 - value) + max * value);
+	//SHOULD BE OK
+	return (min*(1 - value)) + (max * value);
 }
 
 GazeConverter::Point2ld GazeConverter::getValueInRange0To1(const cv::Rect& gazeRect, cv::Point value)
 {
+	//SHOULD BE OK
 	value.x -= gazeRect.x; //to fit the divisor
 	value.y -= gazeRect.y; //to fit the divisor
-	Point2ld result;
-	result.x = static_cast<long double>(value.x) / static_cast<long double>(gazeRect.width);
-	result.y = static_cast<long double>(value.y) / static_cast<long double>(gazeRect.height);
-	return result;
+
+	long double x = value.x / static_cast<long double>(gazeRect.width);
+	long double y = value.y / static_cast<long double>(gazeRect.height);
+
+	return Point2ld(x,y);
 }
 
 void GazeConverter::getGazeROIs(const IrisesPositions & irisesPos, GazeROI & leftIris, GazeROI & rightIris) const
@@ -96,15 +96,15 @@ GazeConverter::GazeArea GazeConverter::getGazeArea(const cv::Point& irisPos, con
 	int right = corners.x + corners.width;
 
 	if (irisPos.x >= left && irisPos.x <= middle) //area is on left side
-		return checkSideArea(irisPos, corners, GazeArea::LeftTop, GazeArea::LeftBottom);
+		return checkIfTopOrBottomArea(irisPos, corners, GazeArea::LeftTop, GazeArea::LeftBottom);
 
 	if (irisPos.x > middle && irisPos.x <= right) //area is on right side
-		return checkSideArea(irisPos, corners, GazeArea::RightTop, GazeArea::RightBottom);
+		return checkIfTopOrBottomArea(irisPos, corners, GazeArea::RightTop, GazeArea::RightBottom);
 
 	return GazeArea::OutOfScreen;
 }
 
-GazeConverter::GazeArea GazeConverter::checkSideArea(const cv::Point& irisPos, const cv::Rect& corners, GazeArea topArea, GazeArea bottomArea)
+GazeConverter::GazeArea GazeConverter::checkIfTopOrBottomArea(const cv::Point& irisPos, const cv::Rect& corners, GazeArea topArea, GazeArea bottomArea)
 {
 	//REWORK - DONE
 	int top = corners.y;
