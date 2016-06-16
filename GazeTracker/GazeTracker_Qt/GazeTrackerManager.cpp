@@ -2,7 +2,7 @@
 #include "GazeTrackerManager.h"
 using namespace gt;
 
-GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow()), m_ActiveState(GazeTrackerState::Start_UI), m_GazeConverter(ScreenCapture::GetFrameSize(GetDesktopWindow()))
+GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 1600, 900), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow()), m_ActiveState(GazeTrackerState::Start_UI), m_GazeConverter(ScreenCapture::GetFrameSize(GetDesktopWindow()))
 {
 	m_LastIrisesPositions.left = cv::Point(0, 0);
 	m_LastIrisesPositions.right = cv::Point(0, 0);
@@ -158,7 +158,7 @@ void GazeTrackerManager::detectIrisesPositionsThread()
 					double time = clock() / static_cast<double>(CLOCKS_PER_SEC);
 					std::string framename = m_ScreenCapture.GetLastFrameFileName();
 					GazeData data{ time, gazePoint, framename };
-					UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(data);
+					UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(gazePoint);
 					if (Configuration::GetInstance()->GetRecordData())
 						DataTrackingSystem::GetInstance()->WriteGazeData(data);
 					qDebug() << std::string("x = " + std::to_string(gazePoint.x) + ", y = " + std::to_string(gazePoint.y)).c_str();

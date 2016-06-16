@@ -307,6 +307,8 @@ void FaceDetection::getIrisCenterPosition(const cv::Mat& flippedFrameGray, const
 
 	//euqlize hist for better processing and resize frame because of template resize factor (so they fit to each other)
 	cv::Mat frameHistAndResized, result, templateHist;
+	//frameHistAndResized = flippedFrameGray.clone();
+	//templateHist = eyeTemplate.clone();
 	cv::equalizeHist(flippedFrameGray, frameHistAndResized);
 	cv::equalizeHist(eyeTemplate, templateHist);
 	frameHistAndResized = frameHistAndResized(eyeROI);

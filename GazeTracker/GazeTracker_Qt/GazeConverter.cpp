@@ -48,11 +48,11 @@ cv::Point GazeConverter::getScreenPoint(const cv::Point& irisPos,const GazeROI& 
 	return m_ErrorPoint;
 }
 
-cv::Point GazeConverter::linearInterpolationBetweenScreenAndIrisPos(const cv::Rect& rect, const Point2ld value)
+cv::Point GazeConverter::linearInterpolationBetweenScreenAndIrisPos(const cv::Rect& ScreenRect, const Point2ld IrisGazeValueIn0To1Range)
 {
 	//REWORK - DONE
-	int x = linearInterpolation(rect.x, rect.x + rect.width, value.x);
-	int y = linearInterpolation(rect.y, rect.y + rect.height, value.y);
+	int x = linearInterpolation(ScreenRect.x, ScreenRect.x + ScreenRect.width, IrisGazeValueIn0To1Range.x);
+	int y = linearInterpolation(ScreenRect.y, ScreenRect.y + ScreenRect.height, IrisGazeValueIn0To1Range.y);
 
 	return cv::Point(x,y);
 }
@@ -80,6 +80,11 @@ void GazeConverter::getGazeROIs(const IrisesPositions & irisesPos, GazeROI & lef
 	//REWORK - DONE
 	cv::Rect cornerLeftIris = Configuration::GetInstance()->GetCornersRect(Configuration::Iris::Left);
 	cv::Rect cornerRightIris = Configuration::GetInstance()->GetCornersRect(Configuration::Iris::Right);
+	//auto& cornersLeft = Configuration::GetInstance()->GetCorners(Configuration::Iris::Left);
+	//auto& cornersRight = Configuration::GetInstance()->GetCorners(Configuration::Iris::Right);
+
+	//qDebug() << std::string("left corners rect width = " + std::to_string(cornerLeftIris.width) + ", height = " + std::to_string(cornerLeftIris.height)).c_str();
+	//qDebug() << std::string("right corners rect width = " + std::to_string(cornerRightIris.width) + ", height = " + std::to_string(cornerRightIris.height)).c_str();
 
 	leftIris.area = getGazeArea(irisesPos.left, cornerLeftIris);
 	rightIris.area = getGazeArea(irisesPos.right, cornerRightIris);

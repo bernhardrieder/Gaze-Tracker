@@ -22,9 +22,9 @@ GazeVisualizationUI::~GazeVisualizationUI()
 	delete m_Toolbox;
 }
 
-void GazeVisualizationUI::DrawGazePoint(const GazeData& data)
+void GazeVisualizationUI::DrawGazePoint(const cv::Point& data)
 {
-	m_CurrentGazeData = data;
+	m_CurrentGazePoint = data;
 	m_ClearPainter = false;
 	update();
 }
@@ -45,7 +45,8 @@ void GazeVisualizationUI::paintEvent(QPaintEvent * event)
 	painter.setBrush(QBrush(col, Qt::BrushStyle::Dense6Pattern));
 	if(!m_ClearPainter && m_ShowGazePos)
 	{
-		painter.drawEllipse(m_CurrentGazeData.gazePosition.x, m_CurrentGazeData.gazePosition.y, ellipseWidth, ellipseHeight);
+		painter.drawEllipse(m_CurrentGazePoint.x, m_CurrentGazePoint.y, ellipseWidth, ellipseHeight);
+		qDebug() << std::string("Draw ellipse on x = " + std::to_string(m_CurrentGazePoint.x) + " and y = " + std::to_string(m_CurrentGazePoint.y)).c_str();
 	}
 
 	/************** DEBUG ***************/		
