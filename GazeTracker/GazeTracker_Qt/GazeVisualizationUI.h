@@ -13,7 +13,7 @@ namespace gt
 		GazeVisualizationUI(QWidget* parent = 0);
 		~GazeVisualizationUI();
 
-		void DrawGazePoint(const GazeData& data);
+		void DrawGazePoint(const cv::Point& data);
 		void ClearCurrentGazePoint();
 		
 	public slots:
@@ -26,7 +26,7 @@ namespace gt
 
 	private:
 		Ui::GazeTracker_UIClass ui;
-		GazeData m_CurrentGazeData;
+		cv::Point m_CurrentGazePoint;
 		bool m_ClearPainter;
 		GazeVisualizationToolbox* m_Toolbox;
 		bool m_ShowGazePos = true;

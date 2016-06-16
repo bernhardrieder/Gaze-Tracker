@@ -48,7 +48,6 @@ namespace gt
 
 		void detectIrisesPositionsThread();
 		void setLastIrisesPositions(cv::Point& left, cv::Point& right);
-		static void setLastIrisPosition(cv::Point& current, cv::Point& last);
 	};
 }
 

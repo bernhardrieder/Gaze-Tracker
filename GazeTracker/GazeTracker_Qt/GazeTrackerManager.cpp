@@ -2,7 +2,7 @@
 #include "GazeTrackerManager.h"
 using namespace gt;
 
-GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 800, 600), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow()), m_ActiveState(GazeTrackerState::Start_UI), m_GazeConverter(ScreenCapture::GetFrameSize(GetDesktopWindow()))
+GazeTrackerManager::GazeTrackerManager() : m_stopApp(true), m_Camera(0, 1600, 900), m_FaceDetection(), m_ScreenCapture(GetDesktopWindow()), m_ActiveState(GazeTrackerState::Start_UI), m_GazeConverter(ScreenCapture::GetFrameSize(GetDesktopWindow()))
 {
 	m_LastIrisesPositions.left = cv::Point(0, 0);
 	m_LastIrisesPositions.right = cv::Point(0, 0);
@@ -54,13 +54,14 @@ void GazeTrackerManager::detect()
 	m_stopApp = false;
 	FaceDetection faceDetectionSplit;
 	faceDetectionSplit.eyeTemplateResizeFactor = 5;
+	faceDetectionSplit.ReloadTemplates();
 	Camera camera = Camera(0, 800, 600);
 	auto webCamCap = camera.GetCamera();
 
-	ScreenCapture screenCapture{GetDesktopWindow()};
-	screenCapture.StartCapture(30, 0.75f);
+	//ScreenCapture screenCapture{GetDesktopWindow()};
+	//screenCapture.StartCapture(30, 0.75f);
 
-	CV_Assert(webCamCap->isOpened());
+	//CV_Assert(webCamCap->isOpened());
 	cv::namedWindow("result");
 	const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
 	cv::createTrackbar(trackbar_label, "result", &faceDetectionSplit.templateMatchingMethod, 5);
@@ -79,7 +80,7 @@ void GazeTrackerManager::detect()
 
 		if (cv::waitKey(1) == 27 || m_stopApp) // escape
 		{
-			screenCapture.StopCapture();
+			//screenCapture.StopCapture();
 			break;
 		}
 	}
@@ -149,46 +150,32 @@ void GazeTrackerManager::detectIrisesPositionsThread()
 				m_FaceDetection.GetIrisesCenterPositions(frame, face, leftIris, rightIris);
 				setLastIrisesPositions(leftIris, rightIris);
 			}
+			if (m_ActiveState == Running)
+			{
+				cv::Point gazePoint = m_GazeConverter.ConvertToScreenPosition(m_LastIrisesPositions);
+				if (!m_GazeConverter.IsError(gazePoint))
+				{
+					double time = clock() / static_cast<double>(CLOCKS_PER_SEC);
+					std::string framename = m_ScreenCapture.GetLastFrameFileName();
+					GazeData data{ time, gazePoint, framename };
+					UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(gazePoint);
+					if (Configuration::GetInstance()->GetRecordData())
+						DataTrackingSystem::GetInstance()->WriteGazeData(data);
+					qDebug() << std::string("x = " + std::to_string(gazePoint.x) + ", y = " + std::to_string(gazePoint.y)).c_str();
+				}
+				else
+				{
+					UISystem::GetInstance()->GetGazeTrackerUI()->ClearCurrentGazePoint();
+				}
+			}
 		}
 
-		if(m_ActiveState == Running)
-		{
-			cv::Point gazePoint = m_GazeConverter.ConvertToScreenPosition(m_LastIrisesPositions);
-			if(!m_GazeConverter.IsError(gazePoint))
-			{
-				double time = clock() / static_cast<double>(CLOCKS_PER_SEC);
-				std::string framename = m_ScreenCapture.GetLastFrameFileName();
-				GazeData data{ time, gazePoint, framename };
-				UISystem::GetInstance()->GetGazeTrackerUI()->DrawGazePoint(data);
-				if (Configuration::GetInstance()->GetRecordData())
-					DataTrackingSystem::GetInstance()->WriteGazeData(data);
-				qDebug() << std::string("x = " + std::to_string(gazePoint.x) + ", y = " + std::to_string(gazePoint.y)).c_str();
-			}
-			else
-			{
-				UISystem::GetInstance()->GetGazeTrackerUI()->ClearCurrentGazePoint();
-			}
-		}
 	}
 }
 
 void GazeTrackerManager::setLastIrisesPositions(cv::Point& left, cv::Point& right)
 {
-	setLastIrisPosition(left, m_LastIrisesPositions.left);
-	setLastIrisPosition(right, m_LastIrisesPositions.right);
-}
-
-void GazeTrackerManager::setLastIrisPosition(cv::Point& current, cv::Point& last)
-{
-	//CHECK THIS FUNCTION -> OUTLIERMAX!!?
-	static cv::Point outlierMax(10,10);
-	if (current.x == 0 && current.y == 0) return;
-	if((last.x == 0 && last.y == 0) ||
-		//check if current isn't an outlier!! need to know the max changes -> observe!! 
-		(current.x >= (last.x - outlierMax.x) && current.x <= (last.x + outlierMax.x) && 
-		current.y >= (last.y - outlierMax.y) && current.y <= (last.y + outlierMax.y)))
-	{
-		last = current;
-	}
+	m_LastIrisesPositions.left = left;
+	m_LastIrisesPositions.right = right;
 }
 

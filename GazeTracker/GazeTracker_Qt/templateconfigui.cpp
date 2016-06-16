@@ -67,7 +67,7 @@ void TemplateConfigUI::close()
 void TemplateConfigUI_EyesUpdateWorker::process()
 {
 	TemplateConfigUI* config = UISystem::GetInstance()->GetEyeTemplateConfigurationUI();
-	Configuration::SetEyeTemplateResizeFactor(5.0);
+	Configuration::SetEyeTemplateResizeFactor(3.5);
 	cv::Mat leftEyePic, rightEyePic;
 	while (!m_StopProcess)
 	{
