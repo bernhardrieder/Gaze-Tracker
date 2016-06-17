@@ -35,12 +35,12 @@ cv::Mat Camera::GetFrame(bool inGray, bool flipped) const
 	return frame;
 }
 
-void Camera::ConvertToGray(cv::Mat& frame) const
+void Camera::ConvertToGray(cv::Mat& frame)
 {
 	cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
 }
 
-void Camera::Flip(cv::Mat& frame) const
+void Camera::Flip(cv::Mat& frame)
 {
 	cv::flip(frame, frame, 1);
 }
@@ -57,6 +57,7 @@ bool Camera::IsInitialized() const
 
 bool Camera::Initialize()
 {
+	if (m_IsInitialized) return true;
 	if (!m_Camera.get()->open(m_CameraIndex))
 	{
 		std::cerr << "--(!)Error opening video capture" << std::endl;

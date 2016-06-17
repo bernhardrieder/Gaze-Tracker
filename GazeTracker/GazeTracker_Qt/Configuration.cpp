@@ -2,6 +2,8 @@
 #include "Configuration.h"
 using namespace gt;
 
+bool Configuration::useMinMaxValuesForCornerRect = false;
+
 Configuration::Configuration(): m_RecordData(false)
 {
 }
@@ -61,6 +63,12 @@ cv::Rect Configuration::GetCornersRect(Iris iris)
 	return getCornerRect(iris);
 }
 
+void Configuration::RecreateCornerRects()
+{
+	createCornerRect(Iris::Left);
+	createCornerRect(Iris::Right);
+}
+
 void Configuration::SetEyeTemplateResizeFactor(double factor)
 {
 	GazeTrackerManager::GetInstance()->m_FaceDetection.eyeTemplateResizeFactor = factor;
@@ -81,12 +89,25 @@ void Configuration::createCornerRect(Iris iris)
 	cv::Rect& rect = getCornerRect(iris);
 	auto& corners = GetCorners(iris);
 
-	int averageX = (corners.topLeft.x + corners.left.x + corners.bottomLeft.x) / 3;
-	int averageY = (corners.topLeft.y + corners.top.y + corners.topRight.y) / 3;
-	int averageWidth = ((corners.topRight.x - corners.topLeft.x) + (corners.right.x - corners.left.x) + (corners.bottomRight.x - corners.bottomLeft.x)) / 3;
-	int averageHeight = ((corners.bottomLeft.y - corners.topLeft.y) + (corners.bottom.y - corners.top.y) + (corners.bottomRight.y - corners.topRight.y)) / 3;
+	if(useMinMaxValuesForCornerRect)
+	{
+		int minX = MIN(MIN(corners.topLeft.x, corners.left.x), corners.bottomLeft.x);
+		int minY = MIN(MIN(corners.topLeft.y, corners.top.y), corners.topRight.y);
+		int maxWidth = MAX(MAX(corners.topRight.x - corners.topLeft.x, corners.right.x - corners.left.x), corners.bottomRight.x - corners.bottomLeft.x);
+		int maxHeight = MAX(MAX(corners.bottomLeft.y - corners.topLeft.y, corners.bottom.y - corners.top.y), corners.bottomRight.y - corners.topRight.y);
 
-	rect = cv::Rect(averageX, averageY, averageWidth, averageHeight);
+		rect = cv::Rect(minX, minY, maxWidth, maxHeight);
+	}
+	else
+	{
+		int averageX = (corners.topLeft.x + corners.left.x + corners.bottomLeft.x) / 3;
+		int averageY = (corners.topLeft.y + corners.top.y + corners.topRight.y) / 3;
+		int averageWidth = ((corners.topRight.x - corners.topLeft.x) + (corners.right.x - corners.left.x) + (corners.bottomRight.x - corners.bottomLeft.x)) / 3;
+		int averageHeight = ((corners.bottomLeft.y - corners.topLeft.y) + (corners.bottom.y - corners.top.y) + (corners.bottomRight.y - corners.topRight.y)) / 3;
+
+		rect = cv::Rect(averageX, averageY, averageWidth, averageHeight);
+	}
+
 }
 
 cv::Rect& Configuration::getCornerRect(Iris iris)

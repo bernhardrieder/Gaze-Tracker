@@ -23,12 +23,16 @@ namespace gt
 			Left, Right
 		};
 
+		//used in tests!!
+		static bool useMinMaxValuesForCornerRect;
+
 		void SetRecordData(bool record);
 		bool GetRecordData() const;
 		void SetCorners(CornerConfigurationPoints corners, Iris iris);
 		void SetCorner(cv::Point point, Corners corner, Iris iris);
 		CornerConfigurationPoints& GetCorners(Iris iris);
 		cv::Rect GetCornersRect(Iris iris);
+		void RecreateCornerRects();
 		static void SetEyeTemplateResizeFactor(double factor);
 		static double GetEyeTemplateResizeFactor();
 		static void SetTemplateMatchingMethod(int method);

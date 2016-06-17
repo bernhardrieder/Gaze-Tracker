@@ -18,6 +18,8 @@ namespace gt
 		void showGazePos(bool);
 		void repeatConfiguration();
 		void quitApplication();
+		void useFullCornerInInterpolation(bool);
+		void recreateCornersRect(bool);
 	private:
 		Ui::GazeVisualizationToolbox ui;
 	};

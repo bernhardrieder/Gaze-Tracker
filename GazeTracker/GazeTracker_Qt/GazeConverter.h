@@ -14,6 +14,8 @@ namespace gt
 		cv::Point ConvertToScreenPosition(const IrisesPositions irisesPos);
 		bool IsError(const cv::Point& pt) const;
 
+		//used in tests!
+		static bool useFullRectForScreenPointLinearInterpolation;
 	private:
 		enum class GazeArea
 		{ LeftTop, LeftBottom, RightTop, RightBottom, OutOfScreen };

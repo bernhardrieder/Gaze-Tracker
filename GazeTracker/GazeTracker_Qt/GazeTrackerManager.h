@@ -27,6 +27,7 @@ namespace gt
 		void Start();
 		void Stop();
 
+		void OpenCamera();
 		bool IsCameraOpened() const;
 		bool IsFaceDetected();
 		void detect();

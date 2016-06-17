@@ -41,6 +41,7 @@ ConfigurationUI::~ConfigurationUI()
 
 void ConfigurationUI::show()
 {
+	GazeTrackerManager::GetInstance()->OpenCamera();
 	QtHelper::ChangeTextColor(*ui.eyeTemplateConfigButton, "red");
 	QtHelper::ChangeTextColor(*ui.templateMethodButton, "red");
 	QtHelper::ChangeTextColor(*ui.cornerConfigButton, "red");

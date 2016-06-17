@@ -108,16 +108,21 @@ void CornerConfigurationUI::saveCurrentCornerAs(QPushButton* btn, bool var, Conf
 		QtHelper::ChangeBackgroundColor(*btn, "green");
 		m_setCorners += static_cast<int>(corner);
 		auto pos = GazeTrackerManager::GetInstance()->GetLastDetectedIrisesPositions();
-		Configuration::GetInstance()->SetCorner(pos.left, corner, Configuration::Iris::Left);
-		Configuration::GetInstance()->SetCorner(pos.right, corner, Configuration::Iris::Right);
-		if(allCornersSet())
+		if (pos.right.x != 0 || pos.right.y != 0 || pos.left.x != 0 || pos.left.y != 0)
 		{
-			int ret = QMessageBox::information(this, tr("Corners set!"), tr("All corners set! Apply?"), QMessageBox::Yes | QMessageBox::No);
-			if (ret == QMessageBox::Yes)
-				close();
-			else
-				resetCorners();
+			Configuration::GetInstance()->SetCorner(pos.left, corner, Configuration::Iris::Left);
+			Configuration::GetInstance()->SetCorner(pos.right, corner, Configuration::Iris::Right);
+			if (allCornersSet())
+			{
+				int ret = QMessageBox::information(this, tr("Corners set!"), tr("All corners set! Apply?"), QMessageBox::Yes | QMessageBox::No);
+				if (ret == QMessageBox::Yes)
+					close();
+				else
+					resetCorners();
+			}
 		}
+		else
+			btn->setChecked(false);
 	}
 	else
 	{

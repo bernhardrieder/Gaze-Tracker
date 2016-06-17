@@ -3,6 +3,8 @@
 
 using namespace gt;
 
+bool GazeConverter::useFullRectForScreenPointLinearInterpolation = false;
+
 GazeConverter::GazeConverter(cv::Size screenSize)
 {
 	//REWORK - DONE
@@ -43,6 +45,8 @@ cv::Point GazeConverter::getScreenPoint(const cv::Point& irisPos,const GazeROI& 
 {
 	if (gazeRoi.area != GazeArea::OutOfScreen)
 	{
+		if(useFullRectForScreenPointLinearInterpolation)
+			return linearInterpolationBetweenScreenAndIrisPos(cv::Rect(m_ScreenLeftTop.x, m_ScreenLeftTop.y, m_ScreenLeftTop.width * 2, m_ScreenLeftTop.height * 2), getValueInRange0To1(gazeRoi.areaRect, irisPos));
 		return linearInterpolationBetweenScreenAndIrisPos(getScreenArea(gazeRoi.area), getValueInRange0To1(gazeRoi.areaRect, irisPos));
 	}
 	return m_ErrorPoint;
@@ -80,17 +84,26 @@ void GazeConverter::getGazeROIs(const IrisesPositions & irisesPos, GazeROI & lef
 	//REWORK - DONE
 	cv::Rect cornerLeftIris = Configuration::GetInstance()->GetCornersRect(Configuration::Iris::Left);
 	cv::Rect cornerRightIris = Configuration::GetInstance()->GetCornersRect(Configuration::Iris::Right);
+
 	//auto& cornersLeft = Configuration::GetInstance()->GetCorners(Configuration::Iris::Left);
 	//auto& cornersRight = Configuration::GetInstance()->GetCorners(Configuration::Iris::Right);
 
 	//qDebug() << std::string("left corners rect width = " + std::to_string(cornerLeftIris.width) + ", height = " + std::to_string(cornerLeftIris.height)).c_str();
 	//qDebug() << std::string("right corners rect width = " + std::to_string(cornerRightIris.width) + ", height = " + std::to_string(cornerRightIris.height)).c_str();
 
-	leftIris.area = getGazeArea(irisesPos.left, cornerLeftIris);
-	rightIris.area = getGazeArea(irisesPos.right, cornerRightIris);
+	if(useFullRectForScreenPointLinearInterpolation)
+	{
+		leftIris.areaRect = cornerLeftIris;
+		rightIris.areaRect = cornerRightIris;
+	}
+	else
+	{
+		leftIris.area = getGazeArea(irisesPos.left, cornerLeftIris);
+		rightIris.area = getGazeArea(irisesPos.right, cornerRightIris);
 
-	fillAreaRect(leftIris, cornerLeftIris);
-	fillAreaRect(rightIris, cornerRightIris);
+		fillAreaRect(leftIris, cornerLeftIris);
+		fillAreaRect(rightIris, cornerRightIris);
+	}
 }
 
 GazeConverter::GazeArea GazeConverter::getGazeArea(const cv::Point& irisPos, const cv::Rect& corners)
