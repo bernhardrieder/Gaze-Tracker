@@ -3,7 +3,7 @@ namespace gt
 {
 	class Configuration : public Singleton<Configuration>
 	{
-		friend class Singleton<Configuration>;
+		//friend class Singleton<Configuration>;
 	public:
 		Configuration();
 		~Configuration();
