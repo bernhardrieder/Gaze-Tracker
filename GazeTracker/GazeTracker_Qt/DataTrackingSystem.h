@@ -15,7 +15,7 @@ namespace gt
 
 	class DataTrackingSystem : public Singleton<DataTrackingSystem>
 	{
-		//friend class Singleton<DataTrackingSystem>;
+		friend class Singleton<DataTrackingSystem>;
 	public:
 		DataTrackingSystem();
 		~DataTrackingSystem();

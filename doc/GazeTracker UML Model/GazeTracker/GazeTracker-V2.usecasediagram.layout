@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.75" name="GazeTracker-V2">
+  <useCaseModelRootMoniker Id="250c53f4-a61b-4e38-8328-096574cdb235" />
+  <nestedChildShapes>
+    <actorShape Id="9cced72d-147b-4b23-9f94-a7ff30e5ebef" absoluteBounds="0.5, 6.75, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="a61e62c0-318e-4db2-bfc1-d0368b417c51" LastKnownName="UserIn" />
+      <relativeChildShapes />
+    </actorShape>
+    <SubsystemShape Id="3b9a282d-b0f9-477d-bcbc-1da46e411a0e" absoluteBounds="1.5, 5.125, 2.375, 3.375" customColor="White">
+      <subsystemMoniker Id="b9e07fd1-6ee5-435c-ac4c-94182ceb9bc7" LastKnownName="Application" />
+      <nestedChildShapes>
+        <useCaseShape Id="6c21f84f-a742-48f7-9049-27e77293a1a1" absoluteBounds="2.125, 6.75, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="e7943bca-c47b-4334-bd81-924e2380017a" LastKnownName="Bildschirm betrachten" />
+          <relativeChildShapes />
+        </useCaseShape>
+        <useCaseShape Id="4ae96c6a-bf5b-4ebe-827e-eeefcb503905" absoluteBounds="2, 7.625, 1.25, 0.75" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="f109e02b-11c2-48fc-9e49-6aa39a4016c3" LastKnownName="Daten der Beobachtungen analysieren" />
+          <relativeChildShapes />
+        </useCaseShape>
+        <useCaseShape Id="879600d1-56c6-4468-9b24-eaf4875bd658" absoluteBounds="2, 5.625, 1.375, 0.75" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="141a33e2-9c2c-496a-a28a-bca3d571fac3" LastKnownName="(Eingabe durch Betrachten tätigen)" />
+          <relativeChildShapes />
+        </useCaseShape>
+      </nestedChildShapes>
+    </SubsystemShape>
+    <extendConnector edgePoints="[(2.625 : 7.25); (2.625 : 7.625)]" fixedFrom="Caller" fixedTo="Caller" customColor="Black" useCaseStereotype="«Erweitern»">
+      <extendMoniker Id="31bf113c-e9cb-44bb-8483-cc32ee0c7e49" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="6c21f84f-a742-48f7-9049-27e77293a1a1" />
+        <useCaseShapeMoniker Id="4ae96c6a-bf5b-4ebe-827e-eeefcb503905" />
+      </nodes>
+    </extendConnector>
+    <extendConnector edgePoints="[(2.64061737618886 : 6.75012198097823); (2.66407610755526 : 6.37478227911592)]" fixedFrom="Caller" fixedTo="Caller" customColor="Black" useCaseStereotype="«Erweitern»">
+      <extendMoniker Id="2e5464ab-678b-42bb-b3a0-9f549ddf96f2" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="6c21f84f-a742-48f7-9049-27e77293a1a1" />
+        <useCaseShapeMoniker Id="879600d1-56c6-4468-9b24-eaf4875bd658" />
+      </nodes>
+    </extendConnector>
+    <useCaseAssociationConnector edgePoints="[(1 : 7); (2.125 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="e37ee94b-636c-45cc-862d-e05613b04e8d" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="9cced72d-147b-4b23-9f94-a7ff30e5ebef" />
+        <useCaseShapeMoniker Id="6c21f84f-a742-48f7-9049-27e77293a1a1" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <SubsystemShape Id="b7889c51-ccb8-4da5-8f08-a19871659446" absoluteBounds="4.375, 5.75, 1.875, 2.25" customColor="White">
+      <subsystemMoniker Id="3f750c37-3e13-4a2d-b29e-aeaef12aec9b" LastKnownName="GazeTracker" />
+      <nestedChildShapes>
+        <useCaseShape Id="561fa85c-0f39-4b95-b1aa-1513d6ed4fcd" absoluteBounds="4.75, 6.25, 1.125, 0.75" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="ed79dc60-e98d-4234-825b-3365eaf25c39" LastKnownName="Augenblickrichtungen analysieren" />
+          <relativeChildShapes />
+        </useCaseShape>
+        <useCaseShape Id="25bc1011-c5e6-468d-80e3-ce6968e85e1c" absoluteBounds="4.75, 7.375, 1.125, 0.5" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="cb431c52-59c1-4879-b14a-c1486879f23d" LastKnownName="Konfiguration des Systems" />
+          <relativeChildShapes />
+        </useCaseShape>
+      </nestedChildShapes>
+    </SubsystemShape>
+    <includeConnector edgePoints="[(3.10659815066665 : 6.93280025804651); (4.76193027329526 : 6.70182368279601)]" fixedFrom="Caller" fixedTo="Caller" customColor="Black" useCaseStereotype="«Einschließen»">
+      <includeMoniker Id="f7c22f0f-7c6d-4284-9da8-92ebbacc2693" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="6c21f84f-a742-48f7-9049-27e77293a1a1" />
+        <useCaseShapeMoniker Id="561fa85c-0f39-4b95-b1aa-1513d6ed4fcd" />
+      </nodes>
+    </includeConnector>
+    <includeConnector edgePoints="[(3.07836055594425 : 7.1054326874289); (4.81410637781728 : 7.50909450646913)]" fixedFrom="Caller" fixedTo="Caller" customColor="Black" useCaseStereotype="«Einschließen»">
+      <includeMoniker Id="a297f620-f0bd-4590-8663-2811bf170065" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="6c21f84f-a742-48f7-9049-27e77293a1a1" />
+        <useCaseShapeMoniker Id="25bc1011-c5e6-468d-80e3-ce6968e85e1c" />
+      </nodes>
+    </includeConnector>
+  </nestedChildShapes>
+</useCaseDiagram>

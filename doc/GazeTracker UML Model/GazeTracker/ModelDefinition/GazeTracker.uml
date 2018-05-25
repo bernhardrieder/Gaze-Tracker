@@ -1,0 +1,2252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="135edf6b-9f83-4c62-aef7-3f8b79caf28d"
+  name="UML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <appliedStereotypesInternal>
+    <stereotypeInstance
+      Id="64f6b0ae-5628-4ffb-9fcd-f3d0993e62bb"
+      name="namespace"
+      profile="CSharpProfile">
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="b657b944-0158-49b7-98d1-1f5d93e276d1">
+          <propertyInstance
+            Id="255853ad-cb74-4aac-8ea8-4395b5ad0afe"
+            name="BaseName" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="e9a122bd-5e94-4696-8938-00262d099899">
+          <propertyInstance
+            Id="aebe4f70-6e53-4536-8a8e-7e0cb1b51131"
+            name="ClrAttributes" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="f87abb26-2811-428a-9feb-719a5cba5831">
+          <propertyInstance
+            Id="1b9de899-347a-4f63-b5ae-745cc6e95309"
+            name="Usings" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance
+      Id="5088013f-2054-4123-9b23-fd9a74a435a2"
+      name="TextTemplateBindings"
+      profile="TextTemplateBindings">
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="13049afb-3771-4cc5-b6b9-57c39635517a">
+          <propertyInstance
+            Id="726ac450-774f-400e-91a0-802c70efa019"
+            name="Alias"
+            value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="950e0fbc-1098-448d-9b50-cf3c27f3adbd">
+          <propertyInstance
+            Id="91df2c79-1d80-4cae-ad54-13182e74f2cd"
+            name="TemplateFilePath"
+            value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="01823e2a-dfe5-431c-82ef-2fa7a851a743">
+          <propertyInstance
+            Id="d1da7a75-8ebd-467d-bbdd-d0ba6e549171"
+            name="ProjectPath"
+            value="ClassTemplate=..\UMLLib\UMLLib.csproj|EnumTemplate=..\UMLLib\UMLLib.csproj|InterfaceTemplate=..\UMLLib\UMLLib.csproj|StructTemplate=..\UMLLib\UMLLib.csproj" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="9cc54990-6121-4976-baa9-c6cb318dbc96">
+          <propertyInstance
+            Id="8c0059a0-cbcd-4ece-a09c-df83663b53d8"
+            name="TargetDirectory"
+            value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="169ceb3a-623d-47c0-a8cc-d5613bda304b">
+          <propertyInstance
+            Id="d10d0956-8b93-4f8c-a071-4ad52d033c90"
+            name="TargetName"
+            value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="bb37915c-525f-488b-9786-b98c8780578f">
+          <propertyInstance
+            Id="d0a446ec-1d9a-414d-878f-3333b12f5f96"
+            name="Overwrite"
+            value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="4fa69693-bf6c-4eb4-b289-ca688bdadbd4">
+          <propertyInstance
+            Id="845a6b6a-7a87-4eef-8ff1-20eae067b852"
+            name="Parameters" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="44d48230-5f84-4f6c-b4dc-643f77ba249f">
+      <profileInstance
+        Id="b266ebcf-6733-49d8-a70c-b47603c48033"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="22036cbc-5871-4fc2-a0b3-67f5bd77156c">
+      <profileInstance
+        Id="d1bab242-4407-4512-8604-92be413da0a3"
+        name="TextTemplateBindings" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <actor
+        Id="46109947-7c43-4f36-adfb-aee9ad49fbb2"
+        name="UserIn"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="df8cb3e0-a803-49a6-9544-81fc9a965c61"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Steuerung von Software mittels Anstarren"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="7d2bf1de-9517-475a-ae9e-33f10da31f62"
+              LastKnownName="Steuerung von Software mittels Anstarren"
+              LastKnownLocation="GazeTracker.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="18c2cfbe-54f4-45cb-aa84-af7f289f044b"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="701ec0e8-4996-4b80-9b7b-88b2a7ede369"
+                  name="Steuerung von Software mittels Anstarren"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1582d84e-db0b-4a1a-bde4-cc38202b8a77"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Research Program"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="41ef4889-64e3-48f0-9674-db5a48976a2a"
+              LastKnownName="Research Program"
+              LastKnownLocation="GazeTracker.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="30e682a0-04dc-47e5-b440-d37967a41609"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b3f917fa-8f5e-4209-a2e5-76848d0bd031"
+                  name="Research Program"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="b99b4cff-71c9-4f64-bfb9-948670846cf3"
+        name="EntwicklerIn"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="e0cf97fb-b6b6-4b02-95bc-3980482c35d1"
+            isDerived="false"
+            sourceEndRoleName="Entwickler"
+            targetEndRoleName="Research Program"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="41ef4889-64e3-48f0-9674-db5a48976a2a"
+              LastKnownName="Research Program"
+              LastKnownLocation="GazeTracker.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7962c5a6-75b7-432b-84cb-5a0e180886b1"
+                  name="Entwickler"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cb7edbd5-2915-40cb-bb91-b2aa2c1d70dc"
+                  name="Research Program"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="ee9d54c0-9611-4a77-b686-f7685035619c"
+        name="GazeTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7d2bf1de-9517-475a-ae9e-33f10da31f62"
+        name="Steuerung von Software mittels Anstarren"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="4f97f054-aca4-4be9-9177-536c83eb7908">
+            <useCaseMoniker
+              Id="bac1b2d7-5ae1-44cf-ad48-a8c6f48ad513"
+              LastKnownName="Identifizierung der Anstarrpunkte mittels Webcam"
+              LastKnownLocation="GazeTracker.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="ee9d54c0-9611-4a77-b686-f7685035619c"
+            LastKnownName="GazeTracker"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="41ef4889-64e3-48f0-9674-db5a48976a2a"
+        name="Research Program"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="28d0cbbe-3ea2-44a4-9c9a-26eeb91d5df7">
+            <useCaseMoniker
+              Id="bac1b2d7-5ae1-44cf-ad48-a8c6f48ad513"
+              LastKnownName="Identifizierung der Anstarrpunkte mittels Webcam"
+              LastKnownLocation="GazeTracker.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="ee9d54c0-9611-4a77-b686-f7685035619c"
+            LastKnownName="GazeTracker"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="bac1b2d7-5ae1-44cf-ad48-a8c6f48ad513"
+        name="Identifizierung der Anstarrpunkte mittels Webcam"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="ee9d54c0-9611-4a77-b686-f7685035619c"
+            LastKnownName="GazeTracker"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8b049200-55ed-472f-90d9-5d6d334b5ae6"
+        name="Aufzeichnung der Anstarrpunkte"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="0731ccb6-53a7-4cd1-852b-695073e3bfa0">
+            <useCaseMoniker
+              Id="bac1b2d7-5ae1-44cf-ad48-a8c6f48ad513"
+              LastKnownName="Identifizierung der Anstarrpunkte mittels Webcam"
+              LastKnownLocation="GazeTracker.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="ee9d54c0-9611-4a77-b686-f7685035619c"
+            LastKnownName="GazeTracker"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ba928dda-fc46-4bb4-90d2-eec0a18b8b44"
+        name="OpenCV"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="c86eba2c-ef3d-4b5f-bc74-d4d747e5f855"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="85871b42-d74a-45c3-a57d-4b0037c69300"
+                LastKnownName="Graphics API"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="83d1059d-9f06-4ab4-b48c-aee5513e6421"
+        name="GazeTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="b0da3848-20d2-4876-bd32-4d9b815107fc"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="f6b5bf32-2e36-4d18-84b5-f3798997a608"
+                LastKnownName="Graphics API"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="648848ac-cbbb-4572-bda9-787a7fd1d199"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="71f3050e-1b53-411a-95b6-4976d74dcf40"
+                LastKnownName="Video Stream"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="a66f40a3-4024-4c86-96d7-9d82d17b7fcf"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="1430a8fb-7fec-400f-9103-81cbfb144dfd"
+                LastKnownName="Gaze Position"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <part
+            Id="e86d30df-c3ef-414f-9fde-09c50d1f25b1"
+            name="User Interface"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="2f506d7b-4172-42fb-a0b1-920339a6b703"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="87043a55-cb8d-4b4c-ac0a-d178e617cbd7"
+            name="GazeManager"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="aeef3f4d-b563-4a12-a573-c20e8f8ccefb"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="7c60845a-aea7-48f9-b15d-0ec11b370f98"
+            name="Configuration"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="ebf5b682-adcf-4fd9-a032-6cc5591c8a87"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="ac7d544f-9c56-4c99-85bc-dbe37328c6fe"
+            name="GazeTracking"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="ac7b31de-0863-419c-b161-3855be0b0e8a"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="9aea4061-e583-49e2-8eb2-54f17c4cd940"
+            name="EyeTracker"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="d9cb1a59-604b-4695-919d-635cb1ba54b4"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="308f63ce-0b2f-4f34-9ce4-7ff79b4d9f56"
+            name="GazeCalculation"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="5e1967bc-0692-441a-b187-dfebb8bccc8f"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <providedInterface
+            Id="55ab1610-41c4-4c55-9a39-2ccf0943b322"
+            name="Port4"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="70bc223a-1672-4112-a445-458f2891d5e5"
+                LastKnownName="Gaze Positions over Session"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="85871b42-d74a-45c3-a57d-4b0037c69300"
+        name="Graphics API"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="b06b55e9-3d3a-4360-848b-4eabd86e5421"
+        name="Webcam"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="076b7847-c980-4c7f-9eeb-e02b76bbe2ce"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="09d67d52-55ea-451c-b4af-3e03b115067f"
+                LastKnownName="Video Stream"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="09d67d52-55ea-451c-b4af-3e03b115067f"
+        name="Video Stream"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="6f16c0b5-3bfe-4a01-a088-6d4d8fbded06"
+        name="Interface3"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="f6b5bf32-2e36-4d18-84b5-f3798997a608"
+        name="Graphics API"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="71f3050e-1b53-411a-95b6-4976d74dcf40"
+        name="Video Stream"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="1430a8fb-7fec-400f-9103-81cbfb144dfd"
+        name="Gaze Position"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="2f506d7b-4172-42fb-a0b1-920339a6b703"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="3c1e8017-f557-4e63-b04e-f61db979c8a7"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="d5d7de89-8ce7-4c95-a5b1-5e587535b1bb"
+                LastKnownName="UI"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="aeef3f4d-b563-4a12-a573-c20e8f8ccefb"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="e1700250-2072-48b1-a389-cd88b07c0364"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="02ce1e75-8717-4247-97e0-a5ca38daf1d7"
+                LastKnownName="UI"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="e858e7d2-222f-4d97-a335-71a0e0c826ff"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="9475fca5-e32d-4735-8ec7-c181c92cd4fb"
+                LastKnownName="Eye Tracking"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="fc02c408-19b7-4f0a-8abc-a548bed7cd8c"
+            name="Port4"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="d8cce3e7-0c52-43a6-bbca-06ba5d9a3989"
+                LastKnownName="Gaze Position"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="082cae83-8454-4894-8878-33460879709c"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="69bb69d0-73dc-47b3-b549-5ea183068142"
+                LastKnownName="Eye Position"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ebf5b682-adcf-4fd9-a032-6cc5591c8a87"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="3c0d9389-cca2-44d8-9307-a36931c590ae"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="45aebb52-f4ff-4634-bd68-20fe6dd3680c"
+                LastKnownName="UI"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="38437094-1ae4-4a52-949c-ced0d1fad6ab"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="760c585d-73da-4262-8bd3-058171582ff8"
+                LastKnownName="Config"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ac7b31de-0863-419c-b161-3855be0b0e8a"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="01b34c17-bc07-4005-94c8-62c1600acc0c"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="6a26a69c-e36e-4d6c-be92-fc9a790365f0"
+                LastKnownName="Tracking"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="9cffb530-6209-42d7-a780-ee4f3651e242"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="88419620-1700-4bbc-874a-33e61ced2291"
+                LastKnownName="Config"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="02ce1e75-8717-4247-97e0-a5ca38daf1d7"
+        name="UI"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d5d7de89-8ce7-4c95-a5b1-5e587535b1bb"
+        name="UI"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="d9cb1a59-604b-4695-919d-635cb1ba54b4"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="b6536c5e-4bf0-4e81-920c-8adbcf1268af"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="9ddafef5-2729-4925-8594-43e6e4ae8832"
+                LastKnownName="Config"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="d681aaa0-fc6c-4197-bdeb-abf8836fc8ed"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="28a49a3b-c665-4c0e-8e1d-4007bc40c0ee"
+                LastKnownName="Eye Tracking"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="45aebb52-f4ff-4634-bd68-20fe6dd3680c"
+        name="UI"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="760c585d-73da-4262-8bd3-058171582ff8"
+        name="Config"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="206b0d4c-bc9e-4a52-881b-ee4457f67aa0"
+        name="Config"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="9ddafef5-2729-4925-8594-43e6e4ae8832"
+        name="Config"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="5e1967bc-0692-441a-b187-dfebb8bccc8f"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="2682c143-48b5-4cca-b1e0-e8ab9add2514"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="4eb5db3e-5cbf-4218-a6be-3507a45254e3"
+                LastKnownName="Gaze Position"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="06878b9f-e1ee-4645-9a2e-b5cced759229"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="db7b308a-0fe8-45e4-9490-bf8a1111f51a"
+                LastKnownName="Eye Position"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="5c4b7651-2c76-4253-a18e-f588b3390ad4"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="ae5ebcf5-3f2a-4afa-a831-d4fd1222081b"
+                LastKnownName="Tracking"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="6a26a69c-e36e-4d6c-be92-fc9a790365f0"
+        name="Tracking"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="28a49a3b-c665-4c0e-8e1d-4007bc40c0ee"
+        name="Eye Tracking"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="9475fca5-e32d-4735-8ec7-c181c92cd4fb"
+        name="Eye Tracking"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="4eb5db3e-5cbf-4218-a6be-3507a45254e3"
+        name="Gaze Position"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="db7b308a-0fe8-45e4-9490-bf8a1111f51a"
+        name="Eye Position"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8be0e334-a8b1-4179-a1a5-db3054bb33fc"
+        name="Gaze Position"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8889d126-424b-4f5b-ba16-e0e845510b4c"
+        name="Tracking"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d8cce3e7-0c52-43a6-bbca-06ba5d9a3989"
+        name="Gaze Position"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="69bb69d0-73dc-47b3-b549-5ea183068142"
+        name="Eye Position"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ae5ebcf5-3f2a-4afa-a831-d4fd1222081b"
+        name="Tracking"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="1078025a-13dd-4976-8264-1f81ab6b9503"
+        name="Interface1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="88419620-1700-4bbc-874a-33e61ced2291"
+        name="Config"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="70bc223a-1672-4112-a445-458f2891d5e5"
+        name="Gaze Positions over Session"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="62cc7437-6145-4740-b0ef-d263fab6e435"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f4c47cde-a38e-4b14-be93-a72342cf66f1"
+        name="Class2"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9a9bcb67-bcc6-4c83-8557-4eeb8ba3031a"
+        name="Class3"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="0da4ae9e-cbb5-4581-b3f7-885c016b2d9f"
+        name="bool" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="21733a10-da31-4f31-932a-d8bd9687f985"
+        name="List&lt;GazePosition&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="17e82caf-0fb8-4a70-828e-9a0f926ef405"
+        name="int" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="1cd1fdd6-93bf-4f4a-aac1-4ce4867e9966"
+        name="void" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="167bbd2d-cad3-4681-98d9-769d900e9650"
+        name="Light"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="1bf53b0c-eed8-4ab1-a019-774efb403d65"
+            name="Sufficient" />
+          <enumerationLiteral
+            Id="9760e3d2-1179-4d07-a36d-474533477817"
+            name="Literal1" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="a7e05cec-bd11-42df-83da-a848fcd73191"
+        name="T" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="131c0b39-c0cc-4c06-aa34-293ac15998fa"
+        name="Vector 3" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f3124f04-381e-476b-8932-f696638938d8"
+        name="Class4"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="10fc7b0b-d809-473f-a382-835ef888fddf"
+        name="UML::EyePosition[]" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="60005cbf-2e5e-4d6f-bbd3-2e65acff85fd"
+        name="EyePosition[]" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="59455c90-7019-480a-9604-ba716930a21b"
+        name="DateTIme" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="f66ea30b-fc66-43bd-ab9a-bd066da05c64"
+        name="DateTime" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="fc604895-7677-4db9-b0ac-45c376221ae4"
+        name="GazeTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <part
+            Id="8cd5897e-3f0d-4212-b44a-994c31c45abe"
+            name="Management"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <targetNamedElementsInternal>
+              <connector
+                Id="ef7714ae-9e45-4afe-8cdb-01166eba6edd"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="6ba439b5-9a1e-4de7-a11c-a36627c1a67c"
+                  LastKnownName="TrackingSystem"
+                  LastKnownLocation="GazeTracker.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="058a6eff-3383-4815-a9a8-fc07995acad7">
+                      <portWithPart>
+                        <requiredInterfaceMoniker
+                          Id="4c3a0ece-30f1-426f-89a5-24a842f5105d"
+                          LastKnownName="Port1"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="4e298a90-a4c1-4064-9965-0cd6e99173a9">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="8bee89cb-a918-46b8-9227-7b6e5d15fc8a"
+                          LastKnownName="Port1"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+              <connector
+                Id="ae532d2f-eaa1-46de-ad5b-acbdeff12f2b"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="668f7017-fc33-4b3a-8b09-6ec40e6b597d"
+                  LastKnownName="Configuration"
+                  LastKnownLocation="GazeTracker.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="19fc959a-6313-4f08-9a8a-36858731bfc2">
+                      <portWithPart>
+                        <requiredInterfaceMoniker
+                          Id="7e3763bf-8a0b-4ed0-9643-da125b08cfbc"
+                          LastKnownName="Port2"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="908238da-a26c-46ad-bb7a-e20fbb2cd85c">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="0d366b28-9569-4fae-9a60-d479917c28f9"
+                          LastKnownName="Port1"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <componentMoniker
+                Id="e1e208a5-b318-458d-b291-70700bca772d"
+                LastKnownName="Component3"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="6ba439b5-9a1e-4de7-a11c-a36627c1a67c"
+            name="TrackingSystem"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <targetNamedElementsInternal>
+              <connector
+                Id="8623f15c-0753-4844-86ad-2a609b729507"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="668f7017-fc33-4b3a-8b09-6ec40e6b597d"
+                  LastKnownName="Configuration"
+                  LastKnownLocation="GazeTracker.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="e9336a07-172f-43c3-8b94-a25c1c087899">
+                      <portWithPart>
+                        <requiredInterfaceMoniker
+                          Id="035c83d8-296c-4b03-8839-668e4047f7b0"
+                          LastKnownName="Port2"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="ac0a8a27-1045-47b8-be61-02fff250942d">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="5ca6df54-fe5f-4965-83a6-8d2411d80a48"
+                          LastKnownName="Port2"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <componentMoniker
+                Id="8ea28586-a8e8-40ad-973b-6f59b86d2ee8"
+                LastKnownName="Component4"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <providedInterface
+            Id="c9151d61-fed3-44aa-ae3b-6153607884dd"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <targetNamedElementsInternal>
+              <connector
+                Id="a262708f-2062-4144-89f5-26feb1053532"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="8cd5897e-3f0d-4212-b44a-994c31c45abe"
+                  LastKnownName="Management"
+                  LastKnownLocation="GazeTracker.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="538ff38d-f839-46b2-b3d0-2e18c8c76066" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="27307f14-940d-4e3d-8af5-276c29eb8035">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="084effe9-ec8e-481c-b087-4f291fc423f1"
+                          LastKnownName="Port3"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="17d71daf-7544-4bfb-80b5-b6b8cef28805"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <part
+            Id="668f7017-fc33-4b3a-8b09-6ec40e6b597d"
+            name="Configuration"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="e1b78e3c-3eb8-4ec3-8e4d-0f493afb972e"
+                LastKnownName="Component8"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="d6fa58ad-1d0e-4df7-b168-2bbca4acd980"
+        name="Application"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="22c060d6-2737-4462-ae6e-99bb08c7e37d"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="85ed743d-fd00-4a45-a500-032702f85809">
+                <providedInterfaceMoniker
+                  Id="c9151d61-fed3-44aa-ae3b-6153607884dd"
+                  LastKnownName="Port1"
+                  LastKnownLocation="GazeTracker.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="b7e87068-5d74-4030-acb6-16378eaa279a"
+                LastKnownName="ExchangeData"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <part
+            Id="48119bee-c23f-4256-8341-ca62340fab41"
+            name="ApplicationUnit"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <targetNamedElementsInternal>
+              <connector
+                Id="e42e01ee-4391-44e2-a299-23a9027570c9"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="1e02f849-9010-48f7-9954-b2171b9d8fa0"
+                  LastKnownName="UserInterface"
+                  LastKnownLocation="GazeTracker.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="8cbc0dd3-af24-47fc-8322-b3aaef26181a">
+                      <portWithPart>
+                        <requiredInterfaceMoniker
+                          Id="d3449e0e-e3f3-477d-8601-495bd38c38d2"
+                          LastKnownName="Port1"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="27b9a16b-31f1-4cd2-9d5c-b9e64b8aedb8">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="6a111279-755b-4b91-ac03-e5fe6b1db30b"
+                          LastKnownName="Port1"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+              <connector
+                Id="13ffbf8b-fa6c-4097-80de-88bda540aaa4"
+                isLeaf="false"
+                isStatic="false">
+                <requiredInterfaceMoniker
+                  Id="22c060d6-2737-4462-ae6e-99bb08c7e37d"
+                  LastKnownName="Port1"
+                  LastKnownLocation="GazeTracker.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="3066519b-76d9-46a2-868a-0f778395ea1c">
+                      <portWithPart>
+                        <requiredInterfaceMoniker
+                          Id="5fdd5402-a641-48d1-a928-0de744244cbd"
+                          LastKnownName="Port2"
+                          LastKnownLocation="GazeTracker.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="d297940c-0fd2-4882-9631-1097f76e5802" />
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <componentMoniker
+                Id="d5953352-3829-4258-9b23-a82285f4dd3c"
+                LastKnownName="Component6"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="1e02f849-9010-48f7-9954-b2171b9d8fa0"
+            name="UserInterface"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="90a9c6ea-3154-4212-9e84-207fb60662e1"
+                LastKnownName="Component7"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="be0a0462-9c67-47ce-bcef-5d54a60c347f"
+        name="Component1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="f655cd84-239c-4b88-80d2-55b038ecc950"
+        name="Component2"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="e1e208a5-b318-458d-b291-70700bca772d"
+        name="Component3"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="4c3a0ece-30f1-426f-89a5-24a842f5105d"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="87b45cc2-3b54-4477-8d44-cdba9f076c1f"
+                LastKnownName="ManageInformation"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="7e3763bf-8a0b-4ed0-9643-da125b08cfbc"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="3cfa9e44-7b46-4d84-a0d9-6b532ffe81e6"
+                LastKnownName="WindowConfiguration"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="084effe9-ec8e-481c-b087-4f291fc423f1"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="d6431664-2e5c-41ab-a1ca-fc71338ebb0b"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="8ea28586-a8e8-40ad-973b-6f59b86d2ee8"
+        name="Component4"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="8bee89cb-a918-46b8-9227-7b6e5d15fc8a"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="2e0ae164-2b83-47b0-b616-0073ae65bb5d"
+                LastKnownName="ManageInformation"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="035c83d8-296c-4b03-8839-668e4047f7b0"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="6fdd89e0-abe4-4697-8a53-d07453c7db90"
+                LastKnownName="CorrectionInterface"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="17d71daf-7544-4bfb-80b5-b6b8cef28805"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b7e87068-5d74-4030-acb6-16378eaa279a"
+        name="ExchangeData"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="2e0ae164-2b83-47b0-b616-0073ae65bb5d"
+        name="ManageInformation"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="87b45cc2-3b54-4477-8d44-cdba9f076c1f"
+        name="ManageInformation"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="db96a02d-8309-4ab9-97f2-b5586ddba621"
+        name="Component5"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="e380b830-7dc4-44e2-a836-21b1d731262c"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="bd856eac-0ea7-4c8f-a888-d58ebfeb80a3"
+                LastKnownName="Interface8"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="ea582a93-88ce-4db5-a3eb-5b82bb101395"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="b57fc009-6d77-478b-9e3d-f9b2602a2914"
+                LastKnownName="CorrectionSytem"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="d5953352-3829-4258-9b23-a82285f4dd3c"
+        name="Component6"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="d3449e0e-e3f3-477d-8601-495bd38c38d2"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="36895980-b6f9-4e9c-b946-699370baf5b0"
+                LastKnownName="ApplicationUI"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="5fdd5402-a641-48d1-a928-0de744244cbd"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="fce180d0-09a1-4283-a6de-9ebd26275747"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="6b778802-e3be-4d2f-be5c-208060f1980e"
+        name="Interface5"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="352cfc9c-37c4-4e5f-b8fd-c0af91372339"
+        name="Interface6"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="90a9c6ea-3154-4212-9e84-207fb60662e1"
+        name="Component7"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="6a111279-755b-4b91-ac03-e5fe6b1db30b"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="c4a25954-d0da-4d51-a80f-f3f720bcad64"
+                LastKnownName="ApplicationUI"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="e1b78e3c-3eb8-4ec3-8e4d-0f493afb972e"
+        name="Component8"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="0d366b28-9569-4fae-9a60-d479917c28f9"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="c9a28741-d67c-465a-bd3a-3e765dac8f22"
+                LastKnownName="WindowConfiguration"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <providedInterface
+            Id="5ca6df54-fe5f-4965-83a6-8d2411d80a48"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="08609204-8cf1-43b1-837f-25ea4f17a8d1"
+                LastKnownName="CorrectionInterface"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="c9a28741-d67c-465a-bd3a-3e765dac8f22"
+        name="WindowConfiguration"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="08609204-8cf1-43b1-837f-25ea4f17a8d1"
+        name="CorrectionInterface"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="bd856eac-0ea7-4c8f-a888-d58ebfeb80a3"
+        name="Interface8"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="3cfa9e44-7b46-4d84-a0d9-6b532ffe81e6"
+        name="WindowConfiguration"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b57fc009-6d77-478b-9e3d-f9b2602a2914"
+        name="CorrectionSytem"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="6fdd89e0-abe4-4697-8a53-d07453c7db90"
+        name="CorrectionInterface"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d009baab-ad08-45b1-8a71-b47a5930c3ae"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="62fb7f50-9b7f-41f0-98ff-fc801ee363ab"
+        name="GazeTrackerFeedback"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d6431664-2e5c-41ab-a1ca-fc71338ebb0b"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="cbe3fc2e-6f17-4055-a69f-7534fbc16c7d"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="08828f3f-1c96-4cb5-9b89-2f68aed54117"
+        name="GraphicAPI"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="aad5455a-a4a9-4767-a03d-df53b1c29f71"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="c3b21b9d-edf0-4ce8-bc4c-33ff22ec60e3"
+                LastKnownName="API"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="c3b21b9d-edf0-4ce8-bc4c-33ff22ec60e3"
+        name="API"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="9fda7da2-ecb9-42ea-a695-4240162bbd48"
+        name="API"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="25a58293-6321-43d1-974e-2f076b168662"
+        name="UserIn"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="ae8f9697-731f-4e26-a672-af71a80c600e"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Bildschirm betrachten"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="83d8b79d-fc88-4570-b3d1-ea08cd386508"
+              LastKnownName="Bildschirm betrachten"
+              LastKnownLocation="GazeTracker.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="008aace7-eedd-4458-afc4-68a628e6b170"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="848e95d7-0d78-41b6-a2fc-72e2e2ceb3d1"
+                  name="Bildschirm betrachten"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="6f60e274-f208-4b74-8653-ce2349ebc1a8"
+        name="Application"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="83d8b79d-fc88-4570-b3d1-ea08cd386508"
+        name="Bildschirm betrachten"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="5858ec87-5f00-4201-bdb2-ddbcac33bec5">
+            <useCaseMoniker
+              Id="b3aa0ca2-6f7f-457b-9b51-4c00da0249bd"
+              LastKnownName="Daten der Beobachtungen analysieren"
+              LastKnownLocation="GazeTracker.uml" />
+          </extend>
+          <extend
+            Id="c89bc915-6ae5-4d62-996d-ea49c20309d9">
+            <useCaseMoniker
+              Id="90cecb0e-c56d-4cc7-a698-798a516b25a7"
+              LastKnownName="(Eingabe durch Betrachten tätigen)"
+              LastKnownLocation="GazeTracker.uml" />
+          </extend>
+        </extendedCases>
+        <additions>
+          <include
+            Id="55c54d0b-49b3-43b1-b191-bfd99051d7bd">
+            <useCaseMoniker
+              Id="09143966-2a23-45e8-bdcb-9d8609c956b7"
+              LastKnownName="Augenblickrichtungen analysieren"
+              LastKnownLocation="GazeTracker.uml" />
+          </include>
+          <include
+            Id="6162e8f3-e43d-4f84-86a4-ade83a99bd2b">
+            <useCaseMoniker
+              Id="5787ad37-ad1f-492b-b524-2a587ba89bd4"
+              LastKnownName="Konfiguration des Systems"
+              LastKnownLocation="GazeTracker.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="6f60e274-f208-4b74-8653-ce2349ebc1a8"
+            LastKnownName="Application"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b3aa0ca2-6f7f-457b-9b51-4c00da0249bd"
+        name="Daten der Beobachtungen analysieren"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="6f60e274-f208-4b74-8653-ce2349ebc1a8"
+            LastKnownName="Application"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="90cecb0e-c56d-4cc7-a698-798a516b25a7"
+        name="(Eingabe durch Betrachten tätigen)"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="6f60e274-f208-4b74-8653-ce2349ebc1a8"
+            LastKnownName="Application"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="478b5510-8e10-4322-be1c-0312a940ff28"
+        name="GazeTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="09143966-2a23-45e8-bdcb-9d8609c956b7"
+        name="Augenblickrichtungen analysieren"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="478b5510-8e10-4322-be1c-0312a940ff28"
+            LastKnownName="GazeTracker"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5787ad37-ad1f-492b-b524-2a587ba89bd4"
+        name="Konfiguration des Systems"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="478b5510-8e10-4322-be1c-0312a940ff28"
+            LastKnownName="GazeTracker"
+            LastKnownLocation="GazeTracker.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="17fa3de7-5aef-4b69-ac24-94d411602017"
+        name="Class5"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="21225ffb-bec3-4196-85d8-9135558cc428"
+        name="GazeTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e1d040ac-6af9-4202-9aea-a2a6298e47ad"
+        name="GazeTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="06865630-d2d5-484e-96f4-aeff5531b566"
+        LastKnownName="Application"
+        LastKnownLocation="Package_1504.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7a07a990-46bc-496c-8d94-fe334e3d5528"
+        LastKnownName="GazeTracker"
+        LastKnownLocation="Package_1508.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="c4a25954-d0da-4d51-a80f-f3f720bcad64"
+        name="ApplicationUI"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="36895980-b6f9-4e9c-b946-699370baf5b0"
+        name="ApplicationUI"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="fce180d0-09a1-4283-a6de-9ebd26275747"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7785e16a-dc7e-4dc3-bec8-20c3c95444c0"
+        LastKnownName="GazeTracker"
+        LastKnownLocation="Package_2131.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="32000dd0-9026-4b04-b2ea-1e73ccbf4175"
+        LastKnownName="Application"
+        LastKnownLocation="Package_2204.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9af7424c-dd7c-40b8-9029-e0fead03c30f"
+        LastKnownName="GazeTracker"
+        LastKnownLocation="Package_2301.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

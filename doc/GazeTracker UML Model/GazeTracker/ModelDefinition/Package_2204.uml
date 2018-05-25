@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="32000dd0-9026-4b04-b2ea-1e73ccbf4175"
+  name="Application" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <suppliersInternal>
+    <dependency
+      Id="d62583c8-97fd-411c-84df-95b34266d799">
+      <packageMoniker
+        Id="b226a68f-4fbd-4f64-84e4-5e82753db976"
+        LastKnownName="GazeTracker"
+        LastKnownLocation="Package3_2258.uml" />
+    </dependency>
+    <dependency
+      Id="fee292ea-2c37-41ab-9bd3-0b06f4e7345a">
+      <packageMoniker
+        Id="9af7424c-dd7c-40b8-9029-e0fead03c30f"
+        LastKnownName="GazeTracker"
+        LastKnownLocation="Package_2301.uml" />
+    </dependency>
+  </suppliersInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ee4ef27d-613a-4e64-b17d-8716227611c3"
+        LastKnownName="Application Unit &amp; UI"
+        LastKnownLocation="Package1_2204.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="3f9ce67f-8802-4ce2-9489-42084120c143" name="GazeTracker" linkedPackageId="3babf4ab-93c1-4879-8341-9d00e441c076" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner">
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="3a940ef8-e259-4881-aa4a-4aaacc01e3ee" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="64f6b0ae-5628-4ffb-9fcd-f3d0993e62bb" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="8c553b1b-4222-4a48-a574-1ae50316f9f7">
+          <propertyInstance Id="8d9c1606-2e90-488a-98b4-df3816f7415d" name="BaseName">
+            <elementDefinition Id="255853ad-cb74-4aac-8ea8-4395b5ad0afe" />
+          </propertyInstance>
+          <elementDefinition Id="b657b944-0158-49b7-98d1-1f5d93e276d1" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="f355fe10-d6d7-4f38-9c0c-ba17af44b97d">
+          <propertyInstance Id="6590515d-88fc-44e6-a0cc-f4c15f873a1a" name="ClrAttributes">
+            <elementDefinition Id="aebe4f70-6e53-4536-8a8e-7e0cb1b51131" />
+          </propertyInstance>
+          <elementDefinition Id="e9a122bd-5e94-4696-8938-00262d099899" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="6f5fe7f8-d09b-41dc-b54a-5c23abd70796">
+          <propertyInstance Id="66e810a1-333c-4165-b28e-4973cdc1153c" name="Usings">
+            <elementDefinition Id="1b9de899-347a-4f63-b5ae-745cc6e95309" />
+          </propertyInstance>
+          <elementDefinition Id="f87abb26-2811-428a-9feb-719a5cba5831" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="5ad8b685-c1a4-44a6-a8de-6c332f67b6c9" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="5088013f-2054-4123-9b23-fd9a74a435a2" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="e4ae3a9b-d69a-4454-9acb-08dfff2ef10f">
+          <propertyInstance Id="1bbf01d6-7c9b-4b78-896a-5037b0c4879b" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="726ac450-774f-400e-91a0-802c70efa019" />
+          </propertyInstance>
+          <elementDefinition Id="13049afb-3771-4cc5-b6b9-57c39635517a" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="8b1ac778-42ae-4a49-b604-e510c0984b13">
+          <propertyInstance Id="42f6e6b6-8776-49be-b5e0-67a07419d8ad" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="91df2c79-1d80-4cae-ad54-13182e74f2cd" />
+          </propertyInstance>
+          <elementDefinition Id="950e0fbc-1098-448d-9b50-cf3c27f3adbd" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="6fc73f06-750d-4ef8-bdde-12987166ccc3">
+          <propertyInstance Id="b9d616db-69a7-45ff-9d0a-4c0e2af031f9" name="ProjectPath" value="ClassTemplate=..\UMLLib\UMLLib.csproj|EnumTemplate=..\UMLLib\UMLLib.csproj|InterfaceTemplate=..\UMLLib\UMLLib.csproj|StructTemplate=..\UMLLib\UMLLib.csproj">
+            <elementDefinition Id="d1da7a75-8ebd-467d-bbdd-d0ba6e549171" />
+          </propertyInstance>
+          <elementDefinition Id="01823e2a-dfe5-431c-82ef-2fa7a851a743" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="5b25050f-20c4-4215-a165-2e7d5e575116">
+          <propertyInstance Id="4532ba8b-66f1-450d-a7b1-dad66363ff43" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="8c0059a0-cbcd-4ece-a09c-df83663b53d8" />
+          </propertyInstance>
+          <elementDefinition Id="9cc54990-6121-4976-baa9-c6cb318dbc96" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="72aec022-ebc8-4c92-a510-853c190c1a3b">
+          <propertyInstance Id="099ca5c6-348c-4454-87ff-19ee4b666732" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="d10d0956-8b93-4f8c-a071-4ad52d033c90" />
+          </propertyInstance>
+          <elementDefinition Id="169ceb3a-623d-47c0-a8cc-d5613bda304b" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="1f2091a7-11d4-493f-a230-ca8e11435e18">
+          <propertyInstance Id="3b5b0966-335c-4df6-834f-b2bc2dd939d1" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="d0a446ec-1d9a-414d-878f-3333b12f5f96" />
+          </propertyInstance>
+          <elementDefinition Id="bb37915c-525f-488b-9786-b98c8780578f" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="72eedd2d-d1f8-4f28-85cb-307ef3c9d05b">
+          <propertyInstance Id="6ad7e27f-c2a6-4768-83cc-19ac96f3634a" name="Parameters">
+            <elementDefinition Id="845a6b6a-7a87-4eef-8ff1-20eae067b852" />
+          </propertyInstance>
+          <elementDefinition Id="4fa69693-bf6c-4eb4-b289-ca688bdadbd4" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <packagedElements>
+    <componentModelHasComponents>
+      <component Id="b7f11949-da3f-4c06-900e-0b07978fb97b" name="OpenCV" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ba928dda-fc46-4bb4-90d2-eec0a18b8b44" />
+        <ownedAttributesInternal>
+          <providedInterface Id="cd47fa06-e000-4970-9375-434c23585eaf" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="c86eba2c-ef3d-4b5f-bc74-d4d747e5f855" />
+            <type_NamedElement>
+              <interfaceMoniker Id="621ea0e3-d3eb-4a46-9df7-51e8d278a309" LastKnownName="Graphics API" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="4065e045-362d-4783-8e8e-612d31351878" name="GazeTracker" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="83d1059d-9f06-4ab4-b48c-aee5513e6421" />
+        <ownedAttributesInternal>
+          <requiredInterface Id="e5850394-c8d6-467e-95e0-12788fba4372" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="b0da3848-20d2-4876-bd32-4d9b815107fc" />
+            <type_NamedElement>
+              <interfaceMoniker Id="b1fffb2e-10dd-4ada-a676-5e75a1bf7ff9" LastKnownName="Graphics API" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="197b49a4-bf33-480e-9d9e-8836d15fb09d" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="648848ac-cbbb-4572-bda9-787a7fd1d199" />
+            <type_NamedElement>
+              <interfaceMoniker Id="4e41e1a6-6411-4e80-b5d6-7e4b58e7a16f" LastKnownName="Video Stream" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface Id="39a8af34-cbc2-4b40-a0a9-bac9bcdce52f" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="a66f40a3-4024-4c86-96d7-9d82d17b7fcf" />
+            <type_NamedElement>
+              <interfaceMoniker Id="0b8f40da-d72d-41f7-b47d-cbae32159e9f" LastKnownName="Gaze Position" />
+            </type_NamedElement>
+          </providedInterface>
+          <part Id="a6334737-850e-4a79-8c06-8e76b7f57e85" name="User Interface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="e86d30df-c3ef-414f-9fde-09c50d1f25b1" />
+            <type_NamedElement>
+              <componentMoniker Id="1995e8e3-51c5-4f8c-82cd-85fe733a8b2e" />
+            </type_NamedElement>
+          </part>
+          <part Id="07d0516c-b2a9-4f07-a8c0-dc543d8c7e41" name="GazeManager" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="87043a55-cb8d-4b4c-ac0a-d178e617cbd7" />
+            <type_NamedElement>
+              <componentMoniker Id="b5bbd032-a68b-4684-a94f-45365b3694f6" />
+            </type_NamedElement>
+          </part>
+          <part Id="3dc50f43-f3c6-4f3f-be3f-d571290ff964" name="Configuration" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="7c60845a-aea7-48f9-b15d-0ec11b370f98" />
+            <type_NamedElement>
+              <componentMoniker Id="419fa5ac-0b55-4a35-b2dc-ea9a04e7c822" />
+            </type_NamedElement>
+          </part>
+          <part Id="59d821ae-7a19-42f9-b8cf-76e6d21a427f" name="GazeTracking" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="ac7d544f-9c56-4c99-85bc-dbe37328c6fe" />
+            <type_NamedElement>
+              <componentMoniker Id="84b7521d-31d0-4bb5-87ce-95c8b20bac81" />
+            </type_NamedElement>
+          </part>
+          <part Id="1af015d8-c991-4e13-b646-51cfca8dc8d4" name="EyeTracker" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="9aea4061-e583-49e2-8eb2-54f17c4cd940" />
+            <type_NamedElement>
+              <componentMoniker Id="2b950c24-e5db-44b9-add2-2d8c46a80ff3" />
+            </type_NamedElement>
+          </part>
+          <part Id="880fc581-cb0a-4f0d-98f1-76ddd86181a1" name="GazeCalculation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="308f63ce-0b2f-4f34-9ce4-7ff79b4d9f56" />
+            <type_NamedElement>
+              <componentMoniker Id="36cfe285-8d4a-4fb5-baf3-46cfdc79de00" />
+            </type_NamedElement>
+          </part>
+          <providedInterface Id="74de2a0a-b2b7-45f2-9523-f7f0f5ac1ed9" name="Port4" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="55ab1610-41c4-4c55-9a39-2ccf0943b322" />
+            <type_NamedElement>
+              <interfaceMoniker Id="f3fc305c-4f73-4e52-85b9-6e04a1e8cfae" LastKnownName="Gaze Positions over Session" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="621ea0e3-d3eb-4a46-9df7-51e8d278a309" name="Graphics API" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="85871b42-d74a-45c3-a57d-4b0037c69300" />
+      </Interface>
+    </modelContainsNamedElements>
+    <componentModelHasComponents>
+      <component Id="68b426e6-5b5c-4b88-94a1-7a19b2540435" name="Webcam" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b06b55e9-3d3a-4360-848b-4eabd86e5421" />
+        <ownedAttributesInternal>
+          <providedInterface Id="d27b7fdb-a2d8-4bbc-8384-cf4948fe54c4" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="076b7847-c980-4c7f-9eeb-e02b76bbe2ce" />
+            <type_NamedElement>
+              <interfaceMoniker Id="3c95bd81-6ef1-4669-8099-823c8608b3dc" LastKnownName="Video Stream" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="3c95bd81-6ef1-4669-8099-823c8608b3dc" name="Video Stream" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="09d67d52-55ea-451c-b4af-3e03b115067f" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="b1fffb2e-10dd-4ada-a676-5e75a1bf7ff9" name="Graphics API" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f6b5bf32-2e36-4d18-84b5-f3798997a608" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="4e41e1a6-6411-4e80-b5d6-7e4b58e7a16f" name="Video Stream" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="71f3050e-1b53-411a-95b6-4976d74dcf40" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="0b8f40da-d72d-41f7-b47d-cbae32159e9f" name="Gaze Position" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="1430a8fb-7fec-400f-9103-81cbfb144dfd" />
+      </Interface>
+    </modelContainsNamedElements>
+    <componentModelHasComponents>
+      <component Id="1995e8e3-51c5-4f8c-82cd-85fe733a8b2e" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2f506d7b-4172-42fb-a0b1-920339a6b703" />
+        <ownedAttributesInternal>
+          <providedInterface Id="9337d78a-42c9-4847-b290-9fc59cc50b2d" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="3c1e8017-f557-4e63-b04e-f61db979c8a7" />
+            <type_NamedElement>
+              <interfaceMoniker Id="8ad8ebd0-cbb6-44e8-ac54-a2ea1fd3ce7d" LastKnownName="UI" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="b5bbd032-a68b-4684-a94f-45365b3694f6" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="aeef3f4d-b563-4a12-a573-c20e8f8ccefb" />
+        <ownedAttributesInternal>
+          <requiredInterface Id="8f820e8e-f458-471e-b5fd-3447f34bf9f5" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="e1700250-2072-48b1-a389-cd88b07c0364" />
+            <type_NamedElement>
+              <interfaceMoniker Id="53acaf62-e08d-4f67-9710-dedd96273275" LastKnownName="UI" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="5fd8cfec-af22-46bd-94d5-85d282bda192" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="e858e7d2-222f-4d97-a335-71a0e0c826ff" />
+            <type_NamedElement>
+              <interfaceMoniker Id="35155b5c-94e2-41da-9377-831700aa5556" LastKnownName="Eye Tracking" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="36dcfc2a-58b6-4d9f-8476-afc8ae8d3663" name="Port4" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="fc02c408-19b7-4f0a-8abc-a548bed7cd8c" />
+            <type_NamedElement>
+              <interfaceMoniker Id="faf95d7d-e740-40f8-bc06-d829d284fb98" LastKnownName="Gaze Position" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface Id="b216be4c-f4e5-4b86-89bd-60054f61e842" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="082cae83-8454-4894-8878-33460879709c" />
+            <type_NamedElement>
+              <interfaceMoniker Id="642d1a1f-1880-401a-935f-c627f3eb1a10" LastKnownName="Eye Position" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="419fa5ac-0b55-4a35-b2dc-ea9a04e7c822" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ebf5b682-adcf-4fd9-a032-6cc5591c8a87" />
+        <ownedAttributesInternal>
+          <requiredInterface Id="5c4b6e46-ace2-49ed-a58f-dd4e5ad5ab61" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="3c0d9389-cca2-44d8-9307-a36931c590ae" />
+            <type_NamedElement>
+              <interfaceMoniker Id="684bd3f8-64c6-4e12-9b0f-6ef9dbfb1494" LastKnownName="UI" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface Id="595aec02-ff51-4781-9e32-3d1aa0fa4dc3" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="38437094-1ae4-4a52-949c-ced0d1fad6ab" />
+            <type_NamedElement>
+              <interfaceMoniker Id="f72fa4ca-ebe2-4c48-bb52-c0b8b38453a2" LastKnownName="Config" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="84b7521d-31d0-4bb5-87ce-95c8b20bac81" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ac7b31de-0863-419c-b161-3855be0b0e8a" />
+        <ownedAttributesInternal>
+          <providedInterface Id="2d6b05c7-23da-4d3c-ad30-92190deb88f5" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="01b34c17-bc07-4005-94c8-62c1600acc0c" />
+            <type_NamedElement>
+              <interfaceMoniker Id="dc0b954d-de20-49ef-ba14-09d6626ed093" LastKnownName="Tracking" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface Id="35cde5c7-3d0a-4bb3-87bd-e6778468d1fe" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="9cffb530-6209-42d7-a780-ee4f3651e242" />
+            <type_NamedElement>
+              <interfaceMoniker Id="10110ed0-3fc3-4fba-922f-9041409afe5d" LastKnownName="Config" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="53acaf62-e08d-4f67-9710-dedd96273275" name="UI" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="02ce1e75-8717-4247-97e0-a5ca38daf1d7" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="8ad8ebd0-cbb6-44e8-ac54-a2ea1fd3ce7d" name="UI" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d5d7de89-8ce7-4c95-a5b1-5e587535b1bb" />
+      </Interface>
+    </modelContainsNamedElements>
+    <componentModelHasComponents>
+      <component Id="2b950c24-e5db-44b9-add2-2d8c46a80ff3" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d9cb1a59-604b-4695-919d-635cb1ba54b4" />
+        <ownedAttributesInternal>
+          <requiredInterface Id="8931557c-0720-4a9e-9d0e-6e4caab09c31" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="b6536c5e-4bf0-4e81-920c-8adbcf1268af" />
+            <type_NamedElement>
+              <interfaceMoniker Id="aa49bc84-1e72-4faf-822e-f108eff73998" LastKnownName="Config" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface Id="011a7aa6-0df7-4415-8662-3e4ad5565d6d" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="d681aaa0-fc6c-4197-bdeb-abf8836fc8ed" />
+            <type_NamedElement>
+              <interfaceMoniker Id="22ffe048-77cf-4ed6-aca0-0e0dc7d49cb1" LastKnownName="Eye Tracking" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="684bd3f8-64c6-4e12-9b0f-6ef9dbfb1494" name="UI" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="45aebb52-f4ff-4634-bd68-20fe6dd3680c" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="f72fa4ca-ebe2-4c48-bb52-c0b8b38453a2" name="Config" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="760c585d-73da-4262-8bd3-058171582ff8" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="aa49bc84-1e72-4faf-822e-f108eff73998" name="Config" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9ddafef5-2729-4925-8594-43e6e4ae8832" />
+      </Interface>
+    </modelContainsNamedElements>
+    <componentModelHasComponents>
+      <component Id="36cfe285-8d4a-4fb5-baf3-46cfdc79de00" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5e1967bc-0692-441a-b187-dfebb8bccc8f" />
+        <ownedAttributesInternal>
+          <providedInterface Id="b727f373-b75c-46c1-b90a-5917bda155fd" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="2682c143-48b5-4cca-b1e0-e8ab9add2514" />
+            <type_NamedElement>
+              <interfaceMoniker Id="eb0c193a-ac17-4027-a6ce-cbdbe63aa3d2" LastKnownName="Gaze Position" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface Id="35d9304f-05e2-4c60-abe9-cab1291e9f5c" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="06878b9f-e1ee-4645-9a2e-b5cced759229" />
+            <type_NamedElement>
+              <interfaceMoniker Id="58e3774d-bdeb-4c36-9d4a-71afda7eecbf" LastKnownName="Eye Position" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="7f885d20-1be0-4b87-bbf0-7cc8d765628e" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="5c4b7651-2c76-4253-a18e-f588b3390ad4" />
+            <type_NamedElement>
+              <interfaceMoniker Id="6737e882-1078-4e32-8cad-df667972498e" LastKnownName="Tracking" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="dc0b954d-de20-49ef-ba14-09d6626ed093" name="Tracking" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6a26a69c-e36e-4d6c-be92-fc9a790365f0" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="22ffe048-77cf-4ed6-aca0-0e0dc7d49cb1" name="Eye Tracking" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="28a49a3b-c665-4c0e-8e1d-4007bc40c0ee" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="35155b5c-94e2-41da-9377-831700aa5556" name="Eye Tracking" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9475fca5-e32d-4735-8ec7-c181c92cd4fb" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="eb0c193a-ac17-4027-a6ce-cbdbe63aa3d2" name="Gaze Position" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4eb5db3e-5cbf-4218-a6be-3507a45254e3" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="58e3774d-bdeb-4c36-9d4a-71afda7eecbf" name="Eye Position" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="db7b308a-0fe8-45e4-9490-bf8a1111f51a" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="faf95d7d-e740-40f8-bc06-d829d284fb98" name="Gaze Position" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d8cce3e7-0c52-43a6-bbca-06ba5d9a3989" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="642d1a1f-1880-401a-935f-c627f3eb1a10" name="Eye Position" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="69bb69d0-73dc-47b3-b549-5ea183068142" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="6737e882-1078-4e32-8cad-df667972498e" name="Tracking" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ae5ebcf5-3f2a-4afa-a831-d4fd1222081b" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="10110ed0-3fc3-4fba-922f-9041409afe5d" name="Config" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="88419620-1700-4bbc-874a-33e61ced2291" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="f3fc305c-4f73-4e52-85b9-6e04a1e8cfae" name="Gaze Positions over Session" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="70bc223a-1672-4112-a445-458f2891d5e5" />
+      </Interface>
+    </modelContainsNamedElements>
+  </packagedElements>
+  <package Id="3babf4ab-93c1-4879-8341-9d00e441c076" name="UML">
+    <elementDefinition Id="135edf6b-9f83-4c62-aef7-3f8b79caf28d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="b3614d22-c857-46f3-892c-1a265dfce766">
+        <profileInstance Id="3f2c15f1-ae50-4874-88c6-90c35bf652e8" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="43ebd12f-14be-419f-809a-d8a15bdc3ff2">
+        <profileInstance Id="64faab6d-9956-40c1-8876-92046e83bd99" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="32730f50-ab54-410d-bf98-238612296f05">
+        <profileInstance Id="54806a0e-b11a-4202-863f-6bd81d053298" name="CSharpProfile">
+          <elementDefinition Id="b266ebcf-6733-49d8-a70c-b47603c48033" />
+        </profileInstance>
+        <elementDefinition Id="44d48230-5f84-4f6c-b4dc-643f77ba249f" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="245b6173-d8be-4cfd-9669-c1c90f51639f">
+        <profileInstance Id="178e35e6-79c7-4faa-8051-1efd31b549bc" name="TextTemplateBindings">
+          <elementDefinition Id="d1bab242-4407-4512-8604-92be413da0a3" />
+        </profileInstance>
+        <elementDefinition Id="22036cbc-5871-4fc2-a0b3-67f5bd77156c" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</componentModel>
