@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0915f432-f005-4e3d-b913-3e3851233605}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>GazeTracker</Name>
+    <RootNamespace>UML</RootNamespace>
+    <ValidateArchitecture>true</ValidateArchitecture>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="Application.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Application.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Application.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="GazeTracker-V2.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GazeTracker-V2.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>GazeTracker-V2.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="GazeTracker.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GazeTracker.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>GazeTracker.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="GazeTracker.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GazeTracker.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>GazeTracker.componentdiagram</DependentUpon>
+    </Content>
+    <Content Include="GazeTracker.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GazeTracker.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>GazeTracker.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="GrazeTracker-Final.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GrazeTracker-Final.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>GrazeTracker-Final.componentdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\Package1_1505.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_1509.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_2131.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_2132.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_2204.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_2258.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package2_1509.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package2_2258.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package3_2258.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1504.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1505.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1506.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1508.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1509.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GazeTracker-classdiagram-final.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GazeTracker-classdiagram-final.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>GazeTracker-classdiagram-final.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\Package_2131.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2132.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2204.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2258.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2301.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="GrazeTracker-V2.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="GrazeTracker-V2.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>GrazeTracker-V2.componentdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\GazeTracker.uml">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+</Project>

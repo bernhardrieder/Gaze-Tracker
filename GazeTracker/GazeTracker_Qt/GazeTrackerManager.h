@@ -18,7 +18,7 @@ namespace gt
 	};
 	class GazeTrackerManager : public Singleton<GazeTrackerManager>
 	{
-		//friend class Singleton<GazeTrackerManager>;
+		friend class Singleton<GazeTrackerManager>;
 		friend class Configuration;
 	public:
 		GazeTrackerManager();

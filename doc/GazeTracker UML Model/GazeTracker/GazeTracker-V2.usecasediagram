@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="250c53f4-a61b-4e38-8328-096574cdb235" name="GazeTracker-V2" linkedPackageId="7cddc971-13dc-4e8c-8592-c33ee75954ce" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="8c812244-76da-49d2-a036-4e63f767dd3c" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="64f6b0ae-5628-4ffb-9fcd-f3d0993e62bb" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="3872d792-bb9e-49cb-b23b-2f2389981460">
+          <propertyInstance Id="90008d75-9bd3-4419-bdab-ef0887b50427" name="BaseName">
+            <elementDefinition Id="255853ad-cb74-4aac-8ea8-4395b5ad0afe" />
+          </propertyInstance>
+          <elementDefinition Id="b657b944-0158-49b7-98d1-1f5d93e276d1" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="21470e83-5d33-4389-84b8-6699ec378d17">
+          <propertyInstance Id="335f9e8d-ce42-4400-b341-4c8c87903173" name="ClrAttributes">
+            <elementDefinition Id="aebe4f70-6e53-4536-8a8e-7e0cb1b51131" />
+          </propertyInstance>
+          <elementDefinition Id="e9a122bd-5e94-4696-8938-00262d099899" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="d5d17edd-1edc-4e06-8cd3-4cf8563fbbd6">
+          <propertyInstance Id="23765f71-2822-4534-83da-393be47429be" name="Usings">
+            <elementDefinition Id="1b9de899-347a-4f63-b5ae-745cc6e95309" />
+          </propertyInstance>
+          <elementDefinition Id="f87abb26-2811-428a-9feb-719a5cba5831" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="d7efb9b4-aa7e-4241-a84c-41d7b5bc1dd2" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="5088013f-2054-4123-9b23-fd9a74a435a2" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="7e46e8f4-5aca-4920-b045-cb8c14ced257">
+          <propertyInstance Id="3826e62d-ac55-428f-beea-9461b8825d2d" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="726ac450-774f-400e-91a0-802c70efa019" />
+          </propertyInstance>
+          <elementDefinition Id="13049afb-3771-4cc5-b6b9-57c39635517a" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="bd3921ae-9c0f-4792-ac52-713f2ff8919c">
+          <propertyInstance Id="a2a8ef7c-a88c-4766-ace8-a30b25d88438" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="91df2c79-1d80-4cae-ad54-13182e74f2cd" />
+          </propertyInstance>
+          <elementDefinition Id="950e0fbc-1098-448d-9b50-cf3c27f3adbd" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="31e85c78-b3bd-4b0a-93d7-13f52fb62270">
+          <propertyInstance Id="523bc7ec-ca77-4e0a-9d00-ce3c4adce398" name="ProjectPath" value="ClassTemplate=..\UMLLib\UMLLib.csproj|EnumTemplate=..\UMLLib\UMLLib.csproj|InterfaceTemplate=..\UMLLib\UMLLib.csproj|StructTemplate=..\UMLLib\UMLLib.csproj">
+            <elementDefinition Id="d1da7a75-8ebd-467d-bbdd-d0ba6e549171" />
+          </propertyInstance>
+          <elementDefinition Id="01823e2a-dfe5-431c-82ef-2fa7a851a743" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="c3c8edf3-9472-41b2-9b93-72cf09985aa2">
+          <propertyInstance Id="576fdddd-329b-4f93-86cf-766518a1fd92" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="8c0059a0-cbcd-4ece-a09c-df83663b53d8" />
+          </propertyInstance>
+          <elementDefinition Id="9cc54990-6121-4976-baa9-c6cb318dbc96" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="cbb37822-aa1b-4519-a5ef-35c932817c26">
+          <propertyInstance Id="15c8c0eb-e63c-4d12-8d73-aed31af66a1a" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="d10d0956-8b93-4f8c-a071-4ad52d033c90" />
+          </propertyInstance>
+          <elementDefinition Id="169ceb3a-623d-47c0-a8cc-d5613bda304b" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="d8bdb0e7-7dbf-4284-aa59-6821d1bee440">
+          <propertyInstance Id="48a7d94e-c812-457b-a738-4fa99cf0aaf5" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="d0a446ec-1d9a-414d-878f-3333b12f5f96" />
+          </propertyInstance>
+          <elementDefinition Id="bb37915c-525f-488b-9786-b98c8780578f" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="66b88136-f515-4d42-a553-719e2a3ec2bc">
+          <propertyInstance Id="bed3ac2d-fa30-4150-9d95-681cad7b9216" name="Parameters">
+            <elementDefinition Id="845a6b6a-7a87-4eef-8ff1-20eae067b852" />
+          </propertyInstance>
+          <elementDefinition Id="4fa69693-bf6c-4eb4-b289-ca688bdadbd4" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="a61e62c0-318e-4db2-bfc1-d0368b417c51" name="UserIn" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="25a58293-6321-43d1-974e-2f076b168662" />
+        <targetEnds>
+          <association Id="e37ee94b-636c-45cc-862d-e05613b04e8d" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Bildschirm betrachten" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e7943bca-c47b-4334-bd81-924e2380017a" LastKnownName="Bildschirm betrachten" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="501a0dad-5cc0-41d3-8b7c-3255f1d15c2d" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="008aace7-eedd-4458-afc4-68a628e6b170" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f3821bd3-0381-4bbd-8282-972b98120aa6" name="Bildschirm betrachten" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="848e95d7-0d78-41b6-a2fc-72e2e2ceb3d1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ae8f9697-731f-4e26-a672-af71a80c600e" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="b9e07fd1-6ee5-435c-ac4c-94182ceb9bc7" name="Application" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6f60e274-f208-4b74-8653-ce2349ebc1a8" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e7943bca-c47b-4334-bd81-924e2380017a" name="Bildschirm betrachten" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="83d8b79d-fc88-4570-b3d1-ea08cd386508" />
+        <extendedCases>
+          <extend Id="31bf113c-e9cb-44bb-8483-cc32ee0c7e49">
+            <useCaseMoniker Id="f109e02b-11c2-48fc-9e49-6aa39a4016c3" LastKnownName="Daten der Beobachtungen analysieren" />
+            <elementDefinition Id="5858ec87-5f00-4201-bdb2-ddbcac33bec5" />
+          </extend>
+          <extend Id="2e5464ab-678b-42bb-b3a0-9f549ddf96f2">
+            <useCaseMoniker Id="141a33e2-9c2c-496a-a28a-bca3d571fac3" LastKnownName="(Eingabe durch Betrachten tätigen)" />
+            <elementDefinition Id="c89bc915-6ae5-4d62-996d-ea49c20309d9" />
+          </extend>
+        </extendedCases>
+        <additions>
+          <include Id="f7c22f0f-7c6d-4284-9da8-92ebbacc2693">
+            <useCaseMoniker Id="ed79dc60-e98d-4234-825b-3365eaf25c39" LastKnownName="Augenblickrichtungen analysieren" />
+            <elementDefinition Id="55c54d0b-49b3-43b1-b191-bfd99051d7bd" />
+          </include>
+          <include Id="a297f620-f0bd-4590-8663-2811bf170065">
+            <useCaseMoniker Id="cb431c52-59c1-4879-b14a-c1486879f23d" LastKnownName="Konfiguration des Systems" />
+            <elementDefinition Id="6162e8f3-e43d-4f84-86a4-ade83a99bd2b" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="b9e07fd1-6ee5-435c-ac4c-94182ceb9bc7" LastKnownName="Application" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f109e02b-11c2-48fc-9e49-6aa39a4016c3" name="Daten der Beobachtungen analysieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b3aa0ca2-6f7f-457b-9b51-4c00da0249bd" />
+        <subjects>
+          <subsystemMoniker Id="b9e07fd1-6ee5-435c-ac4c-94182ceb9bc7" LastKnownName="Application" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="141a33e2-9c2c-496a-a28a-bca3d571fac3" name="(Eingabe durch Betrachten tätigen)" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="90cecb0e-c56d-4cc7-a698-798a516b25a7" />
+        <subjects>
+          <subsystemMoniker Id="b9e07fd1-6ee5-435c-ac4c-94182ceb9bc7" LastKnownName="Application" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="3f750c37-3e13-4a2d-b29e-aeaef12aec9b" name="GazeTracker" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="478b5510-8e10-4322-be1c-0312a940ff28" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ed79dc60-e98d-4234-825b-3365eaf25c39" name="Augenblickrichtungen analysieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="09143966-2a23-45e8-bdcb-9d8609c956b7" />
+        <subjects>
+          <subsystemMoniker Id="3f750c37-3e13-4a2d-b29e-aeaef12aec9b" LastKnownName="GazeTracker" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="cb431c52-59c1-4879-b14a-c1486879f23d" name="Konfiguration des Systems" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5787ad37-ad1f-492b-b524-2a587ba89bd4" />
+        <subjects>
+          <subsystemMoniker Id="3f750c37-3e13-4a2d-b29e-aeaef12aec9b" LastKnownName="GazeTracker" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="7cddc971-13dc-4e8c-8592-c33ee75954ce" name="UML">
+    <elementDefinition Id="135edf6b-9f83-4c62-aef7-3f8b79caf28d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="833b0c75-9e61-4b26-8e2d-85161d6c08eb">
+        <profileInstance Id="dbdac759-40e5-4c93-bd9e-a30c573075f7" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="02c61744-bc12-4962-af4f-3e8c18be1265">
+        <profileInstance Id="b1011c54-6618-494f-9eb8-1d03f128f090" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="3faae42f-e54d-4863-8fa3-8a43587a2795">
+        <profileInstance Id="179f26c8-cde3-4399-ad50-80ab40e0bcbe" name="CSharpProfile">
+          <elementDefinition Id="b266ebcf-6733-49d8-a70c-b47603c48033" />
+        </profileInstance>
+        <elementDefinition Id="44d48230-5f84-4f6c-b4dc-643f77ba249f" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="b10db60e-0fc5-49da-9af1-8fd9ef7d5670">
+        <profileInstance Id="e6987a26-8cb9-4d90-9916-8675d5d16db9" name="TextTemplateBindings">
+          <elementDefinition Id="d1bab242-4407-4512-8604-92be413da0a3" />
+        </profileInstance>
+        <elementDefinition Id="22036cbc-5871-4fc2-a0b3-67f5bd77156c" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

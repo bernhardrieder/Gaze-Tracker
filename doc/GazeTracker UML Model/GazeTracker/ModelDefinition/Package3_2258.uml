@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="b226a68f-4fbd-4f64-84e4-5e82753db976"
+  name="GazeTracker" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="07c0824d-d142-4d90-b6ee-54c40eeb8bc3"
+        LastKnownName="TrackingSystem"
+        LastKnownLocation="Package2_2258.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="af579559-b632-4cab-913d-71895837a77e"
+        LastKnownName="Management"
+        LastKnownLocation="Package1_2258.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="2d304e68-1e69-483c-b996-1a25b18f6af0"
+        LastKnownName="Configuration"
+        LastKnownLocation="Package_2258.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="87eb5ce7-e6a2-4226-a24f-a5ab3ab55669"
+        name="QtHelpter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="64f53b66-00b6-43d0-947d-b160d8e9a9df"
+        name="Singleton&lt;T&gt;"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="e60b8ded-4f4d-448b-9569-ffe3241c861d"
+            name="m_instance"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="a7e05cec-bd11-42df-83da-a848fcd73191"
+                LastKnownName="T"
+                LastKnownLocation="GazeTracker.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="503bccc8-8484-408a-857d-f3646293d6be"
+            name="GetInstance"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c06f23e5-c5a9-4b1e-9522-5a73b859de6b"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="a7e05cec-bd11-42df-83da-a848fcd73191"
+                      LastKnownName="T"
+                      LastKnownLocation="GazeTracker.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

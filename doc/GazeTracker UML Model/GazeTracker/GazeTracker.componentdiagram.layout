@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="GazeTracker">
+  <componentModelMoniker Id="3f9ce67f-8802-4ce2-9489-42084120c143" />
+  <nestedChildShapes>
+    <componentShape Id="7eeeddcb-e369-4712-9369-24308c09349a" isExpanded="false" absoluteBounds="0.5, 0.625, 1.5, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="b7f11949-da3f-4c06-900e-0b07978fb97b" LastKnownName="OpenCV" />
+      <relativeChildShapes>
+        <providedInterfaceShape Id="f51f922d-dac4-40ca-b784-a4c9aa66d241" absoluteBounds="2, 0.9375, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="cd47fa06-e000-4970-9375-434c23585eaf" LastKnownName="Port1" />
+          <relativeChildShapes />
+          <moveableDecoratorHostShapes>
+            <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.4375, 0.9375, 0.68194800615310669, 0.14800345897674561" shapeFieldName="Label" />
+          </moveableDecoratorHostShapes>
+        </providedInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+    <componentShape Id="f87caf30-9dfe-4eaf-9d48-5be861221dab" absoluteBounds="0.5, 2.25, 5.475, 3.425" customColor="161, 199, 231" whiteBoxBoundsHeight="3.425" whiteBoxBoundsWidth="5.475" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="5.475" whiteBoxTopEdgeShapesCount="3" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="3" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="4065e045-362d-4783-8e8e-612d31351878" LastKnownName="GazeTracker" />
+      <relativeChildShapes>
+        <requiredInterfaceShape Id="d30a0c0e-068b-42cd-91a3-a46dabd5ca02" absoluteBounds="1.21875, 1.84375, 0.15625, 0.40625" blackBoxLocation="0.71875" whiteBoxLocation="0.71875" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true" whiteBoxEdge="t" blackBoxEdge="t" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="e5850394-c8d6-467e-95e0-12788fba4372" LastKnownName="Port1" />
+          <relativeChildShapes />
+          <moveableDecoratorHostShapes>
+            <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="0.96875000000000022, 1.625, 0.68194800615310669, 0.14800345897674561" shapeFieldName="Label" />
+          </moveableDecoratorHostShapes>
+        </requiredInterfaceShape>
+        <requiredInterfaceShape Id="3ff22830-4244-4cdd-bb3e-3325ff3699f8" absoluteBounds="2.34375, 1.84375, 0.15625, 0.40625" blackBoxLocation="1.84375" whiteBoxLocation="1.84375" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true" whiteBoxEdge="t" blackBoxEdge="t" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="197b49a4-bf33-480e-9d9e-8836d15fb09d" LastKnownName="Port2" />
+          <relativeChildShapes />
+          <moveableDecoratorHostShapes>
+            <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.0624999999999978, 1.625, 0.7125469446182251, 0.14800345897674561" shapeFieldName="Label" />
+          </moveableDecoratorHostShapes>
+        </requiredInterfaceShape>
+        <providedInterfaceShape Id="15b2d43f-f25b-47bc-a23b-3e7d4558edf5" absoluteBounds="3.8125, 1.84375, 0.15625, 0.40625" blackBoxLocation="3.5" whiteBoxLocation="3.5" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true" whiteBoxEdge="t" blackBoxEdge="t" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="39a8af34-cbc2-4b40-a0a9-bac9bcdce52f" LastKnownName="Port3" />
+          <relativeChildShapes />
+          <moveableDecoratorHostShapes>
+            <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.5625, 1.625, 0.71308952569961548, 0.14800345897674561" shapeFieldName="Label" />
+          </moveableDecoratorHostShapes>
+        </providedInterfaceShape>
+        <providedInterfaceShape Id="4f7aa767-cdb6-4ada-ab85-6dcb0ac06479" absoluteBounds="5.0625, 1.84375, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="74de2a0a-b2b7-45f2-9523-f7f0f5ac1ed9" LastKnownName="Port4" />
+          <relativeChildShapes />
+          <moveableDecoratorHostShapes>
+            <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="4.4353027343749991, 1.625, 1.4343893527984619, 0.14800345897674561" shapeFieldName="Label" />
+          </moveableDecoratorHostShapes>
+        </providedInterfaceShape>
+      </relativeChildShapes>
+      <nestedChildShapes>
+        <componentUseShape Id="90b152a4-d891-467a-9e37-c7e74fdc5604" isExpanded="false" absoluteBounds="0.60000000000000009, 2.7875064855813978, 1.5312500000000004, 0.71249999999999991" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="a6334737-850e-4a79-8c06-8e76b7f57e85" LastKnownName="User Interface" />
+          <relativeChildShapes>
+            <providedInterfaceShape Id="82d9e0ae-a810-4210-956a-ad92369ef5f0" absoluteBounds="2.1312500000000005, 3.0687564855813978, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <providedInterfaceMoniker Id="9337d78a-42c9-4847-b290-9fc59cc50b2d" LastKnownName="Port1" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.6208333333333345, 3.1000064855813974, 0.15476706624031067, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </providedInterfaceShape>
+          </relativeChildShapes>
+        </componentUseShape>
+        <componentUseShape Id="2fb64e0b-3737-4653-810d-5f8f7202d17d" isExpanded="false" absoluteBounds="4.375, 2.7875064855813978, 1.5, 1.025" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="2.9166666666666661" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="2.9166666666666661" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="07d0516c-b2a9-4f07-a8c0-dc543d8c7e41" LastKnownName="GazeManager" />
+          <relativeChildShapes>
+            <requiredInterfaceShape Id="aa3b094e-44d0-434e-96e1-e99a5589c458" absoluteBounds="3.96875, 2.9437564855813978, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="8f820e8e-f458-471e-b5fd-3447f34bf9f5" LastKnownName="Port1" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.7827329337596893, 2.9520030266046513, 0.15476706624031067, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+            <requiredInterfaceShape Id="74ce32da-9567-4929-8657-e921af2557aa" absoluteBounds="3.96875, 3.1312564855813978, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="5fd8cfec-af22-46bd-94d5-85d282bda192" LastKnownName="Port2" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.2308214008808136, 3.1312564855814031, 0.68536597490310669, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+            <requiredInterfaceShape Id="6567b80b-fa2d-4b62-97fe-74c4fa4e121e" absoluteBounds="3.96875, 3.5062564855813978, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="36dcfc2a-58b6-4d9f-8476-afc8ae8d3663" LastKnownName="Port4" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.21875, 3.5062564855813902, 0.71308952569961548, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+            <providedInterfaceShape Id="931bae92-c1a1-4502-83ed-07c24ac453d1" absoluteBounds="3.96875, 3.3187564855813978, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <providedInterfaceMoniker Id="b216be4c-f4e5-4b86-89bd-60054f61e842" LastKnownName="Port3" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.25, 3.3187564855814031, 0.64700877666473389, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </providedInterfaceShape>
+          </relativeChildShapes>
+        </componentUseShape>
+        <componentUseShape Id="454c8ec4-e218-47c6-a730-ea4fb1e58821" isExpanded="false" absoluteBounds="0.6, 3.625, 1.5, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="3dc50f43-f3c6-4f3f-be3f-d571290ff964" LastKnownName="Configuration" />
+          <relativeChildShapes>
+            <requiredInterfaceShape Id="a4de6c57-a4a1-4dd0-a06c-d4bc487d9506" absoluteBounds="2.1, 4.03125, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="5c4b6e46-ace2-49ed-a58f-dd4e5ad5ab61" LastKnownName="Port1" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.5375, 4.0312500000000009, 0.15476706624031067, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+            <providedInterfaceShape Id="4d55226e-38ae-4f07-9555-ee0d6a7259c8" absoluteBounds="2.1, 3.78125, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <providedInterfaceMoniker Id="595aec02-ff51-4781-9e32-3d1aa0fa4dc3" LastKnownName="Port2" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.56875, 3.7812500000000018, 0.35756650567054749, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </providedInterfaceShape>
+          </relativeChildShapes>
+        </componentUseShape>
+        <componentUseShape Id="086fae8d-b0bf-43d1-810e-86119a3e2788" isExpanded="false" absoluteBounds="4.375, 4.875, 1.5, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="59d821ae-7a19-42f9-b8cf-76e6d21a427f" LastKnownName="GazeTracking" />
+          <relativeChildShapes>
+            <providedInterfaceShape Id="e67c6e33-0f84-4816-b541-60dd1192ecab" absoluteBounds="3.96875, 5.28125, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <providedInterfaceMoniker Id="2d6b05c7-23da-4d3c-ad30-92190deb88f5" LastKnownName="Port1" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.4375, 5.2812500000000036, 0.46818935871124268, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </providedInterfaceShape>
+            <requiredInterfaceShape Id="c0bcb4ac-5580-47e9-8110-7e1e7fe336ef" absoluteBounds="3.96875, 5.03125, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="35cde5c7-3d0a-4bb3-87bd-e6778468d1fe" LastKnownName="Port2" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.5625, 5.0312499999999982, 0.35756650567054749, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+          </relativeChildShapes>
+        </componentUseShape>
+        <componentUseShape Id="71c35eb2-6f65-4dba-9ede-7729861ca411" isExpanded="false" absoluteBounds="0.6, 4.5, 1.5, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="1af015d8-c991-4e13-b646-51cfca8dc8d4" LastKnownName="EyeTracker" />
+          <relativeChildShapes>
+            <requiredInterfaceShape Id="115ff73e-f525-452b-8d46-46ccff367dbe" absoluteBounds="2.1, 4.65625, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="8931557c-0720-4a9e-9d0e-6e4caab09c31" LastKnownName="Port1" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.53125, 4.65625, 0.35756650567054749, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+            <providedInterfaceShape Id="57c22ef4-22a3-45d2-98f8-10357e5252ea" absoluteBounds="2.1, 4.90625, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <providedInterfaceMoniker Id="011a7aa6-0df7-4415-8662-3e4ad5565d6d" LastKnownName="Port2" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.53125, 4.90625, 0.68536597490310669, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </providedInterfaceShape>
+          </relativeChildShapes>
+        </componentUseShape>
+        <componentUseShape Id="9141f785-1698-4b98-a06a-93626ed8ad3b" isExpanded="false" absoluteBounds="4.25, 3.875, 1.625, 0.93124999999999991" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="880fc581-cb0a-4f0d-98f1-76ddd86181a1" LastKnownName="GazeCalculation" />
+          <relativeChildShapes>
+            <providedInterfaceShape Id="f0c081b8-139d-402e-9785-872c639caf15" absoluteBounds="3.84375, 4.28125, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <providedInterfaceMoniker Id="b727f373-b75c-46c1-b90a-5917bda155fd" LastKnownName="Port1" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.125, 4.2812500000000062, 0.71308952569961548, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </providedInterfaceShape>
+            <requiredInterfaceShape Id="a4f4f65a-271a-48ca-ad3e-90d0172c0842" absoluteBounds="3.84375, 4.03125, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="35d9304f-05e2-4c60-abe9-cab1291e9f5c" LastKnownName="Port2" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.15625, 4.0312500000000036, 0.64700877666473389, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+            <requiredInterfaceShape Id="bff153f0-56bf-4fd1-bd1d-81a8dbea85bd" absoluteBounds="3.84375, 4.5, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+              <requiredInterfaceMoniker Id="7f885d20-1be0-4b87-bbf0-7cc8d765628e" LastKnownName="Port3" />
+              <relativeChildShapes />
+              <moveableDecoratorHostShapes>
+                <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="3.3125, 4.5000000000000036, 0.46818935871124268, 0.14800345897674561" shapeFieldName="Label" />
+              </moveableDecoratorHostShapes>
+            </requiredInterfaceShape>
+          </relativeChildShapes>
+        </componentUseShape>
+      </nestedChildShapes>
+    </componentShape>
+    <componentShape Id="9a34790d-9893-44e3-ba77-3ddef3989c3f" isExpanded="false" absoluteBounds="3.25, 0.625, 1.5, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="68b426e6-5b5c-4b88-94a1-7a19b2540435" LastKnownName="Webcam" />
+      <relativeChildShapes>
+        <providedInterfaceShape Id="e3dfdc7d-96d7-4038-8363-02b9c40353c8" absoluteBounds="4.75, 0.90625, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="d27b7fdb-a2d8-4bbc-8384-cf4948fe54c4" LastKnownName="Port1" />
+          <relativeChildShapes />
+          <moveableDecoratorHostShapes>
+            <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="5.1875, 0.906249999999993, 0.7125469446182251, 0.14800345897674561" shapeFieldName="Label" />
+          </moveableDecoratorHostShapes>
+        </providedInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+  </nestedChildShapes>
+</componentDiagram>

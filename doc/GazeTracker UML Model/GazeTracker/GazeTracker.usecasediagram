@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="53cce2fd-ab57-414c-8ebf-0335d0c4deeb" name="GazeTracker" linkedPackageId="128e63d4-3b7d-436c-8914-037463cab80c" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="50974765-3f28-459c-9478-8f128b43d279" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="64f6b0ae-5628-4ffb-9fcd-f3d0993e62bb" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="edd54027-1e84-4e99-8c8c-fa80e3c2ef50">
+          <propertyInstance Id="ffdbae48-2384-4761-b266-def525a2d6f9" name="BaseName">
+            <elementDefinition Id="255853ad-cb74-4aac-8ea8-4395b5ad0afe" />
+          </propertyInstance>
+          <elementDefinition Id="b657b944-0158-49b7-98d1-1f5d93e276d1" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="72d5fc17-7ce8-4180-a744-f60016968bd0">
+          <propertyInstance Id="af7286a7-6556-42c8-aa41-d411400f6cb7" name="ClrAttributes">
+            <elementDefinition Id="aebe4f70-6e53-4536-8a8e-7e0cb1b51131" />
+          </propertyInstance>
+          <elementDefinition Id="e9a122bd-5e94-4696-8938-00262d099899" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="9226be3e-38db-4850-ab6a-7af87e98c4fc">
+          <propertyInstance Id="2c417f24-f4b7-4998-84ff-df641450750c" name="Usings">
+            <elementDefinition Id="1b9de899-347a-4f63-b5ae-745cc6e95309" />
+          </propertyInstance>
+          <elementDefinition Id="f87abb26-2811-428a-9feb-719a5cba5831" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="227df7d1-e605-4ca7-93c8-64a943842298" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="5088013f-2054-4123-9b23-fd9a74a435a2" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="bd4f2920-efdc-40ee-9829-fa798f845410">
+          <propertyInstance Id="fd0357ad-4adc-496c-a01d-20060a8c8391" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="726ac450-774f-400e-91a0-802c70efa019" />
+          </propertyInstance>
+          <elementDefinition Id="13049afb-3771-4cc5-b6b9-57c39635517a" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="70ea7188-24cb-4251-ae1d-134ed74c0628">
+          <propertyInstance Id="ad2dd7cb-6ece-456d-bf39-aedacbe4b6b6" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="91df2c79-1d80-4cae-ad54-13182e74f2cd" />
+          </propertyInstance>
+          <elementDefinition Id="950e0fbc-1098-448d-9b50-cf3c27f3adbd" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="30552f04-c70e-4ae5-b899-e095216c7dc7">
+          <propertyInstance Id="61b92978-4843-4e72-966a-fb5a2b198663" name="ProjectPath" value="ClassTemplate=..\UMLLib\UMLLib.csproj|EnumTemplate=..\UMLLib\UMLLib.csproj|InterfaceTemplate=..\UMLLib\UMLLib.csproj|StructTemplate=..\UMLLib\UMLLib.csproj">
+            <elementDefinition Id="d1da7a75-8ebd-467d-bbdd-d0ba6e549171" />
+          </propertyInstance>
+          <elementDefinition Id="01823e2a-dfe5-431c-82ef-2fa7a851a743" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="dd046803-43e4-4b81-b5eb-38633f23efd9">
+          <propertyInstance Id="535045f3-2685-427c-98ec-35dedd5bd360" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="8c0059a0-cbcd-4ece-a09c-df83663b53d8" />
+          </propertyInstance>
+          <elementDefinition Id="9cc54990-6121-4976-baa9-c6cb318dbc96" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="18313b3d-368d-4cd6-beba-38d40300d16b">
+          <propertyInstance Id="b7101d19-3dfd-48ba-8982-20048100331f" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="d10d0956-8b93-4f8c-a071-4ad52d033c90" />
+          </propertyInstance>
+          <elementDefinition Id="169ceb3a-623d-47c0-a8cc-d5613bda304b" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="f574c3e8-862b-4b66-a856-fdaa07db3a79">
+          <propertyInstance Id="d1d7ba91-a374-435b-b0f4-7585021ad7b9" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="d0a446ec-1d9a-414d-878f-3333b12f5f96" />
+          </propertyInstance>
+          <elementDefinition Id="bb37915c-525f-488b-9786-b98c8780578f" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="5fb39180-c712-43b8-938c-ac7c18239dcf">
+          <propertyInstance Id="656f064d-e3dd-4adf-abc8-384a76c1139d" name="Parameters">
+            <elementDefinition Id="845a6b6a-7a87-4eef-8ff1-20eae067b852" />
+          </propertyInstance>
+          <elementDefinition Id="4fa69693-bf6c-4eb4-b289-ca688bdadbd4" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="38e4d6b6-272e-4101-95d6-23c0e681e309" name="UserIn" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="46109947-7c43-4f36-adfb-aee9ad49fbb2" />
+        <targetEnds>
+          <association Id="7e30de80-a24d-47a9-960b-9094c3f4098d" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Steuerung von Software mittels Anstarren" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="5f23828d-7e50-411d-b278-142f22cccbfb" LastKnownName="Steuerung von Software mittels Anstarren" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5b1bdf25-fd31-4419-a77b-7317e3d3f6c9" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="18c2cfbe-54f4-45cb-aa84-af7f289f044b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f0d5d057-5ceb-4750-a1f6-b3c3f00bf46f" name="Steuerung von Software mittels Anstarren" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="701ec0e8-4996-4b80-9b7b-88b2a7ede369" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="df8cb3e0-a803-49a6-9544-81fc9a965c61" />
+          </association>
+          <association Id="606722e2-dbb3-4488-b5eb-bec204e14c23" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Research Program" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8b4ed898-cdb8-4224-8294-96ea417bced2" LastKnownName="Research Program" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9269cbe9-5355-4d5f-a367-e3974efc54b2" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="30e682a0-04dc-47e5-b440-d37967a41609" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="50695d9c-5051-4267-a673-4a6572a0e8b0" name="Research Program" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b3f917fa-8f5e-4209-a2e5-76848d0bd031" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1582d84e-db0b-4a1a-bde4-cc38202b8a77" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="2c1c5804-a18d-43d5-b966-f8b525b41e5c" name="EntwicklerIn" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b99b4cff-71c9-4f64-bfb9-948670846cf3" />
+        <targetEnds>
+          <association Id="52ad6960-0a74-4140-8884-22d09f0bdf5b" isDerived="false" sourceEndRoleName="Entwickler" targetEndRoleName="Research Program" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8b4ed898-cdb8-4224-8294-96ea417bced2" LastKnownName="Research Program" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6a19049e-f90f-4d56-8624-ed1a925a9037" name="Entwickler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7962c5a6-75b7-432b-84cb-5a0e180886b1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2662e0a1-f156-42c4-a29f-63e197047074" name="Research Program" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="cb7edbd5-2915-40cb-bb91-b2aa2c1d70dc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e0cf97fb-b6b6-4b02-95bc-3980482c35d1" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="2a5de000-6224-4663-86cd-b3e697e417c7" name="GazeTracker" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ee9d54c0-9611-4a77-b686-f7685035619c" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="5f23828d-7e50-411d-b278-142f22cccbfb" name="Steuerung von Software mittels Anstarren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7d2bf1de-9517-475a-ae9e-33f10da31f62" />
+        <additions>
+          <include Id="3ac79b18-f2a6-46c2-8899-880055b36228">
+            <useCaseMoniker Id="de04328f-9421-4334-a904-6393794f4511" LastKnownName="Identifizierung der Anstarrpunkte mittels Webcam" />
+            <elementDefinition Id="4f97f054-aca4-4be9-9177-536c83eb7908" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="2a5de000-6224-4663-86cd-b3e697e417c7" LastKnownName="GazeTracker" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="8b4ed898-cdb8-4224-8294-96ea417bced2" name="Research Program" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="41ef4889-64e3-48f0-9674-db5a48976a2a" />
+        <additions>
+          <include Id="d48ed5ad-2833-4d51-9cc5-3df96f85a4e8">
+            <useCaseMoniker Id="de04328f-9421-4334-a904-6393794f4511" LastKnownName="Identifizierung der Anstarrpunkte mittels Webcam" />
+            <elementDefinition Id="28d0cbbe-3ea2-44a4-9c9a-26eeb91d5df7" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="2a5de000-6224-4663-86cd-b3e697e417c7" LastKnownName="GazeTracker" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="de04328f-9421-4334-a904-6393794f4511" name="Identifizierung der Anstarrpunkte mittels Webcam" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bac1b2d7-5ae1-44cf-ad48-a8c6f48ad513" />
+        <subjects>
+          <subsystemMoniker Id="2a5de000-6224-4663-86cd-b3e697e417c7" LastKnownName="GazeTracker" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="55691777-e6f8-4899-b9d8-6e15c874eb97" name="Aufzeichnung der Anstarrpunkte" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8b049200-55ed-472f-90d9-5d6d334b5ae6" />
+        <extendedCases>
+          <extend Id="91693d35-e6e4-4f43-afd6-2b712b348d5f">
+            <useCaseMoniker Id="de04328f-9421-4334-a904-6393794f4511" LastKnownName="Identifizierung der Anstarrpunkte mittels Webcam" />
+            <elementDefinition Id="0731ccb6-53a7-4cd1-852b-695073e3bfa0" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="2a5de000-6224-4663-86cd-b3e697e417c7" LastKnownName="GazeTracker" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="128e63d4-3b7d-436c-8914-037463cab80c" name="UML">
+    <elementDefinition Id="135edf6b-9f83-4c62-aef7-3f8b79caf28d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="eea698fb-5c93-4216-a642-5fd6d2bedc8f">
+        <profileInstance Id="519a169d-aaad-48fa-996b-0aa4b859aa19" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="288d06ac-68a1-45a7-8a35-aad7a4fda27f">
+        <profileInstance Id="76cf34e2-cf0b-4696-95c2-ce223c3854d4" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="1fcd2d1f-d4e9-4114-b7a7-a060667dde3a">
+        <profileInstance Id="3c100204-e9c4-4795-850c-452251571288" name="CSharpProfile">
+          <elementDefinition Id="b266ebcf-6733-49d8-a70c-b47603c48033" />
+        </profileInstance>
+        <elementDefinition Id="44d48230-5f84-4f6c-b4dc-643f77ba249f" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="7fcfb83c-fe7f-41fa-9454-0e61c7a87797">
+        <profileInstance Id="a4cd87fe-dfb6-4966-a6ca-47e111977664" name="TextTemplateBindings">
+          <elementDefinition Id="d1bab242-4407-4512-8604-92be413da0a3" />
+        </profileInstance>
+        <elementDefinition Id="22036cbc-5871-4fc2-a0b3-67f5bd77156c" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>
