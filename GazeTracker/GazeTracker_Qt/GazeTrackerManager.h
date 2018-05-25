@@ -18,7 +18,7 @@ namespace gt
 	};
 	class GazeTrackerManager : public Singleton<GazeTrackerManager>
 	{
-		friend class Singleton<GazeTrackerManager>;
+		//friend class Singleton<GazeTrackerManager>;
 		friend class Configuration;
 	public:
 		GazeTrackerManager();
@@ -27,6 +27,7 @@ namespace gt
 		void Start();
 		void Stop();
 
+		void OpenCamera();
 		bool IsCameraOpened() const;
 		bool IsFaceDetected();
 		void detect();
@@ -48,7 +49,6 @@ namespace gt
 
 		void detectIrisesPositionsThread();
 		void setLastIrisesPositions(cv::Point& left, cv::Point& right);
-		static void setLastIrisPosition(cv::Point& current, cv::Point& last);
 	};
 }
 

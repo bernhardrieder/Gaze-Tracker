@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>212</width>
-    <height>134</height>
+    <width>311</width>
+    <height>199</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>139</width>
-    <height>93</height>
+    <width>311</width>
+    <height>199</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>10000</height>
+    <width>311</width>
+    <height>199</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -41,6 +41,37 @@
      <property name="checked">
       <bool>true</bool>
      </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>TESTING</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QCheckBox" name="useFullCornerCheckBox">
+        <property name="maximumSize">
+         <size>
+          <width>1000</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Use Full Corner Rect in Screen Point Interpolation
+ instead of 1/4 area for each corner</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="useMinMaxCheckBox">
+        <property name="text">
+         <string>Use Min x, y pos and Max widhth, height values of 
+Corner Configuration instead of average values</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>

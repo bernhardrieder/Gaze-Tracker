@@ -8,16 +8,16 @@ void TemplateMatchingMethodConfigUI_EyesUpdateWorker::process()
 	while (!m_StopProcess)
 	{
 		cv::Mat leftEyePic, rightEyePic;
-		GazeTrackerManager::GetInstance()->GetEyesWithIrisDetection(leftEyePic, rightEyePic, 5);
+		GazeTrackerManager::GetInstance()->GetEyesWithIrisDetection(leftEyePic, rightEyePic, 3.5);
 
 		QImage leftEye, rightEye;
 
-		if (!leftEyePic.empty() && QtHelper::ConvertMatToQImage(leftEyePic, leftEye) && leftEyePic.rows <= 500 && leftEyePic.cols <= 500 && leftEyePic.rows >= 100 && leftEyePic.cols >= 100)
+		if (!leftEyePic.empty() && QtHelper::ConvertMatToQImage(leftEyePic, leftEye) && leftEyePic.rows <= 1000 && leftEyePic.cols <= 1000 && leftEyePic.rows >= 100 && leftEyePic.cols >= 100)
 		{
 			config->ui.eyeLeftLabel->clear();
 			config->ui.eyeLeftLabel->setPixmap(QPixmap::fromImage(leftEye));
 		}
-		if (!rightEyePic.empty() && QtHelper::ConvertMatToQImage(rightEyePic, rightEye) && rightEyePic.rows <= 500 && rightEyePic.cols <= 500 && rightEyePic.rows >= 100 && rightEyePic.cols >= 100)
+		if (!rightEyePic.empty() && QtHelper::ConvertMatToQImage(rightEyePic, rightEye) && rightEyePic.rows <= 1000 && rightEyePic.cols <= 1000  && rightEyePic.rows >= 100 && rightEyePic.cols >= 100)
 		{
 			config->ui.eyeRightLabel->clear();
 			config->ui.eyeRightLabel->setPixmap(QPixmap::fromImage(rightEye));
